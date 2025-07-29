@@ -1,4 +1,3 @@
-// JavaScript para dashboard.html
 document.addEventListener('DOMContentLoaded', function() {
     if (!auth.requireAuth()) return;
     

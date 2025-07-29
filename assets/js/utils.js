@@ -1,4 +1,4 @@
-// Utilidades generales - MEJORADAS
+w// Utilidades generales - MEJORADAS
 function showToast(message, type = 'success') {
     // Remover toasts existentes
     const existingToasts = document.querySelectorAll('.toast');
