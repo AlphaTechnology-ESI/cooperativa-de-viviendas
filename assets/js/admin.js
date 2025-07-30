@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () { if (!auth.requireAdmin()) return; initializeAdmin(); });
+document.addEventListener('DOMContentLoaded', function () { initializeAdmin(); });
 
 function initializeAdmin() { setupNavigation(); loadSolicitudes(); setupModals(); loadDashboardStats(); }
 
@@ -29,30 +29,26 @@ const api = {
         const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/obtener_solicitudes.php");
         return await response.json();
     },
-    // otras funciones...
 };
 
-async function loadSolicitudes() {
-    try {
-        showLoading('solicitudes-tbody');
+function loadSolicitudes() {
+  console.log("Cargando solicitudes...");
 
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/obtener_solicitudes.php");
-        const result = await response.json();
+  fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/obtener_solicitudes.php")
+    .then(res => {
+      return res.json();
+    })
+    .then(result => {
 
-        if (result.estado === "ok") {
-            displaySolicitudes(result.solicitudes);
-
-            actualizarSolicitudesRecientes(result.solicitudes);
-
-            document.getElementById('total-solicitudes').textContent = result.solicitudes.length;
-        } else {
-            showError('solicitudes-tbody', result.mensaje);
-        }
-    } catch (error) {
-        console.error('Error al cargar solicitudes:', error);
-        showError('solicitudes-tbody', 'Error de conexión');
-    }
-
+      if (result.estado === "ok" && Array.isArray(result.solicitudes)) {
+        displaySolicitudes(result.solicitudes);
+      } else {
+        showError("solicitudes-tbody", "No hay solicitudes");
+      }
+    })
+    .catch(error => {
+      showError("solicitudes-tbody", "Error al cargar las solicitudes");
+    });
 }
 
 function displaySolicitudes(solicitudes) {
@@ -62,7 +58,7 @@ function displaySolicitudes(solicitudes) {
         tbody.innerHTML = '<tr><td colspan="7" class="text-center">No hay solicitudes</td></tr>';
         return;
     }
-
+    console.log('Solicitudes:', solicitudes);
     tbody.innerHTML = solicitudes.map(s => `
     <tr>
         <td>${formatDate(s.fecha_solicitud)}</td>
