@@ -1,4 +1,11 @@
-w// Utilidades generales - MEJORADAS
+// Utilidades generales 
+
+// Comprobar si el usuario está logueado
+if (sessionStorage.getItem("usuarioLogueado") !== "true") {
+    alert("Debes iniciar sesión para acceder al dashboard.");
+    window.location.href = "login.html";
+}
+
 function showToast(message, type = 'success') {
     // Remover toasts existentes
     const existingToasts = document.querySelectorAll('.toast');

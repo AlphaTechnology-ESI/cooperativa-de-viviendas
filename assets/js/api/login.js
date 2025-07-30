@@ -6,7 +6,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const errorMessage = document.getElementById("errorMessage");
 
     try {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/login.php", {
+        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/sesion/login.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -24,9 +24,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             sessionStorage.setItem("rol", result.rol);
 
             if (result.rol === "admins") {
-                window.location.href = "admin.html";
+                window.location.href = "admin_dashboard.html";
             } else {
-                window.location.href = "dashboard.html";
+                window.location.href = "user_dashboard.html";
             }
         } else {
             errorMessage.textContent = result.mensaje || "Credenciales incorrectas.";

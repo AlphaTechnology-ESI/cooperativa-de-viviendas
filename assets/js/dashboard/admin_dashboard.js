@@ -26,7 +26,7 @@ function setupNavigation() {
 }
 const api = {
     getSolicitudes: async () => {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/obtener_solicitudes.php");
+        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/solicitudes/obtener_solicitudes.php");
         return await response.json();
     },
 };
@@ -34,7 +34,7 @@ const api = {
 function loadSolicitudes() {
   console.log("Cargando solicitudes...");
 
-  fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/obtener_solicitudes.php")
+  fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/solicitudes/obtener_solicitudes.php")
     .then(res => {
       return res.json();
     })
@@ -91,7 +91,8 @@ let solicitudActual = null;
 
 async function verSolicitud(id) {
     try {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/obtener_solicitudes.php"); const result = await response.json();
+        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/solicitudes/obtener_solicitudes.php?id=" + id);
+        const result = await response.json();
 
         if (result.estado === "ok") {
             solicitudActual = result.solicitudes.find(s => s.id == id);
