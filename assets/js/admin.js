@@ -41,6 +41,10 @@ async function loadSolicitudes() {
 
         if (result.estado === "ok") {
             displaySolicitudes(result.solicitudes);
+
+            actualizarSolicitudesRecientes(result.solicitudes);
+
+            document.getElementById('total-solicitudes').textContent = result.solicitudes.length;
         } else {
             showError('solicitudes-tbody', result.mensaje);
         }
@@ -81,7 +85,7 @@ function getEstadoLabel(estado) { const labels = { 'pendiente': 'Pendiente', 'ap
 
 function showLoading(elementId) { const element = document.getElementById(elementId); if (element) { element.innerHTML = '<tr><td colspan="7" class="text-center">Cargando...</td></tr>'; } }
 
-function showError(elementId, message) { const element = document.getElementById(elementId); if (element) { element.innerHTML = <tr><td colspan="7" class="text-center">Error: ${message}</td></tr>; } }
+function showError(elementId, message) { const element = document.getElementById(elementId); if (element) { element.innerHTML = '<tr><td colspan="7" class="text-center">Error: ${message}</td></tr>'; } }
 
 function loadDashboardStats() { document.getElementById('total-viviendas').textContent = '6'; document.getElementById('total-socios').textContent = '250'; document.getElementById('viviendas-construccion').textContent = '4'; }
 
