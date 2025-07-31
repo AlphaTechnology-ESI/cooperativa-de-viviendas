@@ -1,28 +1,30 @@
 // Utilidades generales 
 
+fetch("http://localhost/cooperativa-de-viviendas-apis/api/config/db.php")
+
 // Comprobar si el usuario está logueado
 const paginasProtegidas = ["user_dashboard.html", "admin_dashboard.html"];
-const paginaActual = window.location.pathname.split("/").pop(); 
+const paginaActual = window.location.pathname.split("/").pop();
 
-if ( sessionStorage.getItem("usuarioLogueado") !== "true" && paginasProtegidas.includes(paginaActual)) {
-  alert("Debes iniciar sesión para acceder al dashboard.");
-  window.location.href = "login.html";
+if (sessionStorage.getItem("usuarioLogueado") !== "true" && paginasProtegidas.includes(paginaActual)) {
+    alert("Debes iniciar sesión para acceder al dashboard.");
+    window.location.href = "login.html";
 }
 
 function showToast(message, type = 'success') {
     // Remover toasts existentes
     const existingToasts = document.querySelectorAll('.toast');
     existingToasts.forEach(toast => toast.remove());
-    
+
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
     toast.innerHTML = `
         <span class="toast-icon">${type === 'success' ? '✓' : type === 'error' ? '✗' : '⚠'}</span>
         <span class="toast-text">${message}</span>
     `;
-    
+
     document.body.appendChild(toast);
-    
+
     setTimeout(() => {
         toast.remove();
     }, 4000);
@@ -30,7 +32,7 @@ function showToast(message, type = 'success') {
 
 function formatDate(dateString) {
     if (!dateString) return '';
-    
+
     const date = new Date(dateString);
     return date.toLocaleDateString('es-ES', {
         year: 'numeric',
@@ -41,7 +43,7 @@ function formatDate(dateString) {
 
 function formatCurrency(amount) {
     if (!amount) return '$0';
-    
+
     return new Intl.NumberFormat('es-AR', {
         style: 'currency',
         currency: 'ARS',
@@ -53,7 +55,7 @@ function formatCurrency(amount) {
 function togglePassword() {
     const passwordInput = document.getElementById('password');
     const toggleIcon = document.getElementById('toggleIcon');
-    
+
     if (passwordInput && toggleIcon) {
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
@@ -83,17 +85,17 @@ function validateEmail(email) {
 
 function validateForm(formData, requiredFields) {
     const errors = [];
-    
+
     requiredFields.forEach(field => {
         if (!formData[field] || formData[field].trim() === '') {
             errors.push(`El campo ${field} es requerido`);
         }
     });
-    
+
     if (formData.email && !validateEmail(formData.email)) {
         errors.push('El email no es válido');
     }
-    
+
     return {
         isValid: errors.length === 0,
         errors: errors
@@ -103,7 +105,7 @@ function validateForm(formData, requiredFields) {
 // Manejo de errores de API
 function handleApiError(error, defaultMessage = 'Ha ocurrido un error') {
     console.error('API Error:', error);
-    
+
     if (error.message) {
         showToast(error.message, 'error');
     } else {
@@ -127,7 +129,7 @@ function debounce(func, wait) {
 // Loading state para botones
 function setButtonLoading(button, loading = true) {
     if (!button) return;
-    
+
     if (loading) {
         button.classList.add('loading');
         button.disabled = true;
