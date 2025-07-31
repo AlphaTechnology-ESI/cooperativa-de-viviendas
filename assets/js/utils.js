@@ -1,9 +1,12 @@
 // Utilidades generales 
 
 // Comprobar si el usuario está logueado
-if (sessionStorage.getItem("usuarioLogueado") !== "true") {
-    alert("Debes iniciar sesión para acceder al dashboard.");
-    window.location.href = "login.html";
+const paginasProtegidas = ["user_dashboard.html", "admin_dashboard.html"];
+const paginaActual = window.location.pathname.split("/").pop(); 
+
+if ( sessionStorage.getItem("usuarioLogueado") !== "true" && paginasProtegidas.includes(paginaActual)) {
+  alert("Debes iniciar sesión para acceder al dashboard.");
+  window.location.href = "login.html";
 }
 
 function showToast(message, type = 'success') {
