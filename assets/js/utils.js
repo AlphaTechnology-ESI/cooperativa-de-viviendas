@@ -1,6 +1,6 @@
 // Utilidades generales 
 
-fetch("http://localhost/cooperativa-de-viviendas-apis/api/config/db.php")
+fetch("https://cooperativa-de-viviendas-apis.onrender.com/config/db.php")
 
 // Comprobar si el usuario está logueado
 const paginasProtegidas = ["user_dashboard.html", "admin_dashboard.html"];
