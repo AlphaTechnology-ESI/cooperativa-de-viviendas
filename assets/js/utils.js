@@ -1,6 +1,6 @@
 // Utilidades generales 
 
-fetch("http://localhost/cooperativa-de-viviendas-apis/api/config/db.php")
+fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/config/db.php")
 
 // Comprobar si el usuario está logueado
 const paginasProtegidas = ["user_dashboard.html", "admin_dashboard.html"];

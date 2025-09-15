@@ -26,29 +26,29 @@ function setupNavigation() {
 }
 const api = {
     getSolicitudes: async () => {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/solicitudes/obtener_solicitudes.php");
+        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/endpoint/solicitudes/obtener_solicitudes.php");
         return await response.json();
     },
 };
 
 function loadSolicitudes() {
-  console.log("Cargando solicitudes...");
+    console.log("Cargando solicitudes...");
 
-  fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/solicitudes/obtener_solicitudes.php")
-    .then(res => {
-      return res.json();
-    })
-    .then(result => {
+    fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/endpoint/solicitudes/obtener_solicitudes.php")
+        .then(res => {
+            return res.json();
+        })
+        .then(result => {
 
-      if (result.estado === "ok" && Array.isArray(result.solicitudes)) {
-        displaySolicitudes(result.solicitudes);
-      } else {
-        showError("solicitudes-tbody", "No hay solicitudes");
-      }
-    })
-    .catch(error => {
-      showError("solicitudes-tbody", "Error al cargar las solicitudes");
-    });
+            if (result.estado === "ok" && Array.isArray(result.solicitudes)) {
+                displaySolicitudes(result.solicitudes);
+            } else {
+                showError("solicitudes-tbody", "No hay solicitudes");
+            }
+        })
+        .catch(error => {
+            showError("solicitudes-tbody", "Error al cargar las solicitudes");
+        });
 }
 
 function displaySolicitudes(solicitudes) {
@@ -63,7 +63,7 @@ function displaySolicitudes(solicitudes) {
     <tr>
         <td>${formatDate(s.fecha_solicitud)}</td>
         <td>${s.nom_usu}</td>
-        <td>${s.DNI}</td>
+        <td>${s.cedula}</td>
         <td>${s.Vivienda_Seleccionada}</td>
         <td>${formatCurrency(s.Monto_Inicial)}</td>
         <td><span class="badge badge-${s.estado_solicitud}">${getEstadoLabel(s.estado_solicitud)}</span></td>
@@ -81,7 +81,7 @@ function getEstadoLabel(estado) { const labels = { 'pendiente': 'Pendiente', 'ap
 
 function showLoading(elementId) { const element = document.getElementById(elementId); if (element) { element.innerHTML = '<tr><td colspan="7" class="text-center">Cargando...</td></tr>'; } }
 
-function showError(elementId, message) { const element = document.getElementById(elementId); if (element) { element.innerHTML = '<tr><td colspan="7" class="text-center">Error: ${message}</td></tr>'; } }
+function showError(elementId, message) { const element = document.getElementById(elementId); if (element) { element.innerHTML = `<tr><td colspan="7" class="text-center">Error: ${message}</td></tr>`; } }
 
 function loadDashboardStats() { document.getElementById('total-viviendas').textContent = '6'; document.getElementById('total-socios').textContent = '250'; document.getElementById('viviendas-construccion').textContent = '4'; }
 
@@ -91,11 +91,11 @@ let solicitudActual = null;
 
 async function verSolicitud(id) {
     try {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/solicitudes/obtener_solicitudes.php?id=" + id);
+        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/endpoint/solicitudes/obtener_solicitudes.php?id=" + id);
         const result = await response.json();
 
         if (result.estado === "ok") {
-            solicitudActual = result.solicitudes.find(s => s.id == id);
+            solicitudActual = result.solicitudes.find(s => s.id_usuario == id);
 
             if (solicitudActual) {
                 const modalBody = document.getElementById('modal-solicitud-body');

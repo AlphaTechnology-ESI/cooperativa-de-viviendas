@@ -6,7 +6,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const errorMessage = document.getElementById("errorMessage");
 
     try {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/api/endpoint/sesion/login.php", {
+        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/endpoint/sesion/login.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -15,7 +15,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         });
 
         const responseText = await response.text();
-        console.log("Respuesta cruda:", responseText); // 👈 Esto ayuda a debug
+        console.log("Respuesta cruda:", responseText);
 
         const result = JSON.parse(responseText);
 
