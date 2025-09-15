@@ -75,6 +75,8 @@ function displaySolicitudes(solicitudes) {
 
 function formatDate(dateStr) { const d = new Date(dateStr); return d.toLocaleDateString('es-UY'); }
 
+function formatDateTime(dateStr) { const d = new Date(dateStr); const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }; return d.toLocaleString('es-UY', options); }
+
 function formatCurrency(value) { return new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(value); }
 
 function getEstadoLabel(estado) { const labels = { 'pendiente': 'Pendiente', 'aprobada': 'Aprobada', 'rechazada': 'Rechazada', 'en_revision': 'En Revisión' }; return labels[estado] || estado; }
@@ -158,10 +160,10 @@ async function verSolicitud(id) {
                         ${solicitudActual.Grupo_Familiar ? `<p><strong>Grupo Familiar:</strong> ${solicitudActual.Grupo_Familiar}</p>` : ''}
                         ${solicitudActual.Comentarios ? `<p><strong>Comentarios:</strong> ${solicitudActual.Comentarios}</p>` : ''}
                         <p><strong>Estado:</strong> ${getEstadoLabel(solicitudActual.estado_solicitud)}</p>
-                        ${solicitudActual.fecha_evaluacion ? `<p><strong>Fecha de Evaluación:</strong> ${formatDate(solicitudActual.fecha_evaluacion)}</p>` : ''}
+                        ${solicitudActual.fecha_evaluacion ? `<p><strong>Fecha de Evaluación:</strong> ${formatDateTime(solicitudActual.fecha_evaluacion)}</p>` : ''}
                     </div>
                 `;
-                a
+
                 document.getElementById('modal-solicitud').style.display = 'flex';
 
                 const acciones = document.querySelectorAll('#modal-solicitud .btn-success, #modal-solicitud .btn-warning, #modal-solicitud .btn-error');
