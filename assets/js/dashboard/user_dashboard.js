@@ -1,46 +1,56 @@
-document.addEventListener('DOMContentLoaded', function() {
-    if (!auth.requireAuth()) return;
-    
-    initializeDashboard();
-});
+document.addEventListener('DOMContentLoaded', function () { initializeDashboard(); });
 
 function initializeDashboard() {
     loadUserInfo();
     setupNavigation();
     setupProfileForm();
+    setupHorasForm();
     loadDashboardData();
 }
 
 function loadUserInfo() {
-    const user = auth.getCurrentUser();
-    document.getElementById('userName').textContent = user.nombre;
-    document.getElementById('userAvatar').textContent = user.nombre.charAt(0).toUpperCase();
+    const userName = sessionStorage.getItem("nombreUsuario") || "Usuario";
+    document.getElementById('userName').textContent = userName;
+    document.getElementById('userAvatar').textContent = userName.charAt(0).toUpperCase();
 }
 
 function setupNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.content-section');
-    
+
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             // Update active nav
             navLinks.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
-            
+
             // Show section
-            const sectionId = this.dataset.section + '-section';
+            const sectionKey = this.dataset.section;
+            if (!sectionKey) {
+                console.warn('nav-link sin data-section:', this);
+                return;
+            }
+
+            const sectionId = sectionKey + '-section';
+            const target = document.getElementById(sectionId);
+            if (!target) {
+                console.warn('Sección no encontrada:', sectionId);
+                return;
+            }
+
             sections.forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
+            target.classList.add('active');
         });
     });
 }
 
+
 function setupProfileForm() {
     const form = document.getElementById('profileForm');
     const user = auth.getCurrentUser();
-    
+
     // Llenar formulario con datos del usuario
     if (form && user) {
         document.getElementById('profileNombre').value = user.nombre || '';
@@ -49,20 +59,47 @@ function setupProfileForm() {
         document.getElementById('profileEstado').value = 'Activo';
         document.getElementById('profileFechaIngreso').value = '15 de Enero, 2024';
     }
-    
+
     if (form) {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const btn = document.getElementById('saveProfileBtn');
             btn.classList.add('loading');
-            
+
             setTimeout(() => {
                 btn.classList.remove('loading');
                 showToast('Perfil actualizado exitosamente', 'success');
             }, 1500);
         });
     }
+}
+
+function setupHorasForm() {
+    const form = document.getElementById('horasForm');
+    const listaHoras = document.getElementById('listaHoras');
+    if (!form || !listaHoras) return;
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const fecha = document.getElementById('fechaTrabajo').value;
+        const horas = document.getElementById('horasTrabajo').value;
+        const fileInput = document.getElementById('comprobantePago');
+        const fileName = fileInput && fileInput.files[0] ? fileInput.files[0].name : 'Sin archivo';
+
+        const item = document.createElement('div');
+        item.classList.add('activity-item');
+        item.innerHTML = `
+          <div class="activity-icon">⏱️</div>
+          <div class="activity-content">
+            <p>${horas} horas - ${fecha}</p>
+            <small>Comprobante: ${fileName}</small>
+          </div>
+        `;
+        listaHoras.prepend(item);
+        form.reset();
+    });
 }
 
 function loadDashboardData() {
@@ -73,10 +110,6 @@ function loadDashboardData() {
         document.getElementById('pendingPayments').textContent = '1';
         document.getElementById('overallProgress').textContent = '65%';
     }, 500);
-}
-
-function logout() {
-    auth.logout();
 }
 
 function resetProfileForm() {
