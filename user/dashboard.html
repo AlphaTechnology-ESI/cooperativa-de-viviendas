@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="img/cooptrack.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoopTrack - Dashboard</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/user.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/global.css">
 </head>
+
 <body>
     <header class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
-                <img src="img/cooptrack.png" alt="CoopTrack" class="header-logo">
+                <img src="../img/cooptrack.png" alt="CoopTrack" class="header-logo">
                 <h1>Dashboard</h1>
             </div>
             <div class="header-right">
@@ -19,7 +23,7 @@
                     <span class="user-name" id="userName">Cargando...</span>
                     <div class="user-avatar" id="userAvatar">👤</div>
                 </div>
-                <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+                <button class="btn btn-secondary btn-small" onclick="logout()">Cerrar Sesión</button>
             </div>
         </div>
     </header>
@@ -32,6 +36,12 @@
                         <a href="#dashboard" class="nav-link active" data-section="dashboard">
                             <span class="nav-icon">🏠</span>
                             <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#horas" class="nav-link" data-section="horas">
+                            <span class="nav-icon">⏱️</span>
+                            Horas
                         </a>
                     </li>
                     <li class="nav-item">
@@ -164,6 +174,45 @@
                 </div>
             </section>
 
+            <!-- Nueva sección: Horas -->
+            <section id="horas-section" class="content-section">
+                <div class="section-header">
+                    <h2>Horas</h2>
+                    <p>Registra tus horas de trabajo y sube comprobantes</p>
+                </div>
+
+
+                <!-- Formulario -->
+                <div class="profile-form">
+                    <form id="horasForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="fechaTrabajo">Fecha</label>
+                                <input type="date" id="fechaTrabajo" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="horasTrabajo">Horas trabajadas</label>
+                                <input type="number" id="horasTrabajo" class="form-input" placeholder="Ej: 5" min="1"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="comprobantePago">Comprobante de pago</label>
+                            <input type="file" id="comprobantePago" class="form-input" accept="image/*,.pdf">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="btnRegistrarHoras" class="btn btn-primary">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Listado de horas -->
+                <div class="dashboard-card mt-5">
+                    <h3>Historial de Horas</h3>
+                    <div id="listaHoras" class="activity-list"></div>
+                </div>
+            </section>
+
             <!-- Seccion de perfil -->
             <section id="profile-section" class="content-section">
                 <div class="section-header">
@@ -178,28 +227,31 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="profileNombre" class="form-label">Nombre Completo</label>
-                                    <input type="text" id="profileNombre" name="nombre" class="form-input" required>
+                                    <input type="text" id="profileNombre" name="nombre" class="form-input" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="profileCedula" class="form-label">Cédula</label>
-                                    <input type="text" id="profileCedula" name="cedula" class="form-input" value="12.345.678" readonly>
+                                    <input type="text" id="profileCedula" name="cedula" class="form-input"
+                                        value="12.345.678" disabled>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="profileEmail" class="form-label">Email</label>
+                                    <label for="profileEmail" class="form-label">Correo</label>
                                     <input type="email" id="profileEmail" name="email" class="form-input" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="profileTelefono" class="form-label">Teléfono</label>
-                                    <input type="tel" id="profileTelefono" name="telefono" class="form-input" value="+54 351 123-4567" required>
+                                    <input type="tel" id="profileTelefono" name="telefono" class="form-input"
+                                        value="?" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="profileDireccion" class="form-label">Dirección</label>
-                                <textarea id="profileDireccion" name="direccion" class="form-input form-textarea" rows="3" required>Av. San Martín 1234, Zona Sur</textarea>
+                                <textarea id="profileDireccion" name="direccion" class="form-input form-textarea"
+                                    rows="3" disabled>?</textarea>
                             </div>
                         </div>
 
@@ -208,18 +260,20 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="profileTipoSocio" class="form-label">Tipo de Socio</label>
-                                    <input type="text" id="profileTipoSocio" name="tipoSocio" class="form-input" readonly>
+                                    <input type="text" id="profileTipoSocio" name="tipoSocio" class="form-input"
+                                        disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="profileEstado" class="form-label">Estado</label>
-                                    <input type="text" id="profileEstado" name="estado" class="form-input" readonly>
+                                    <input type="text" id="profileEstado" name="estado" class="form-input" disabled>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="profileFechaIngreso" class="form-label">Fecha de Ingreso</label>
-                                    <input type="text" id="profileFechaIngreso" name="fechaIngreso" class="form-input" readonly>
+                                    <input type="text" id="profileFechaIngreso" name="fechaIngreso" class="form-input"
+                                        disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="profileIngresos" class="form-label">Rango de Ingresos</label>
@@ -238,7 +292,8 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="currentPassword" class="form-label">Contraseña Actual</label>
-                                    <input type="password" id="currentPassword" name="currentPassword" class="form-input">
+                                    <input type="password" id="currentPassword" name="currentPassword"
+                                        class="form-input">
                                 </div>
                                 <div class="form-group">
                                     <label for="newPassword" class="form-label">Nueva Contraseña</label>
@@ -449,7 +504,10 @@
         </div>
     </main>
 
-    <script src="assets/js/utils.js"></script>
-    <script src="assets/js/dashboard/user_dashboard.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/dashboard/user/horas.js"></script>
+    <script src="../assets/js/dashboard/user/perfil.js"></script>
+    <script src="../assets/js/dashboard/user_dashboard.js"></script>
 </body>
+
 </html>
