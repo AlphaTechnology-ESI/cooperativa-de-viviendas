@@ -2,14 +2,46 @@
 
 fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/config/db.php")
 
-// Comprobar si el usuario está logueado
-const paginasProtegidas = ["user_dashboard.html", "admin_dashboard.html"];
-const paginaActual = window.location.pathname.split("/").pop();
+// Verificar si el usuario está logueado y su rol
+const paginasProtegidas = {
+  "user/dashboard.html": "usuario",
+  "admin/dashboard.html": "admins"
+};
 
-if (sessionStorage.getItem("usuarioLogueado") !== "true" && paginasProtegidas.includes(paginaActual)) {
-    alert("Debes iniciar sesión para acceder al dashboard.");
-    window.location.href = "login.html";
+const rutaActual = window.location.pathname;
+const partes = rutaActual.split("/").filter(Boolean);
+const paginaActual = partes.slice(-2).join("/"); // "user/dashboard.html" o "admin/dashboard.html"
+
+const usuarioLogueado = sessionStorage.getItem("usuarioLogueado") === "true";
+const rolUsuario = sessionStorage.getItem("rol");
+
+// Si no está logueado y la página es protegida
+if (paginasProtegidas[paginaActual] && !usuarioLogueado) {
+  alert("Debes iniciar sesión para acceder al dashboard.");
+  window.location.href = "../login.html";
 }
+
+// Si está logueado pero no tiene rol adecuado
+if (paginasProtegidas[paginaActual]) {
+  const rolRequerido = paginasProtegidas[paginaActual];
+
+  if (rolUsuario !== rolRequerido) {
+    alert("No tienes permiso para acceder a esta página.");
+    if (rolUsuario === "admins") {
+      window.location.href = "/admin/dashboard.html";
+    } else if (rolUsuario === "usuario") {
+      window.location.href = "/user/dashboard.html";
+    } else {
+      window.location.href = "../login.html";
+    }
+  }
+}
+
+function logout() {
+  sessionStorage.clear();
+  window.location.href = "../index.html";
+}
+
 
 function showToast(message, type = 'success') {
     // Remover toasts existentes

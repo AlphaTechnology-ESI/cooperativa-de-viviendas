@@ -8,9 +8,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     try {
         const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/endpoint/sesion/login.php", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ correo, contrasena })
         });
 
@@ -22,11 +20,13 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         if (result.estado === "ok") {
             sessionStorage.setItem("usuarioLogueado", "true");
             sessionStorage.setItem("rol", result.rol);
+            sessionStorage.setItem("nombreUsuario", result.nombre);
+            sessionStorage.setItem("idUsuario", result.id);
 
             if (result.rol === "admins") {
-                window.location.href = "admin_dashboard.html";
+                window.location.href = "admin/dashboard.html";
             } else {
-                window.location.href = "user_dashboard.html";
+                window.location.href = "user/dashboard.html";
             }
         } else {
             errorMessage.textContent = result.mensaje || "Credenciales incorrectas.";
