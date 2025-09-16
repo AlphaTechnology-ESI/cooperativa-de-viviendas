@@ -58,15 +58,27 @@
     font-weight: 500;
 }
 
-.admin-user {
+.admin-info {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
 }
 
-.admin-user-name {
+.admin-name {
     font-weight: 600;
     color: var(--dark-gray);
+}
+
+.admin-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
 }
 
 /* Sidebar */
