@@ -1,6 +1,6 @@
 // Utilidades generales 
 
-fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/config/db.php")
+fetch("http://localhost/cooperativa-de-viviendas-apis/config/db.php")
 
 // Verificar si el usuario está logueado y su rol
 const paginasProtegidas = {

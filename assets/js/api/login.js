@@ -6,7 +6,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const errorMessage = document.getElementById("errorMessage");
 
     try {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/endpoint/sesion/login.php", {
+        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/sesion/login.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ correo, contrasena })

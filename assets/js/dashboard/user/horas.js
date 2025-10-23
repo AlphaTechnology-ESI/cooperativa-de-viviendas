@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Cargar horas existentes al inicio
     async function cargarHoras() {
         try {
-            const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/endpoint/dashboard/user/listar_horas.php", {
+            const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/user/listar_horas.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id_usuario: idUsuario })
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/laravel/endpoint/dashboard/user/horas.php", {
+            const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/user/horas.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id_usuario: idUsuario, fecha: fecha, horas_trabajadas: horas })
