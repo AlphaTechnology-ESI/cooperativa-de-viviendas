@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../img/cooptrack.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoopTrack - Horas</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/user.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/global.css">
+</head>
+
+<body>
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <img src="../img/cooptrack.png" alt="CoopTrack" class="header-logo">
+                <h1>Horas</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="userName">Cargando...</span>
+                    <div id="userAvatar">👤</div>
+                </div>
+                <button class="btn btn-secondary btn-small" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link" data-section="dashboard">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="horas.html" class="nav-link active" data-section="horas">
+                        <span class="nav-icon">⏱️</span>
+                        Horas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="perfil.html" class="nav-link" data-section="profile">
+                        <span class="nav-icon">👤</span>
+                        <span class="nav-text">Mi Perfil</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="proyectos.html" class="nav-link" data-section="projects">
+                        <span class="nav-icon">🏗️</span>
+                        <span class="nav-text">Mis Proyectos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="turnos.html" class="nav-link" data-section="schedule">
+                        <span class="nav-icon">📅</span>
+                        <span class="nav-text">Turnos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pagos.html" class="nav-link" data-section="payments">
+                        <span class="nav-icon">💳</span>
+                        <span class="nav-text">Pagos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="documentos.html" class="nav-link" data-section="documents">
+                        <span class="nav-icon">📄</span>
+                        <span class="nav-text">Documentos</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <!-- Nueva sección: Horas -->
+        <section id="horas-section" class="content-section active">
+            <div class="section-header">
+                <h2>Horas</h2>
+                <p>Registra tus horas de trabajo y sube comprobantes</p>
+            </div>
+
+            <!-- Formulario -->
+            <div class="profile-form">
+                <form id="horasForm" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="fechaTrabajo">Fecha</label>
+                            <input type="date" id="fechaTrabajo" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="horasTrabajo">Horas trabajadas</label>
+                            <input type="number" id="horasTrabajo" class="form-input" placeholder="Ej: 5" min="1"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="comprobantePago">Comprobante de pago</label>
+                        <input type="file" id="comprobantePago" class="form-input" accept="image/*,.pdf" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="btnRegistrarHoras" class="btn btn-primary">Registrar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Listado de horas -->
+            <div class="dashboard-card mt-5">
+                <h3>Historial de Horas</h3>
+                <div id="listaHoras" class="activity-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/dashboard/user/horas.js"></script>
+    <script src="../assets/js/dashboard/user_dashboard.js"></script>
+</body>
+
+</html>

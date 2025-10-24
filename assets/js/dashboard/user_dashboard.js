@@ -14,39 +14,6 @@ function loadUserInfo() {
     document.getElementById('userAvatar').textContent = userName.charAt(0).toUpperCase();
 }
 
-function setupNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('.content-section');
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            // Update active nav
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-
-            // Show section
-            const sectionKey = this.dataset.section;
-            if (!sectionKey) {
-                console.warn('nav-link sin data-section:', this);
-                return;
-            }
-
-            const sectionId = sectionKey + '-section';
-            const target = document.getElementById(sectionId);
-            if (!target) {
-                console.warn('Sección no encontrada:', sectionId);
-                return;
-            }
-
-            sections.forEach(s => s.classList.remove('active'));
-            target.classList.add('active');
-        });
-    });
-}
-
-
 function setupProfileForm() {
     const form = document.getElementById('profileForm');
     const user = auth.getCurrentUser();

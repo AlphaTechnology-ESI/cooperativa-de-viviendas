@@ -33,43 +33,43 @@
             <nav class="sidebar-nav">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <a href="dashboard.html" class="nav-link active" data-section="dashboard">
                             <span class="nav-icon">🏠</span>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#horas" class="nav-link" data-section="horas">
+                        <a href="horas.html" class="nav-link" data-section="horas">
                             <span class="nav-icon">⏱️</span>
                             Horas
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#profile" class="nav-link" data-section="profile">
+                        <a href="perfil.html" class="nav-link" data-section="profile">
                             <span class="nav-icon">👤</span>
                             <span class="nav-text">Mi Perfil</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#projects" class="nav-link" data-section="projects">
+                        <a href="proyectos.html" class="nav-link" data-section="projects">
                             <span class="nav-icon">🏗️</span>
                             <span class="nav-text">Mis Proyectos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#schedule" class="nav-link" data-section="schedule">
+                        <a href="turnos.html" class="nav-link" data-section="schedule">
                             <span class="nav-icon">📅</span>
                             <span class="nav-text">Turnos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#payments" class="nav-link" data-section="payments">
+                        <a href="pagos.html" class="nav-link" data-section="payments">
                             <span class="nav-icon">💳</span>
                             <span class="nav-text">Pagos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#documents" class="nav-link" data-section="documents">
+                        <a href="documentos.html" class="nav-link" data-section="documents">
                             <span class="nav-icon">📄</span>
                             <span class="nav-text">Documentos</span>
                         </a>
@@ -173,340 +173,10 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Nueva sección: Horas -->
-            <section id="horas-section" class="content-section">
-                <div class="section-header">
-                    <h2>Horas</h2>
-                    <p>Registra tus horas de trabajo y sube comprobantes</p>
-                </div>
-
-
-                <!-- Formulario -->
-                <div class="profile-form">
-                    <form id="horasForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label" for="fechaTrabajo">Fecha</label>
-                                <input type="date" id="fechaTrabajo" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="horasTrabajo">Horas trabajadas</label>
-                                <input type="number" id="horasTrabajo" class="form-input" placeholder="Ej: 5" min="1"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="comprobantePago">Comprobante de pago</label>
-                            <input type="file" id="comprobantePago" class="form-input" accept="image/*,.pdf">
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" id="btnRegistrarHoras" class="btn btn-primary">Registrar</button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Listado de horas -->
-                <div class="dashboard-card mt-5">
-                    <h3>Historial de Horas</h3>
-                    <div id="listaHoras" class="activity-list"></div>
-                </div>
-            </section>
-
-            <!-- Seccion de perfil -->
-            <section id="profile-section" class="content-section">
-                <div class="section-header">
-                    <h2>Mi Perfil</h2>
-                    <p>Gestiona tu información personal</p>
-                </div>
-
-                <div class="profile-container">
-                    <form id="profileForm" class="profile-form">
-                        <div class="form-section">
-                            <h3>Información Personal</h3>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="profileNombre" class="form-label">Nombre Completo</label>
-                                    <input type="text" id="profileNombre" name="nombre" class="form-input" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="profileCedula" class="form-label">Cédula</label>
-                                    <input type="text" id="profileCedula" name="cedula" class="form-input"
-                                        value="12.345.678" disabled>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="profileEmail" class="form-label">Correo</label>
-                                    <input type="email" id="profileEmail" name="email" class="form-input" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="profileTelefono" class="form-label">Teléfono</label>
-                                    <input type="tel" id="profileTelefono" name="telefono" class="form-input"
-                                        value="?" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="profileDireccion" class="form-label">Dirección</label>
-                                <textarea id="profileDireccion" name="direccion" class="form-input form-textarea"
-                                    rows="3" disabled>?</textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h3>Información de la Cooperativa</h3>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="profileTipoSocio" class="form-label">Tipo de Socio</label>
-                                    <input type="text" id="profileTipoSocio" name="tipoSocio" class="form-input"
-                                        disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="profileEstado" class="form-label">Estado</label>
-                                    <input type="text" id="profileEstado" name="estado" class="form-input" disabled>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="profileFechaIngreso" class="form-label">Fecha de Ingreso</label>
-                                    <input type="text" id="profileFechaIngreso" name="fechaIngreso" class="form-input"
-                                        disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="profileIngresos" class="form-label">Rango de Ingresos</label>
-                                    <select id="profileIngresos" name="ingresos" class="form-input">
-                                        <option value="menos-500">Menos de $500.000</option>
-                                        <option value="500-1000">$500.000 - $1.000.000</option>
-                                        <option value="1000-2000" selected>$1.000.000 - $2.000.000</option>
-                                        <option value="2000-mas">Más de $2.000.000</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h3>Cambiar Contraseña</h3>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="currentPassword" class="form-label">Contraseña Actual</label>
-                                    <input type="password" id="currentPassword" name="currentPassword"
-                                        class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label for="newPassword" class="form-label">Nueva Contraseña</label>
-                                    <input type="password" id="newPassword" name="newPassword" class="form-input">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmPassword" class="form-label">Confirmar Nueva Contraseña</label>
-                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-input">
-                            </div>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary" id="saveProfileBtn">
-                                <span class="btn-text">Guardar Cambios</span>
-                                <span class="btn-loading" style="display: none;">
-                                    <span class="spinner"></span>
-                                    Guardando...
-                                </span>
-                            </button>
-                            <button type="button" class="btn btn-secondary" onclick="resetProfileForm()">
-                                Cancelar
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-
-            <!-- Seccion de proyecto -->
-            <section id="projects-section" class="content-section">
-                <div class="section-header">
-                    <h2>Mis Proyectos</h2>
-                    <p>Seguimiento de tus proyectos de construcción</p>
-                </div>
-
-                <div class="projects-grid" id="projectsGrid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Casa Familiar CooviSur</h3>
-                            <span class="project-status status-active">En Progreso</span>
-                        </div>
-                        <div class="project-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 65%"></div>
-                            </div>
-                            <span class="progress-text">65% Completado</span>
-                        </div>
-                        <div class="project-details">
-                            <p><strong>Inicio:</strong> 15 Enero 2024</p>
-                            <p><strong>Estimado:</strong> 30 Junio 2024</p>
-                            <p><strong>Ubicación:</strong> Zona Norte</p>
-                            <p><strong>Tipo:</strong> Casa 2 dormitorios</p>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Cochera Adicional</h3>
-                            <span class="project-status status-active">Planificación</span>
-                        </div>
-                        <div class="project-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 15%"></div>
-                            </div>
-                            <span class="progress-text">15% Completado</span>
-                        </div>
-                        <div class="project-details">
-                            <p><strong>Inicio:</strong> 01 Marzo 2024</p>
-                            <p><strong>Estimado:</strong> 15 Abril 2024</p>
-                            <p><strong>Ubicación:</strong> Zona Norte</p>
-                            <p><strong>Tipo:</strong> Cochera techada</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Sección de horario -->
-            <section id="schedule-section" class="content-section">
-                <div class="section-header">
-                    <h2>Gestión de Turnos</h2>
-                    <p>Organiza y consulta tus turnos de trabajo</p>
-                </div>
-
-                <div class="schedule-container">
-                    <div class="dashboard-card">
-                        <h3>Próximos Turnos</h3>
-                        <div class="events-list">
-                            <div class="event-item">
-                                <span class="event-date">25 ENE</span>
-                                <div class="event-content">
-                                    <p>Turno de Construcción</p>
-                                    <small>8:00 AM - 4:00 PM</small>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <span class="event-date">28 ENE</span>
-                                <div class="event-content">
-                                    <p>Turno de Limpieza</p>
-                                    <small>9:00 AM - 1:00 PM</small>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <span class="event-date">02 FEB</span>
-                                <div class="event-content">
-                                    <p>Turno de Seguridad</p>
-                                    <small>6:00 PM - 10:00 PM</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Seccion de pagos -->
-            <section id="payments-section" class="content-section">
-                <div class="section-header">
-                    <h2>Historial de Pagos</h2>
-                    <p>Consulta tus pagos y cuotas</p>
-                </div>
-
-                <div class="payments-container">
-                    <div class="payments-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>Concepto</th>
-                                    <th>Monto</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="paymentsTableBody">
-                                <tr>
-                                    <td>15 Ene 2024</td>
-                                    <td>Cuota Mensual Enero</td>
-                                    <td>$150.000</td>
-                                    <td><span class="badge badge-aprobada">Pagado</span></td>
-                                    <td><button class="btn btn-small">Ver Comprobante</button></td>
-                                </tr>
-                                <tr>
-                                    <td>15 Dic 2023</td>
-                                    <td>Cuota Mensual Diciembre</td>
-                                    <td>$150.000</td>
-                                    <td><span class="badge badge-aprobada">Pagado</span></td>
-                                    <td><button class="btn btn-small">Ver Comprobante</button></td>
-                                </tr>
-                                <tr>
-                                    <td>15 Feb 2024</td>
-                                    <td>Cuota Mensual Febrero</td>
-                                    <td>$150.000</td>
-                                    <td><span class="badge badge-pendiente">Pendiente</span></td>
-                                    <td><button class="btn btn-small btn-primary">Pagar</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Seccion de documentos -->
-            <section id="documents-section" class="content-section">
-                <div class="section-header">
-                    <h2>Documentos</h2>
-                    <p>Accede a tus documentos y contratos</p>
-                </div>
-
-                <div class="documents-container">
-                    <div class="documents-grid" id="documentsGrid">
-                        <div class="document-card">
-                            <div class="document-icon">📄</div>
-                            <div class="document-info">
-                                <h4>Contrato de Socio</h4>
-                                <p>Firmado el 15 Enero 2024</p>
-                            </div>
-                            <button class="btn btn-small">Descargar</button>
-                        </div>
-
-                        <div class="document-card">
-                            <div class="document-icon">📋</div>
-                            <div class="document-info">
-                                <h4>Planos de Vivienda</h4>
-                                <p>Actualizado el 20 Enero 2024</p>
-                            </div>
-                            <button class="btn btn-small">Descargar</button>
-                        </div>
-
-                        <div class="document-card">
-                            <div class="document-icon">💰</div>
-                            <div class="document-info">
-                                <h4>Estado de Cuenta</h4>
-                                <p>Generado el 22 Enero 2024</p>
-                            </div>
-                            <button class="btn btn-small">Descargar</button>
-                        </div>
-
-                        <div class="document-card">
-                            <div class="document-icon">🏗️</div>
-                            <div class="document-info">
-                                <h4>Informe de Avance</h4>
-                                <p>Actualizado el 20 Enero 2024</p>
-                            </div>
-                            <button class="btn btn-small">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
     </main>
 
     <script src="../assets/js/utils.js"></script>
-    <script src="../assets/js/dashboard/user/horas.js"></script>
-    <script src="../assets/js/dashboard/user/perfil.js"></script>
     <script src="../assets/js/dashboard/user_dashboard.js"></script>
 </body>
 

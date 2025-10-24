@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../img/cooptrack.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoopTrack - Mis Proyectos</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/user.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/global.css">
+</head>
+
+<body>
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <img src="../img/cooptrack.png" class="header-logo">
+                <h1>Mis Proyectos</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="userName">Cargando...</span>
+                    <div id="userAvatar">👤</div>
+                </div>
+                <button class="btn btn-secondary btn-small" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link" data-section="dashboard">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="horas.html" class="nav-link" data-section="horas">
+                            <span class="nav-icon">⏱️</span>
+                            Horas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="perfil.html" class="nav-link" data-section="profile">
+                            <span class="nav-icon">👤</span>
+                            <span class="nav-text">Mi Perfil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="proyectos.html" class="nav-link active" data-section="projects">
+                            <span class="nav-icon">🏗️</span>
+                            <span class="nav-text">Mis Proyectos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="turnos.html" class="nav-link" data-section="schedule">
+                            <span class="nav-icon">📅</span>
+                            <span class="nav-text">Turnos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pagos.html" class="nav-link" data-section="payments">
+                            <span class="nav-icon">💳</span>
+                            <span class="nav-text">Pagos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documentos.html" class="nav-link" data-section="documents">
+                            <span class="nav-icon">📄</span>
+                            <span class="nav-text">Documentos</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+    <main class="dashboard-main">
+        <!-- Seccion de proyecto -->
+        <section id="projects-section" class="content-section active">
+            <div class="section-header">
+                <h2>Mis Proyectos</h2>
+                <p>Seguimiento de tus proyectos de construcción</p>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Casa Familiar CooviSur</h3>
+                        <span class="project-status status-active">En Progreso</span>
+                    </div>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                        <span class="progress-text">65% Completado</span>
+                    </div>
+                    <div class="project-details">
+                        <p><strong>Inicio:</strong> 15 Enero 2024</p>
+                        <p><strong>Estimado:</strong> 30 Junio 2024</p>
+                        <p><strong>Ubicación:</strong> Zona Norte</p>
+                        <p><strong>Tipo:</strong> Casa 2 dormitorios</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Cochera Adicional</h3>
+                        <span class="project-status status-active">Planificación</span>
+                    </div>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 15%"></div>
+                        </div>
+                        <span class="progress-text">15% Completado</span>
+                    </div>
+                    <div class="project-details">
+                        <p><strong>Inicio:</strong> 01 Marzo 2024</p>
+                        <p><strong>Estimado:</strong> 15 Abril 2024</p>
+                        <p><strong>Ubicación:</strong> Zona Norte</p>
+                        <p><strong>Tipo:</strong> Cochera techada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/dashboard/user_dashboard.js"></script>
+</body>
+
+</html>
