@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="../img/cooptrack.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoopTrack Admin - Gestión de Horas</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/admin.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/global.css">
+</head>
+
+<body class="admin-body">
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <img src="../img/cooptrack.png" alt="CoopTrack Admin" class="header-logo">
+                <h1>Gestión de Horas</h1>
+            </div>
+            <div class="header-right">
+                <div class="admin-info">
+                    <span class="admin-name" id="adminName">Cargando...</span>
+                    <div class="admin-avatar" id="adminAvatar">👤</div>
+                </div>
+                <button class="btn btn-secondary btn-small" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <aside class="admin-sidebar">
+        <nav class="admin-menu">
+            <a href="dashboard.html" class="admin-menu-item">
+                <span class="menu-icon">📊</span>
+                Dashboard
+            </a>
+            <a href="solicitudes.html" class="admin-menu-item">
+                <span class="menu-icon">📋</span>
+                Solicitudes
+                <span class="menu-badge" id="solicitudes-badge">0</span>
+            </a>
+            <a href="horas.html" class="admin-menu-item active">
+                <span class="menu-icon">⏱️</span>
+                Horas
+            </a>
+            <a href="viviendas.html" class="admin-menu-item">
+                <span class="menu-icon">🏠</span>
+                Viviendas
+            </a>
+            <a href="socios.html" class="admin-menu-item">
+                <span class="menu-icon">👥</span>
+                Socios
+            </a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+        <section id="horas-section" class="admin-section active">
+            <div class="admin-header-section">
+                <h1 class="admin-title">Gestión de Horas</h1>
+                <p class="admin-subtitle">Revisión y aprobación de comprobantes de horas</p>
+            </div>
+
+            <div class="filters-bar">
+                <select id="filtro-estado" class="filter-select">
+                    <option value="">Todos los estados</option>
+                    <option value="pendiente">Pendientes</option>
+                    <option value="aprobada">Aprobadas</option>
+                    <option value="rechazada">Rechazadas</option>
+                </select>
+                <button class="btn btn-primary" onclick="cargarHoras()">Actualizar</button>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table" id="horas-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Horas</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="horas-tbody">
+                        <tr>
+                            <td colspan="5" class="text-center">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal-hora" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Detalle de Registro de Horas</h2>
+                <button class="modal-close" onclick="cerrarModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <p>Cargando información...</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="actualizarEstado('aprobada')">Aprobar</button>
+                <button class="btn btn-warning" onclick="actualizarEstado('pendiente')">Pendiente</button>
+                <button class="btn btn-error" onclick="actualizarEstado('rechazada')">Rechazar</button>
+                <button class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/dashboard/admin/dashboard.js"></script>
+    <script src="../assets/js/dashboard/admin/horas_admin.js"></script>
+</body>
+
+</html>
