@@ -6,7 +6,7 @@
 
 .user-name {
     font-weight: 600;
-    color: var(--dark-gray);
+    color: var(--text-primary);
 }
 
 .user-avatar {
