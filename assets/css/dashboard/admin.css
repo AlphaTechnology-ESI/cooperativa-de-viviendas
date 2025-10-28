@@ -1,10 +1,11 @@
 /* Admin Panel Styles */
 
 .admin-body {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
     margin: 0;
     padding: 0;
     font-family: var(--font-family);
+    color: var(--text-primary);
 }
 
 /* Admin Header */
@@ -14,8 +15,8 @@
     left: 0;
     right: 0;
     height: 70px;
-    background: var(--white);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     box-shadow: var(--shadow-sm);
 }
@@ -66,7 +67,7 @@
 
 .admin-name {
     font-weight: 600;
-    color: var(--dark-gray);
+    color: var(--text-primary);
 }
 
 .admin-avatar {
@@ -88,8 +89,8 @@
     left: 0;
     width: 250px;
     height: calc(100vh - 70px);
-    background: var(--white);
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--bg-primary);
+    border-right: 1px solid var(--border-color);
     overflow-y: auto;
     z-index: 999;
 }
@@ -103,7 +104,7 @@
     align-items: center;
     gap: var(--spacing-md);
     padding: var(--spacing-md) var(--spacing-xl);
-    color: var(--dark-gray);
+    color: var(--text-secondary);
     text-decoration: none;
     transition: all var(--transition-normal);
     position: relative;
@@ -193,7 +194,7 @@
 }
 
 .stat-card {
-    background: var(--white);
+    background: var(--bg-primary);
     padding: var(--spacing-xl);
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
@@ -201,6 +202,7 @@
     align-items: center;
     gap: var(--spacing-lg);
     transition: all var(--transition-normal);
+    border: 1px solid var(--border-color);
 }
 
 .stat-card:hover {
@@ -241,10 +243,11 @@
 }
 
 .dashboard-card {
-    background: var(--white);
+    background: var(--bg-primary);
     padding: var(--spacing-xl);
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
 }
 
 .dashboard-card h3 {
@@ -318,10 +321,10 @@
 
 .filter-select {
     padding: var(--spacing-md);
-    border: 2px solid rgba(74, 144, 226, 0.2);
+    border: 2px solid var(--border-color);
     border-radius: var(--border-radius);
-    background: var(--white);
-    color: var(--dark-gray);
+    background: var(--bg-primary);
+    color: var(--text-primary);
     font-size: var(--font-size-base);
     min-width: 200px;
 }
@@ -331,17 +334,40 @@
     border-color: var(--primary-color);
 }
 
+.filter-input {
+    padding: var(--spacing-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    min-width: 250px;
+}
+
+.filter-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.filter-input::placeholder {
+    color: var(--text-muted);
+}
+
 /* Table */
 .table-container {
-    background: var(--white);
+    background: var(--bg-primary);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
+    overflow-x: auto;
+    max-width: 100%;
+    border: 1px solid var(--border-color);
 }
 
 .admin-table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 1000px;
 }
 
 .admin-table th {
@@ -354,11 +380,12 @@
 
 .admin-table td {
     padding: var(--spacing-lg);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
 }
 
 .admin-table tr:hover {
-    background: rgba(74, 144, 226, 0.05);
+    background: rgba(74, 144, 226, 0.1);
 }
 
 /* Badges */
@@ -411,186 +438,95 @@
     color: #1e3a8a;
 }
 
-/* Viviendas Grid */
-.viviendas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-xl);
+/* Estilos para badges de estado civil */
+.estado-civil-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    min-width: 80px;
 }
 
-.vivienda-card {
-    background: var(--white);
-    border-radius: var(--border-radius-lg);
-    padding: var(--spacing-xl);
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-normal);
+.estado-civil-badge.soltero {
+    background-color: #e3f2fd;
+    color: #1976d2;
 }
 
-.vivienda-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+.estado-civil-badge.casado {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
 }
 
-.vivienda-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-lg);
+.estado-civil-badge.divorciado {
+    background-color: #fff3e0;
+    color: #f57c00;
 }
 
-.vivienda-header h3 {
-    color: var(--primary-color);
-    margin: 0;
-    font-size: var(--font-size-lg);
+.estado-civil-badge.viudo {
+    background-color: #fce4ec;
+    color: #c2185b;
 }
 
-.vivienda-info {
-    margin-bottom: var(--spacing-lg);
+.estado-civil-badge.union_convivencial {
+    background-color: #e8f5e8;
+    color: #388e3c;
 }
 
-.vivienda-info p {
-    margin: var(--spacing-sm) 0;
-    color: var(--dark-gray);
+/* Estilos para badges de ingresos */
+.ingresos-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    min-width: 100px;
 }
 
-.vivienda-progreso {
-    margin-bottom: var(--spacing-lg);
+.ingresos-badge.hasta_500000 {
+    background-color: #ffebee;
+    color: #d32f2f;
 }
 
-.vivienda-progreso .progress-bar {
-    height: 10px;
-    background: rgba(74, 144, 226, 0.2);
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: var(--spacing-sm);
+.ingresos-badge[class*="500000_1000000"] {
+    background-color: #fff3e0;
+    color: #f57c00;
 }
 
-.vivienda-progreso .progress-fill {
-    height: 100%;
+.ingresos-badge[class*="1000000_1500000"] {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.ingresos-badge[class*="1500000_2000000"] {
+    background-color: #e8f5e8;
+    color: #388e3c;
+}
+
+.ingresos-badge.mas_2000000 {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+/* Scroll horizontal personalizado */
+.table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
     background: var(--primary-color);
-    transition: width 1s ease-out;
+    border-radius: 4px;
 }
 
-.vivienda-actions {
-    display: flex;
-    gap: var(--spacing-sm);
-    flex-wrap: wrap;
-}
-
-/* Modals */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-lg);
-}
-
-.modal-content {
-    background: var(--white);
-    border-radius: var(--border-radius-lg);
-    max-width: 800px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: var(--shadow-xl);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--spacing-xl);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.modal-header h2 {
-    color: var(--primary-color);
-    margin: 0;
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--gray);
-    padding: var(--spacing-sm);
-}
-
-.modal-close:hover {
-    color: var(--dark-gray);
-}
-
-.modal-body {
-    padding: var(--spacing-xl);
-}
-
-.modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: var(--spacing-md);
-    padding: var(--spacing-xl);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Solicitud Detalle */
-.solicitud-detalle {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-}
-
-.detalle-section {
-    padding: var(--spacing-lg);
-    background: rgba(74, 144, 226, 0.05);
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--primary-color);
-}
-
-.detalle-section h4 {
-    color: var(--primary-color);
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-lg);
-}
-
-.detalle-section p {
-    margin: var(--spacing-sm) 0;
-    color: var(--dark-gray);
-}
-
-/* Button Variants */
-.btn-success {
-    background: var(--success-color);
-    color: var(--white);
-}
-
-.btn-success:hover {
-    background: #218838;
-}
-
-.btn-warning {
-    background: var(--warning-color);
-    color: #212529;
-}
-
-.btn-warning:hover {
-    background: #e0a800;
-}
-
-.btn-error {
-    background: var(--error-color);
-    color: var(--white);
-}
-
-.btn-error:hover {
-    background: #c82333;
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
 }
 
 /* Coming Soon */
@@ -603,6 +539,169 @@
 .coming-soon h3 {
     color: var(--primary-color);
     margin-bottom: var(--spacing-lg);
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background-color: var(--bg-primary);
+    margin: 5% auto;
+    padding: 0;
+    border-radius: var(--border-radius-lg);
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow: visible;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    flex: 1;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: var(--spacing-xl);
+    flex: 1;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+    background: var(--bg-secondary);
+    flex-shrink: 0;
+}
+
+/* Socio Detalle */
+.socio-detalle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.detalle-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.detalle-row:last-child {
+    border-bottom: none;
+}
+
+.detalle-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.detalle-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.detalle-item strong {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detalle-item span {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+}
+
+/* Responsive para modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .detalle-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .detalle-item.full-width {
+        grid-column: 1;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .modal-footer .btn {
+        width: 100%;
+    }
 }
 
 /* Responsive Design */
