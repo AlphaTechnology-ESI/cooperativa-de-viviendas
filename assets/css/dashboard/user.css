@@ -1,27 +1,5 @@
 /* User Dashboard Styles - User Specific Only */
 
-.logout-btn {
-    background: var(--error-color);
-    color: var(--white);
-    border: none;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: var(--font-size-sm);
-    transition: all var(--transition-normal);
-}
-
-.logout-btn:hover {
-    background: #c82333;
-}
-
-/* User specific stat card content styling */
-.stat-content h3 {
-    color: var(--text-secondary);
-    font-size: var(--font-size-base);
-    margin-bottom: var(--spacing-sm);
-}
-
 /* User specific dashboard components */
 .activity-list, .events-list {
     display: flex;
@@ -269,21 +247,4 @@
     }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .sidebar {
-        transform: translateX(-100%);
-        transition: transform var(--transition-normal);
-    }
-}
-
-@media (max-width: 768px) {
-    .form-actions {
-        flex-direction: column;
-    }
-    
-    .projects-grid,
-    .documents-grid {
-        grid-template-columns: 1fr;
-    }
-}
+/* User specific responsive styles - if any needed */

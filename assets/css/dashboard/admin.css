@@ -1,77 +1,30 @@
-/* Admin Panel Styles - Specific Admin Only Styles */
+/* Admin Panel Styles - Admin Specific Only */
 
-/* Legacy admin styles for compatibility */
-.admin-nav {
+/* Filtros específicos de admin */
+.filters-bar {
     display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
     align-items: center;
-    justify-content: space-between;
-    padding: 0 var(--spacing-xl);
-    height: 100%;
-    max-width: none;
+    flex-wrap: wrap;
 }
 
-.admin-logo {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
+.filter-select {
+    padding: var(--spacing-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    min-width: 200px;
 }
 
-.admin-logo-img {
-    height: 35px;
-    width: auto;
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
 }
 
-.admin-logo-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.admin-brand {
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-    color: var(--primary-color);
-    line-height: 1;
-}
-
-.admin-subtitle {
-    font-size: var(--font-size-sm);
-    color: var(--gray);
-    font-weight: 500;
-}
-
-/* Legacy admin menu items */
-.admin-menu-item {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md) var(--spacing-xl);
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: all var(--transition-normal);
-    position: relative;
-}
-
-.admin-menu-item:hover {
-    background: rgba(74, 144, 226, 0.1);
-    color: var(--primary-color);
-}
-
-.admin-menu-item.active {
-    background: var(--primary-color);
-    color: var(--white);
-}
-
-.admin-menu-item.active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--primary-dark);
-}
-
-/* Solicitudes List */
+/* Solicitudes específicas */
 .solicitudes-list {
     display: flex;
     flex-direction: column;
@@ -93,7 +46,7 @@
     font-size: var(--font-size-sm);
 }
 
-/* Progreso List */
+/* Progreso específico para admin */
 .progreso-list {
     display: flex;
     flex-direction: column;
@@ -123,30 +76,6 @@
     height: 100%;
     background: var(--primary-color);
     transition: width 1s ease-out;
-}
-
-/* Filters Bar */
-.filters-bar {
-    display: flex;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.filter-select {
-    padding: var(--spacing-md);
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius);
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    font-size: var(--font-size-base);
-    min-width: 200px;
-}
-
-.filter-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
 }
 
 .filter-input {
@@ -492,120 +421,4 @@
     color: var(--text-secondary);
     font-size: var(--font-size-base);
     font-weight: 500;
-}
-
-/* Responsive para modal */
-@media (max-width: 768px) {
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-    }
-    
-    .detalle-row {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-    
-    .detalle-item.full-width {
-        grid-column: 1;
-    }
-    
-    .modal-footer {
-        flex-direction: column;
-    }
-    
-    .modal-footer .btn {
-        width: 100%;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .admin-sidebar {
-        transform: translateX(-100%);
-        transition: transform var(--transition-normal);
-    }
-    
-    .admin-main {
-        margin-left: 0;
-    }
-    
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .admin-nav {
-        padding: 0 var(--spacing-lg);
-    }
-    
-    .admin-main {
-        padding: var(--spacing-lg);
-    }
-    
-    .admin-header-section {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .filters-bar {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .filter-select {
-        min-width: auto;
-    }
-    
-    .viviendas-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .modal-content {
-        margin: var(--spacing-md);
-        max-height: calc(100vh - 2rem);
-    }
-    
-    .modal-footer {
-        flex-direction: column;
-    }
-    
-    .vivienda-actions {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 480px) {
-    .admin-table {
-        font-size: var(--font-size-sm);
-    }
-    
-    .admin-table th,
-    .admin-table td {
-        padding: var(--spacing-md);
-    }
-    
-    .solicitud-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-sm);
-    }
-    
-    .progreso-item {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .progreso-item strong {
-        min-width: auto;
-    }
 }
