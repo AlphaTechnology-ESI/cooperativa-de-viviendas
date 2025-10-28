@@ -18,13 +18,23 @@
     --warning-color: #ffc107;
     --info-color: #17a2b8;
     
-    /* Colores neutros */
+    /* Colores neutros - Modo claro */
     --white: #ffffff;
     --light-gray: #f8f9fa;
     --gray: #6c757d;
     --dark-gray: #343a40;
     --dark-gray-2: #191b1d;
     --black: #000000;
+    
+    /* Variables dinámicas para modo oscuro/claro */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #343a40;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.15);
     
     /* Tipografía */
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -57,6 +67,23 @@
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
+}
+
+/* Modo Oscuro */
+.dark-mode {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #404040;
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-muted: #b0b0b0;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    
+    /* Ajustes específicos para modo oscuro */
+    --light-gray: #2d2d2d;
+    --gray: #b0b0b0;
+    --dark-gray: #e0e0e0;
 }
 
 /* Base Styles */
