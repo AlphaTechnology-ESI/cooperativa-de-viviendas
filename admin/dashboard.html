@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../assets/css/dashboard/global.css">
 </head>
 
-<body class="admin-body dark-mode">
+<body class="dark-mode">
     <header class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
@@ -19,45 +19,58 @@
                 <h1>Panel de Administración</h1>
             </div>
             <div class="header-right">
-                <div class="admin-info">
-                    <span class="admin-name" id="adminName">Cargando...</span>
-                    <div class="admin-avatar" id="adminAvatar">👤</div>
+                <div class="user-info">
+                    <span class="user-name" id="adminName">Cargando...</span>
+                    <div class="user-avatar" id="adminAvatar">👤</div>
                 </div>
                 <button class="btn btn-secondary btn-small" onclick="logout()">Cerrar Sesión</button>
             </div>
         </div>
     </header>
 
-    <aside class="admin-sidebar">
-        <nav class="admin-menu">
-            <a href="dashboard.html" class="admin-menu-item active">
-                <span class="menu-icon">📊</span>
-                Dashboard
-            </a>
-            <a href="solicitudes.html" class="admin-menu-item">
-                <span class="menu-icon">📋</span>
-                Solicitudes
-                <span class="menu-badge" id="solicitudes-badge">0</span>
-            </a>
-            <a href="horas.html" class="admin-menu-item">
-                <span class="menu-icon">⏱️</span>
-                Horas
-            </a>
-            <a href="socios.html" class="admin-menu-item">
-                <span class="menu-icon">👥</span>
-                Socios
-            </a>
-        </nav>
-    </aside>
+    <main class="dashboard-main">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link active" data-section="dashboard">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="solicitudes.html" class="nav-link" data-section="solicitudes">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-text">Solicitudes</span>
+                            <span class="menu-badge" id="solicitudes-badge">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="horas.html" class="nav-link" data-section="horas">
+                            <span class="nav-icon">⏱️</span>
+                            <span class="nav-text">Horas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="socios.html" class="nav-link" data-section="socios">
+                            <span class="nav-icon">👥</span>
+                            <span class="nav-text">Socios</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
 
-    <main class="admin-main">
-        <!-- Dashboard Section -->
-        <section id="dashboard-section" class="admin-section active">
-            <div class="admin-header-section">
-                <h1 class="admin-title">Dashboard</h1>
-                <p class="admin-subtitle">Bienvenido al panel de administración</p>
-                <p class="admin-intro">Aquí puedes ver un resumen general de toda la actividad de CooviSur, incluyendo solicitudes pendientes, socios activos y estadísticas importantes del sistema.</p>
-            </div>
+        <div class="content-area">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="section-header">
+                    <div>
+                        <h2>Dashboard</h2>
+                        <p class="section-subtitle">Bienvenido al panel de administración</p>
+                        <p class="section-intro">Aquí puedes ver un resumen general de toda la actividad de CooviSur, incluyendo solicitudes pendientes, socios activos y estadísticas importantes del sistema.</p>
+                    </div>
+                </div>
 
             <div class="stats-grid">
                 <div class="stat-card">
@@ -117,7 +130,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <script src="../assets/js/utils.js"></script>

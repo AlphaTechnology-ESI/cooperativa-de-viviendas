@@ -19,44 +19,54 @@
                 <h1>Panel de Administración</h1>
             </div>
             <div class="header-right">
-                <div class="admin-info">
-                    <span class="admin-name" id="adminName">Cargando...</span>
-                    <div class="admin-avatar" id="adminAvatar">👤</div>
+                <div class="user-info">
+                    <span class="user-name" id="adminName">Cargando...</span>
+                    <div class="user-avatar" id="adminAvatar">👤</div>
                 </div>
                 <button class="btn btn-secondary btn-small" onclick="logout()">Cerrar Sesión</button>
             </div>
         </div>
     </header>
 
-    <aside class="admin-sidebar">
-        <nav class="admin-menu">
-            <a href="dashboard.html" class="admin-menu-item">
-                <span class="menu-icon">📊</span>
-                Dashboard
-            </a>
-            <a href="solicitudes.html" class="admin-menu-item">
-                <span class="menu-icon">📋</span>
-                Solicitudes
-                <span class="menu-badge" id="solicitudes-badge">0</span>
-            </a>
-            <a href="horas.html" class="admin-menu-item">
-                <span class="menu-icon">⏱️</span>
-                Horas
-            </a>
-            <a href="socios.html" class="admin-menu-item active">
-                <span class="menu-icon">👥</span>
-                Socios
-            </a>
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="solicitudes.html" class="nav-link">
+                        <span class="nav-icon">📋</span>
+                        <span class="nav-text">Solicitudes</span>
+                        <span class="menu-badge" id="solicitudes-badge">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="horas.html" class="nav-link">
+                        <span class="nav-icon">⏱️</span>
+                        <span class="nav-text">Horas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="socios.html" class="nav-link active">
+                        <span class="nav-icon">👥</span>
+                        <span class="nav-text">Socios</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
     </aside>
 
-    <main class="admin-main">
+    <main class="dashboard-main">
         <!-- Socios Section -->
-        <section id="socios-section" class="admin-section active">
-            <div class="admin-header-section">
-                <h1 class="admin-title">Gestión de Socios</h1>
-                <p class="admin-subtitle">Administrar socios de la cooperativa</p>
-                <p class="admin-intro">En esta sección puedes gestionar toda la información de los socios de la cooperativa, incluyendo sus datos personales, estado civil, ingresos y otras características importantes para la administración del sistema.</p>
+        <section id="socios-section" class="content-section active">
+            <div class="section-header">
+                <h2>Gestión de Socios</h2>
+                <p class="section-subtitle">Administrar socios de la cooperativa</p>
+                <p class="section-intro">En esta sección puedes gestionar toda la información de los socios de la cooperativa, incluyendo sus datos personales, estado civil, ingresos y otras características importantes para la administración del sistema.</p>
             </div>
 
             <div class="filters-bar">
