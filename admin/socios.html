@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../assets/css/dashboard/global.css">
 </head>
 
-<body class="admin-body">
+<body class="admin-body dark-mode">
     <header class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
@@ -39,7 +39,7 @@
                 Solicitudes
                 <span class="menu-badge" id="solicitudes-badge">0</span>
             </a>
-            <a href="horas.html" class="admin-menu-item active">
+            <a href="horas.html" class="admin-menu-item">
                 <span class="menu-icon">⏱️</span>
                 Horas
             </a>
@@ -57,16 +57,76 @@
                 <h1 class="admin-title">Gestión de Socios</h1>
                 <p class="admin-subtitle">Administrar socios de la cooperativa</p>
             </div>
-            <div class="coming-soon">
-                <h3>Próximamente</h3>
-                <p>Esta sección estará disponible en la próxima actualización</p>
+
+            <div class="filters-bar">
+                <input type="text" id="filtro-buscar" placeholder="Buscar por nombre, cédula o correo..." class="filter-input">
+                <select id="filtro-estado-civil" class="filter-select">
+                    <option value="">Todos los estados civiles</option>
+                    <option value="soltero">Soltero</option>
+                    <option value="casado">Casado</option>
+                    <option value="divorciado">Divorciado</option>
+                    <option value="viudo">Viudo</option>
+                    <option value="union_convivencial">Unión Convivencial</option>
+                </select>
+                <select id="filtro-ingresos" class="filter-select">
+                    <option value="">Todos los ingresos</option>
+                    <option value="hasta_500000">Hasta $500.000</option>
+                    <option value="500000_1000000">$500.000 - $1.000.000</option>
+                    <option value="1000000_1500000">$1.000.000 - $1.500.000</option>
+                    <option value="1500000_2000000">$1.500.000 - $2.000.000</option>
+                    <option value="mas_2000000">Más de $2.000.000</option>
+                </select>
+                <button class="btn btn-primary" onclick="loadSocios()">Actualizar</button>
+            </div>
+
+            <div class="table-wrapper">
+                <div class="table-container">
+                    <table class="admin-table" id="socios-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Cédula</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Estado Civil</th>
+                                <th>Ocupación</th>
+                                <th>Ingresos</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="socios-tbody">
+                            <tr>
+                                <td colspan="9" class="text-center">Cargando socios...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
+
+        <!-- Modal para ver detalles del socio -->
+        <div id="modal-socio" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Detalle del Socio</h2>
+                    <button class="modal-close" onclick="cerrarModal('modal-socio')">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-socio-body">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" id="btn-eliminar-socio" onclick="eliminarSocio()">Eliminar Usuario</button>
+                    <button class="btn btn-secondary" onclick="cerrarModal('modal-socio')">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="../assets/js/utils.js"></script>
     <script src="../assets/js/dashboard/admin/dashboard.js"></script>
     <script src="../assets/js/api/solicitudes/acciones.js"></script>
+    <script src="../assets/js/dashboard/admin/socios.js"></script>
 </body>
 
 </html>
