@@ -80,8 +80,8 @@
         async function runDiagnostics() {
             document.getElementById('result').textContent = 'Probando conexión...\n';
             
-            // Probar API_URL (Docker)
-            const apiResult = await testConnection(`${API_URL}/endpoint/diagnostic.php`, 'API_URL');
+            // Probar API_URL (Docker) - ruta corregida
+            const apiResult = await testConnection(`${API_URL}/cooperativa-de-viviendas-apis/endpoint/diagnostic.php`, 'API_URL');
             
             document.getElementById('result').textContent = apiResult;
         }
