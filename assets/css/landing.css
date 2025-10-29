@@ -1,4 +1,4 @@
-/* Landing Page Specific Styles */
+/* Estilos de página principal */
 
 /* Header */
 .header {
@@ -14,13 +14,13 @@
     box-shadow: var(--shadow-md);
 }
 
-/* Forzar color de fondo específico para modo oscuro */
+/* Modo oscuro */
 body.dark-mode .header {
     background: #242424 !important;
     background-color: #242424 !important;
 }
 
-/* Asegurar que el nav también tenga el fondo correcto */
+
 body.dark-mode .nav {
     background: transparent !important;
 }
@@ -901,14 +901,14 @@ body.dark-mode .nav {
 
 
 
-/* Smooth scrolling */
+/* Scroll suave */
 html {
     scroll-behavior: smooth;
 }
 
 
 
-/* Additional animations */
+/* Animaciones adicionales */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }

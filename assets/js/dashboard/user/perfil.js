@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
         const result = await response.json();
 
-        // Aquí es clave que PHP devuelva { estado: "ok", usuario: {...} }
         if (result.estado === "ok" && result.usuario) {
             const usuario = result.usuario;
 

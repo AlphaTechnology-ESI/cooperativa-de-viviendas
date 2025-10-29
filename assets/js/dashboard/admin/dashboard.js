@@ -1,13 +1,20 @@
-document.addEventListener('DOMContentLoaded', function () { initializeAdmin(); });
+// Dashboard administrativo
+document.addEventListener('DOMContentLoaded', function () { 
+    initializeAdmin(); 
+    initializeSolicitudes();
+});
 
-function initializeAdmin() { loadAdminInfo(); setupModals(); loadDashboardStats(); }
+function initializeAdmin() { 
+    loadAdminInfo(); 
+    setupModals(); 
+    loadDashboardStats(); 
+}
 
 function initializeSolicitudes() {
     loadSolicitudes();
 }
-document.addEventListener('DOMContentLoaded', initializeSolicitudes);
 
-
+// Cargar información del administrador
 function loadAdminInfo() {
     const adminName = sessionStorage.getItem("nombreUsuario") || "Admin";
     document.getElementById('adminName').textContent = adminName;
@@ -43,21 +50,66 @@ function displaySolicitudes(solicitudes) {
 
 }
 
-function formatDate(dateStr) { const d = new Date(dateStr); return d.toLocaleDateString('es-UY'); }
+// Funciones de formato
+function formatDate(dateStr) { 
+    const d = new Date(dateStr); 
+    return d.toLocaleDateString('es-UY'); 
+}
 
-function formatDateTime(dateStr) { const d = new Date(dateStr); const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }; return d.toLocaleString('es-UY', options); }
+function formatDateTime(dateStr) { 
+    const d = new Date(dateStr); 
+    const options = { 
+        year: 'numeric', month: '2-digit', day: '2-digit', 
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false 
+    }; 
+    return d.toLocaleString('es-UY', options); 
+}
 
-function formatCurrency(value) { return new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(value); }
+function formatCurrency(value) { 
+    return new Intl.NumberFormat('es-UY', { 
+        style: 'currency', 
+        currency: 'UYU' 
+    }).format(value); 
+}
 
-function getEstadoLabel(estado) { const labels = { 'pendiente': 'Pendiente', 'aprobada': 'Aprobada', 'rechazada': 'Rechazada', 'en_revision': 'En Revisión' }; return labels[estado] || estado; }
+function getEstadoLabel(estado) { 
+    const labels = { 
+        'pendiente': 'Pendiente', 
+        'aprobada': 'Aprobada', 
+        'rechazada': 'Rechazada', 
+        'en_revision': 'En Revisión' 
+    }; 
+    return labels[estado] || estado; 
+}
 
-function showLoading(elementId) { const element = document.getElementById(elementId); if (element) { element.innerHTML = '<tr><td colspan="7" class="text-center">Cargando...</td></tr>'; } }
+// Funciones de UI
+function showLoading(elementId) { 
+    const element = document.getElementById(elementId); 
+    if (element) { 
+        element.innerHTML = '<tr><td colspan="7" class="text-center">Cargando...</td></tr>'; 
+    } 
+}
 
-function showError(elementId, message) { const element = document.getElementById(elementId); if (element) { element.innerHTML = `<tr><td colspan="7" class="text-center">Error: ${message}</td></tr>`; } }
+function showError(elementId, message) { 
+    const element = document.getElementById(elementId); 
+    if (element) { 
+        element.innerHTML = `<tr><td colspan="7" class="text-center">Error: ${message}</td></tr>`; 
+    } 
+}
 
-function loadDashboardStats() { document.getElementById('total-viviendas').textContent = '6'; document.getElementById('total-socios').textContent = '250'; document.getElementById('viviendas-construccion').textContent = '4'; }
+function loadDashboardStats() { 
+    document.getElementById('total-viviendas').textContent = '6'; 
+    document.getElementById('total-socios').textContent = '250'; 
+    document.getElementById('viviendas-construccion').textContent = '4'; 
+}
 
-function setupModals() { window.addEventListener('click', function (e) { if (e.target.classList.contains('modal')) { e.target.style.display = 'none'; } }); }
+function setupModals() { 
+    window.addEventListener('click', function (e) { 
+        if (e.target.classList.contains('modal')) { 
+            e.target.style.display = 'none'; 
+        } 
+    }); 
+}
 
 function actualizarBadgeSolicitudes(solicitudes) {
     const badge = document.getElementById('solicitudes-badge');

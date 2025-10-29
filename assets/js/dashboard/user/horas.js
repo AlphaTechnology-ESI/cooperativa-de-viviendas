@@ -1,4 +1,4 @@
-// assets/js/dashboard/user/horas.js
+// Gestión de horas de trabajo
 document.addEventListener("DOMContentLoaded", function () {
     const btn = document.getElementById("btnRegistrarHoras");
     const listaHoras = document.getElementById("listaHoras");

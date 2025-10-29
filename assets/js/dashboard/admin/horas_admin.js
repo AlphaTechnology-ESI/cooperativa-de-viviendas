@@ -60,7 +60,6 @@ async function abrirModal(id) {
 
         const h = data.hora;
 
-
         modalBody.innerHTML = `
     <p><strong>Usuario:</strong> ${h.nombre_usuario}</p>
     <p><strong>Cedula:</strong> ${h.cedula}</p>

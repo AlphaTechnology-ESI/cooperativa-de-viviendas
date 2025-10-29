@@ -1,3 +1,4 @@
+// Gestión de inicio de sesión
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -18,11 +19,13 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         const result = JSON.parse(responseText);
 
         if (result.estado === "ok") {
+            // Guardar datos de sesión
             sessionStorage.setItem("usuarioLogueado", "true");
             sessionStorage.setItem("rol", result.rol);
             sessionStorage.setItem("nombreUsuario", result.nombre);
             sessionStorage.setItem("idUsuario", result.id);
 
+            // Redirigir según rol
             if (result.rol === "admins") {
                 window.location.href = "admin/dashboard.html";
             } else {

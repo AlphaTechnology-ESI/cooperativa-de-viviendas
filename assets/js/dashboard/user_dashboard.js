@@ -17,8 +17,6 @@ function loadUserInfo() {
 function setupProfileForm() {
     const form = document.getElementById('profileForm');
     const user = auth.getCurrentUser();
-
-    // Llenar formulario con datos del usuario
     if (form && user) {
         document.getElementById('profileNombre').value = user.nombre || '';
         document.getElementById('profileEmail').value = user.email || '';
@@ -70,7 +68,6 @@ function setupHorasForm() {
 }
 
 function loadDashboardData() {
-    // Simular carga de datos
     setTimeout(() => {
         document.getElementById('activeProjects').textContent = '2';
         document.getElementById('nextSchedule').textContent = '25 Ene - 09:00';

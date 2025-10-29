@@ -1,8 +1,8 @@
-// Utilidades generales 
+// Utilidades generales
 
 fetch("http://localhost/cooperativa-de-viviendas-apis/config/db.php")
 
-// Verificar si el usuario está logueado y su rol
+// Control de autenticación y autorización
 const paginasProtegidas = {
   "user/dashboard.html": "usuario",
   "admin/dashboard.html": "admins"
@@ -10,18 +10,15 @@ const paginasProtegidas = {
 
 const rutaActual = window.location.pathname;
 const partes = rutaActual.split("/").filter(Boolean);
-const paginaActual = partes.slice(-2).join("/"); // "user/dashboard.html" o "admin/dashboard.html"
+const paginaActual = partes.slice(-2).join("/");
 
 const usuarioLogueado = sessionStorage.getItem("usuarioLogueado") === "true";
 const rolUsuario = sessionStorage.getItem("rol");
 
-// Si no está logueado y la página es protegida
 if (paginasProtegidas[paginaActual] && !usuarioLogueado) {
   alert("Debes iniciar sesión para acceder al dashboard.");
   window.location.href = "../login.html";
 }
-
-// Si está logueado pero no tiene rol adecuado
 if (paginasProtegidas[paginaActual]) {
   const rolRequerido = paginasProtegidas[paginaActual];
 
@@ -43,8 +40,8 @@ function logout() {
 }
 
 
+// Notificaciones
 function showToast(message, type = 'success') {
-    // Remover toasts existentes
     const existingToasts = document.querySelectorAll('.toast');
     existingToasts.forEach(toast => toast.remove());
 
@@ -62,6 +59,7 @@ function showToast(message, type = 'success') {
     }, 4000);
 }
 
+// Formateo de datos
 function formatDate(dateString) {
     if (!dateString) return '';
 
@@ -99,7 +97,7 @@ function togglePassword() {
     }
 }
 
-// Smooth scrolling
+// Navegación y scroll
 function smoothScroll(target) {
     const element = document.querySelector(target);
     if (element) {
@@ -109,7 +107,7 @@ function smoothScroll(target) {
     }
 }
 
-// Validación de formularios
+// Validaciones
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -134,7 +132,7 @@ function validateForm(formData, requiredFields) {
     };
 }
 
-// Manejo de errores de API
+// Control de errores
 function handleApiError(error, defaultMessage = 'Ha ocurrido un error') {
     console.error('API Error:', error);
 
@@ -145,7 +143,7 @@ function handleApiError(error, defaultMessage = 'Ha ocurrido un error') {
     }
 }
 
-// Debounce function
+// Optimización de rendimiento
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -158,7 +156,7 @@ function debounce(func, wait) {
     };
 }
 
-// Loading state para botones
+// Estados de UI
 function setButtonLoading(button, loading = true) {
     if (!button) return;
 
@@ -170,13 +168,9 @@ function setButtonLoading(button, loading = true) {
         button.disabled = false;
     }
 }
-
-// Formatear números
 function formatNumber(num) {
     return new Intl.NumberFormat('es-AR').format(num);
 }
-
-// Capitalizar primera letra
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }

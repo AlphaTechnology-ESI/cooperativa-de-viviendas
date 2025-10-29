@@ -1,6 +1,4 @@
-/* Authentication Pages Styles */
-
-/* Fondo específico para páginas de autenticación */
+/* Estilos de autenticación */
 body.dark-mode {
     background: linear-gradient(135deg, #0f1419 0%, #1a1a1a 35%, #2d2d2d 100%);
     background-attachment: fixed;
@@ -20,7 +18,7 @@ body.dark-mode {
     animation: slideInScale 1s ease-out;
     margin: 0 auto;
     margin-top: 10vh;
-    margin-bottom: 80px; /* Espacio para el powered-by */
+    margin-bottom: 80px;
 }
 
 @keyframes slideInScale {

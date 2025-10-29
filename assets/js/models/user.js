@@ -1,4 +1,4 @@
-// User Model - Maneja los datos del usuario
+// Modelo de usuario
 class User {
     constructor(data = {}) {
         this.id = data.id || null;
@@ -17,7 +17,7 @@ class User {
         this.newsletter = data.newsletter || false;
     }
 
-    // Validar datos del usuario
+    // Validación
     validate() {
         const errors = [];
 
@@ -58,30 +58,20 @@ class User {
             errors: errors
         };
     }
-
-    // Validar email
     isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-
-    // Validar cédula (formato básico)
     isValidCedula(cedula) {
-        // Remover espacios y guiones
         const cleanCedula = cedula.replace(/[\s-]/g, '');
-        // Verificar que solo contenga números y tenga entre 6 y 12 dígitos
         return /^\d{6,12}$/.test(cleanCedula);
     }
-
-    // Validar teléfono
     isValidPhone(phone) {
-        // Remover espacios, guiones y paréntesis
         const cleanPhone = phone.replace(/[\s\-$$$$]/g, '');
-        // Verificar que tenga entre 8 y 15 dígitos
         return /^\d{8,15}$/.test(cleanPhone);
     }
 
-    // Convertir a objeto para envío a API
+    // Serialización
     toJSON() {
         return {
             id: this.id,
@@ -101,11 +91,10 @@ class User {
         };
     }
 
-    // Crear usuario desde datos de formulario
+    // Métodos estáticos
     static fromFormData(formData) {
         const data = {};
         
-        // Extraer datos del FormData o objeto
         if (formData instanceof FormData) {
             for (let [key, value] of formData.entries()) {
                 if (key === 'terminos' || key === 'newsletter') {
@@ -120,13 +109,11 @@ class User {
 
         return new User(data);
     }
-
-    // Crear usuario desde respuesta de API
     static fromAPIResponse(apiData) {
         return new User(apiData);
     }
 
-    // Obtener nombre de tipo de socio
+    // Métodos de presentación
     getTipoSocioLabel() {
         const tipos = {
             'fundador': 'Socio Fundador',
@@ -135,8 +122,6 @@ class User {
         };
         return tipos[this.tipoSocio] || this.tipoSocio;
     }
-
-    // Obtener etiqueta de rango de ingresos
     getIngresosLabel() {
         const rangos = {
             'menos-500': 'Menos de $500',
@@ -146,8 +131,6 @@ class User {
         };
         return rangos[this.ingresos] || this.ingresos;
     }
-
-    // Obtener estado con formato
     getEstadoLabel() {
         const estados = {
             'pendiente': 'Pendiente de Aprobación',
@@ -158,8 +141,6 @@ class User {
         };
         return estados[this.estado] || this.estado;
     }
-
-    // Obtener color del estado
     getEstadoColor() {
         const colores = {
             'pendiente': '#ffc107',
@@ -171,12 +152,10 @@ class User {
         return colores[this.estado] || '#6c757d';
     }
 
-    // Verificar si el usuario puede acceder al dashboard
+    // Control de acceso
     canAccessDashboard() {
         return ['aprobado', 'activo'].includes(this.estado);
     }
-
-    // Obtener iniciales para avatar
     getInitials() {
         const names = this.nombre.trim().split(' ');
         if (names.length >= 2) {
@@ -184,8 +163,6 @@ class User {
         }
         return names[0] ? names[0][0].toUpperCase() : '?';
     }
-
-    // Formatear fecha de registro
     getFormattedRegistrationDate() {
         if (!this.fechaRegistro) return '';
         
@@ -196,8 +173,6 @@ class User {
             day: 'numeric'
         });
     }
-
-    // Formatear fecha de ingreso
     getFormattedJoinDate() {
         if (!this.fechaIngreso) return 'No definida';
         
@@ -209,7 +184,7 @@ class User {
         });
     }
 
-    // Actualizar datos del usuario
+    // Métodos de manipulación
     update(newData) {
         Object.keys(newData).forEach(key => {
             if (this.hasOwnProperty(key)) {
@@ -217,16 +192,13 @@ class User {
             }
         });
     }
-
-    // Limpiar datos sensibles para almacenamiento local
     getSafeData() {
         const safeData = { ...this.toJSON() };
-        // Remover datos sensibles si es necesario
         return safeData;
     }
 }
 
-// Exportar para uso en otros módulos
+// Exportación
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = User;
 }

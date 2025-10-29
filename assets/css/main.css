@@ -187,7 +187,7 @@ body {
 }
 
 .background-logo {
-    display: none; /* Reemplazado por partículas de texto dinámicas */
+    display: none;
 }
 
 @keyframes breathe {
@@ -195,9 +195,9 @@ body {
     50% { opacity: 0.1; transform: translate(-50%, -50%) scale(1.02); }
 }
 
-/* Partículas flotantes mejoradas - Reemplazadas por sistema dinámico */
+/* Partículas flotantes */
 .particles {
-    display: none; /* Ocultas porque ahora usamos el sistema dinámico */
+    display: none;
 }
 
 .particle {
@@ -262,7 +262,7 @@ body {
     75% { transform: translateY(30px) translateX(15px) rotate(270deg); opacity: 0.4; }
 }
 
-/* Efecto de ondas mejorado */
+/* Efectos de ondas */
 .wave {
     position: fixed;
     bottom: 0;
@@ -290,7 +290,7 @@ body {
     z-index: 2;
 }
 
-/* Buttons mejorados */
+/* Botones */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -396,7 +396,7 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Forms mejorados */
+/* Formularios */
 .form-group {
     margin-bottom: var(--spacing-lg);
     position: relative;
@@ -442,7 +442,7 @@ body {
     padding: var(--spacing-sm);
 }
 
-/* Textarea específico */
+/* Textarea */
 .form-textarea {
     resize: vertical;
     min-height: 100px;
@@ -455,7 +455,7 @@ body {
     gap: var(--spacing-lg);
 }
 
-/* Checkbox mejorado */
+/* Checkbox */
 .checkbox-container {
     display: flex;
     align-items: flex-start;
@@ -502,7 +502,7 @@ body {
     font-weight: bold;
 }
 
-/* Links mejorados */
+/* Enlaces */
 .link {
     color: var(--primary-color);
     text-decoration: none;
@@ -530,7 +530,7 @@ body {
     width: 100%;
 }
 
-/* Messages mejorados */
+/* Mensajes */
 .success-message,
 .error-message {
     padding: var(--spacing-xl);
@@ -570,7 +570,7 @@ body {
     }
 }
 
-/* Toast Messages mejorados */
+/* Toast Messages */
 .toast {
     position: fixed;
     top: 20px;
@@ -607,7 +607,7 @@ body {
     }
 }
 
-/* Powered By mejorado */
+/* Powered By */
 .powered-by {
     position: fixed;
     bottom: 25px;
@@ -711,7 +711,7 @@ body {
     }
 }
 
-/* Estados de hover mejorados */
+/* Estados hover */
 .btn:hover {
     filter: brightness(1.1);
 }
@@ -720,7 +720,7 @@ body {
     border-color: var(--primary-color);
 }
 
-/* Efectos de focus mejorados */
+/* Estados focus */
 .btn:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;

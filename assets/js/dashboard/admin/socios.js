@@ -1,20 +1,16 @@
+// Gestión de socios
 let sociosData = [];
 let socioSeleccionado = null;
-
-// Cargar socios al inicializar la página
 document.addEventListener('DOMContentLoaded', function() {
     loadSocios();
     configurarFiltros();
 });
-
-// Función para cargar socios
 async function loadSocios() {
     try {
         const buscar = document.getElementById('filtro-buscar').value.trim();
         const estadoCivil = document.getElementById('filtro-estado-civil').value;
         const ingresos = document.getElementById('filtro-ingresos').value;
         
-        // Construir URL con parámetros
         const params = new URLSearchParams();
         if (buscar) params.append('buscar', buscar);
         if (estadoCivil) params.append('estado_civil', estadoCivil);
@@ -45,8 +41,6 @@ async function loadSocios() {
         `;
     }
 }
-
-// Función para renderizar la tabla de socios
 function renderSociosTable(socios) {
     displaySociosWithIndicator(socios);
 }
@@ -79,8 +73,6 @@ function displaySocios(socios) {
         </tr>
     `).join('');
 }
-
-// Función para ver detalles del socio
 async function verSocio(idUsuario) {
     const socio = sociosData.find(s => s.id_usuario == idUsuario);
     
@@ -89,7 +81,6 @@ async function verSocio(idUsuario) {
         return;
     }
     
-    // Guardar referencia del socio seleccionado
     socioSeleccionado = socio;
     
     const modalBody = document.getElementById('modal-socio-body');
@@ -151,18 +142,13 @@ async function verSocio(idUsuario) {
     
     document.getElementById('modal-socio').style.display = 'flex';
 }
-
-// Función para configurar los filtros
 function configurarFiltros() {
-    // Filtro de búsqueda en tiempo real
     document.getElementById('filtro-buscar').addEventListener('input', debounce(loadSocios, 300));
-    
-    // Filtros de select
     document.getElementById('filtro-estado-civil').addEventListener('change', loadSocios);
     document.getElementById('filtro-ingresos').addEventListener('change', loadSocios);
 }
 
-// Funciones de formateo
+// Formateo de datos
 function formatEstadoCivil(estadoCivil) {
     const estados = {
         'soltero': 'Soltero/a',
@@ -195,15 +181,13 @@ function formatDate(dateString) {
     });
 }
 
-// Función para cerrar modal
+// Control de modales
 function cerrarModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
     
-    // Limpiar referencia del socio seleccionado cuando se cierre el modal de socio
     if (modalId === 'modal-socio') {
         socioSeleccionado = null;
         
-        // Rehabilitar botón de eliminar si estaba deshabilitado
         const btnEliminar = document.getElementById('btn-eliminar-socio');
         if (btnEliminar) {
             btnEliminar.disabled = false;
@@ -212,7 +196,7 @@ function cerrarModal(modalId) {
     }
 }
 
-// Función debounce para optimizar búsquedas
+// Utilidades
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -224,15 +208,11 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// Función para truncar texto largo
 function truncateText(text, maxLength) {
     if (!text) return '';
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
 }
-
-// Función para mostrar indicador de scroll horizontal si es necesario
 function checkScrollIndicator() {
     const tableContainer = document.querySelector('.table-container');
     const table = document.getElementById('socios-table');
@@ -240,22 +220,18 @@ function checkScrollIndicator() {
     if (tableContainer && table) {
         const hasHorizontalScroll = table.scrollWidth > tableContainer.clientWidth;
         
-        // Remover indicador existente
         const existingIndicator = document.querySelector('.table-scroll-indicator');
         if (existingIndicator) {
             existingIndicator.remove();
         }
     }
 }
-
-// Llamar al indicador después de cargar los datos
 function displaySociosWithIndicator(socios) {
     displaySocios(socios);
-    // Usar setTimeout para asegurar que el DOM se haya actualizado
     setTimeout(checkScrollIndicator, 100);
 }
 
-// Cerrar modal al hacer clic fuera de él
+// Eventos
 document.addEventListener('click', function(event) {
     const modals = document.querySelectorAll('.modal');
     modals.forEach(modal => {
@@ -266,14 +242,13 @@ document.addEventListener('click', function(event) {
     });
 });
 
-// Función para eliminar socio
+// Gestión de eliminación
 async function eliminarSocio() {
     if (!socioSeleccionado) {
         alert('No hay socio seleccionado');
         return;
     }
     
-    // Confirmación de eliminación
     const confirmacion = confirm(
         `¿Estás seguro de que deseas eliminar al usuario "${socioSeleccionado.nom_usu}"?\n\n` +
         `Esta acción eliminará:\n` +
@@ -288,7 +263,6 @@ async function eliminarSocio() {
     }
     
     try {
-        // Deshabilitar botón mientras se procesa
         const btnEliminar = document.getElementById('btn-eliminar-socio');
         btnEliminar.disabled = true;
         btnEliminar.textContent = 'Eliminando...';
@@ -306,16 +280,10 @@ async function eliminarSocio() {
         const result = await response.json();
         
         if (result.estado === 'ok') {
-            // Mostrar mensaje de éxito
             alert(`Usuario "${result.usuario_eliminado.nombre}" eliminado exitosamente`);
             
-            // Cerrar modal
             cerrarModal('modal-socio');
-            
-            // Recargar la lista de socios
             await loadSocios();
-            
-            // Limpiar referencia del socio seleccionado
             socioSeleccionado = null;
             
         } else {
@@ -326,7 +294,6 @@ async function eliminarSocio() {
         console.error('Error al eliminar socio:', error);
         alert('Error al eliminar usuario: ' + error.message);
         
-        // Rehabilitar botón
         const btnEliminar = document.getElementById('btn-eliminar-socio');
         btnEliminar.disabled = false;
         btnEliminar.textContent = 'Eliminar Usuario';
