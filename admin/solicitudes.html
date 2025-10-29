@@ -28,40 +28,40 @@
         </div>
     </header>
 
-    <aside class="sidebar">
-        <nav class="sidebar-nav">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="dashboard.html" class="nav-link">
-                        <span class="nav-icon">📊</span>
-                        <span class="nav-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="solicitudes.html" class="nav-link active">
-                        <span class="nav-icon">📋</span>
-                        <span class="nav-text">Solicitudes</span>
-                        <span class="menu-badge" id="solicitudes-badge">0</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="horas.html" class="nav-link">
-                        <span class="nav-icon">⏱️</span>
-                        <span class="nav-text">Horas</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="socios.html" class="nav-link">
-                        <span class="nav-icon">👥</span>
-                        <span class="nav-text">Socios</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </aside>
-
     <main class="dashboard-main">
-        <!-- Solicitudes Section -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="solicitudes.html" class="nav-link active">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-text">Solicitudes</span>
+                            <span class="menu-badge" id="solicitudes-badge">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="horas.html" class="nav-link">
+                            <span class="nav-icon">⏱️</span>
+                            <span class="nav-text">Horas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="socios.html" class="nav-link">
+                            <span class="nav-icon">👥</span>
+                            <span class="nav-text">Socios</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Sección de Solicitudes -->
         <section id="solicitudes-section" class="content-section active">
             <div class="section-header">
                 <h2>Gestión de Solicitudes</h2>
@@ -101,6 +101,7 @@
                 </table>
             </div>
         </section>
+    </main>
 
     <!-- Modal para ver solicitud -->
     <div id="modal-solicitud" class="modal">
