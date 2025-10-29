@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico API</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: monospace;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #result {
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="result">Conectando...</div>
+
+    <script src="assets/js/utils.js"></script>
+    <script>
+        async function testConnection() {
+            try {
+                const response = await fetch(`${API_URL}/diagnostic.php`);
+                const text = await response.text();
+                
+                // Agregar información adicional
+                let result = `API URL: ${API_URL}/diagnostic.php\n`;
+                result += `Response Status: ${response.status} ${response.statusText}\n`;
+                result += `Response Headers: ${JSON.stringify([...response.headers.entries()])}\n`;
+                result += `\n--- RESPONSE BODY ---\n`;
+                result += text;
+                
+                document.getElementById('result').textContent = result;
+            } catch (error) {
+                document.getElementById('result').textContent = `Error conectando a: ${API_URL}/diagnostic.php\nError: ${error.message}`;
+            }
+        }
+
+        testConnection();
+    </script>
+    
+</body>
+
+</html>
