@@ -26,25 +26,43 @@
 
     <script src="assets/js/utils.js"></script>
     <script>
-        async function testConnection() {
+        async function testConnection(url, name) {
             try {
-                const response = await fetch(`${API_URL}/diagnostic.php`);
+                const response = await fetch(url);
                 const text = await response.text();
                 
                 // Agregar información adicional
-                let result = `API URL: ${API_URL}/diagnostic.php\n`;
+                let result = `=== ${name} ===\n`;
+                result += `URL: ${url}\n`;
                 result += `Response Status: ${response.status} ${response.statusText}\n`;
                 result += `Response Headers: ${JSON.stringify([...response.headers.entries()])}\n`;
                 result += `\n--- RESPONSE BODY ---\n`;
                 result += text;
+                result += `\n\n`;
                 
-                document.getElementById('result').textContent = result;
+                return result;
             } catch (error) {
-                document.getElementById('result').textContent = `Error conectando a: ${API_URL}/diagnostic.php\nError: ${error.message}`;
+                return `=== ${name} ===\nURL: ${url}\nError: ${error.message}\n\n`;
             }
         }
 
-        testConnection();
+        async function runDiagnostics() {
+            document.getElementById('result').textContent = 'Probando conexiones...\n';
+            
+            let allResults = '';
+            
+            // Probar localhost
+            const localhostResult = await testConnection('http://localhost/cooperativa-de-viviendas-apis/endpoint/diagnostic.php', 'LOCALHOST');
+            allResults += localhostResult;
+            
+            // Probar API_URL
+            const apiResult = await testConnection(`${API_URL}/endpoint/diagnostic.php`, 'API_URL');
+            allResults += apiResult;
+            
+            document.getElementById('result').textContent = allResults;
+        }
+
+        runDiagnostics();
     </script>
     
 </body>
