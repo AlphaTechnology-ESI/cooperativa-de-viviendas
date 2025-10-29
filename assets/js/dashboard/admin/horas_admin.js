@@ -9,7 +9,7 @@ async function cargarHoras() {
     const tbody = document.getElementById("horas-tbody");
 
     try {
-        const res = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/listar_horas_admin.php", {
+        const res = await fetch(`${API_URL}/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/listar_horas_admin.php`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ estado: filtro })
@@ -49,7 +49,7 @@ async function abrirModal(id) {
     modalBody.innerHTML = "<p>Cargando...</p>";
 
     try {
-        const res = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/ver_hora_admin.php?id=" + id);
+        const res = await fetch(`${API_URL}/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/ver_hora_admin.php?id=` + id);
         const data = await res.json();
 
         if (!data || data.estado !== "ok" || !data.hora) {
@@ -70,11 +70,11 @@ async function abrirModal(id) {
     ${h.comprobante_nombre ? `
         <div style="margin-top:10px;">
             <p><strong>Comprobante:</strong> ${h.comprobante_nombre}</p>
-            <img src="http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/descargar_comprobante_admin.php?id=${h.id_jornada}"
+            <img src="${API_URL}/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/descargar_comprobante_admin.php?id=${h.id_jornada}"
                  alt="Comprobante"
                  style="max-width: 300px; display: block; border: 1px solid #ccc; border-radius: 6px; margin: 10px 0;">
             <button class="btn btn-secondary btn-small"
-                onclick="window.open('http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/descargar_comprobante_admin.php?id=${h.id_jornada}', '_blank')">
+                onclick="window.open('${API_URL}/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/descargar_comprobante_admin.php?id=${h.id_jornada}', '_blank')">
                 Descargar Comprobante
             </button>
         </div>
@@ -90,7 +90,7 @@ async function abrirModal(id) {
 async function actualizarEstado(estado) {
     if (!idSeleccionado) return;
 
-    const res = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/cambiar_estado.php", {
+    const res = await fetch(`${API_URL}/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/cambiar_estado.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id_jornada: idSeleccionado, estado })

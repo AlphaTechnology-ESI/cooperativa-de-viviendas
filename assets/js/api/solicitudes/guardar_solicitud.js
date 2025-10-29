@@ -6,7 +6,7 @@ document.getElementById("housing-request-form").addEventListener("submit", async
     const data = Object.fromEntries(formData.entries());
 
     try {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/solicitudes/guardar_solicitud.php", {
+        const response = await fetch(`${API_URL}/cooperativa-de-viviendas-apis/endpoint/solicitudes/guardar_solicitud.php`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

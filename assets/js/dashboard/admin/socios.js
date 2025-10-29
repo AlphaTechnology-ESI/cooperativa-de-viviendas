@@ -15,9 +15,9 @@ async function loadSocios() {
         if (buscar) params.append('buscar', buscar);
         if (estadoCivil) params.append('estado_civil', estadoCivil);
         if (ingresos) params.append('ingresos', ingresos);
-        
-        const url = `http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/listar_socios.php?${params.toString()}`;
-        
+
+        const url = `${API_URL}/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/listar_socios.php?${params.toString()}`;
+
         const response = await fetch(url);
         const result = await response.json();
         
@@ -266,8 +266,8 @@ async function eliminarSocio() {
         const btnEliminar = document.getElementById('btn-eliminar-socio');
         btnEliminar.disabled = true;
         btnEliminar.textContent = 'Eliminando...';
-        
-        const response = await fetch('http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/eliminar_socio.php', {
+
+        const response = await fetch(`${API_URL}/cooperativa-de-viviendas-apis/endpoint/dashboard/admin/eliminar_socio.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
