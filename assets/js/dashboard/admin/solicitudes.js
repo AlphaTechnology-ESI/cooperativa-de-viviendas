@@ -4,7 +4,7 @@ let solicitudActual = null;
 
 async function verSolicitud(id) {
     try {
-        const response = await fetch(`${API_URL}/cooperativa-de-viviendas-apis/endpoint/solicitudes/obtener_solicitudes.php?id=` + id);
+        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/solicitudes/obtener_solicitudes.php?id=" + id);
         const result = await response.json();
 
         if (result.estado === "ok") {

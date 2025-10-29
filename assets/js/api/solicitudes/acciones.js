@@ -4,7 +4,7 @@ async function aprobarSolicitud() {
     const idUsuario = solicitudActual.id_usuario;
 
     try {
-        const response = await fetch(`${API_URL}/cooperativa-de-viviendas-apis/endpoint/solicitudes/acciones/aprobar_solicitudes.php`, {
+        const response = await fetch(`http://localhost/cooperativa-de-viviendas-apis/endpoint/solicitudes/acciones/aprobar_solicitudes.php`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id_usuario: idUsuario })
@@ -31,7 +31,7 @@ async function rechazarSolicitud() {
     const idUsuario = solicitudActual.id_usuario;
 
     try {
-        const response = await fetch(`${API_URL}/cooperativa-de-viviendas-apis/endpoint/solicitudes/acciones/rechazar_solicitudes.php`, {
+        const response = await fetch(`http://localhost/cooperativa-de-viviendas-apis/endpoint/solicitudes/acciones/rechazar_solicitudes.php`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id_usuario: idUsuario })

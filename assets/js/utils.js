@@ -1,7 +1,6 @@
 // Utilidades generales
 
 fetch("http://localhost/cooperativa-de-viviendas-apis/config/db.php")
-const API_URL = "http://192.168.1.48:8080";
 
 // Control de autenticación y autorización
 const paginasProtegidas = {
