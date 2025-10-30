@@ -297,3 +297,45 @@ main.dashboard-main > .content-section {
     max-width: 800px;
 }
 
+/* Botón toggle theme en sidebar */
+.sidebar-theme-toggle {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.theme-toggle-sidebar {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+    transition: all 0.3s ease;
+    animation: themeFloat 3s ease-in-out infinite;
+}
+
+.theme-toggle-sidebar:hover {
+    transform: scale(1.15) rotate(15deg);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.6);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+}
+
+.theme-toggle-sidebar:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle-sidebar i {
+    color: white;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle-sidebar:hover i {
+    transform: rotate(-15deg) scale(1.1);
+}
+

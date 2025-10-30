@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="../img/cooptrack.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoopTrack - Dashboard</title>
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -11,7 +12,7 @@
     <link rel="stylesheet" href="../assets/css/dashboard/global.css">
 </head>
 
-<body class="dark-mode">
+<body>
     <header class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
@@ -70,6 +71,13 @@
                     </li>
                 </ul>
             </nav>
+            
+            <!-- Botón toggle tema -->
+            <div class="sidebar-theme-toggle">
+                <button class="theme-toggle-sidebar" id="themeToggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
         </aside>
 
 

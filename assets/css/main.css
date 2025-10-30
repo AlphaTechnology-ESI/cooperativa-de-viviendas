@@ -73,7 +73,47 @@
     --transition-slow: 0.5s ease;
 }
 
-/* Modo Oscuro */
+/* Modo Oscuro (por defecto) */
+body {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #242424;
+    --bg-tertiary: #404040;
+    --bg-overlay: rgba(0, 0, 0, 0.8);
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-muted: #b0b0b0;
+    --border-color: rgba(255, 255, 255, 0.15);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --primary-color-alpha: rgba(74, 144, 226, 0.3);
+    --success-bg: rgba(40, 167, 69, 0.15);
+    
+    /* Ajustes específicos para modo oscuro */
+    --light-gray: #2d2d2d;
+    --gray: #b0b0b0;
+    --dark-gray: #e0e0e0;
+}
+
+/* Modo Claro */
+body.light-mode {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --bg-overlay: rgba(255, 255, 255, 0.95);
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-muted: #6c757d;
+    --border-color: rgba(0, 0, 0, 0.125);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --primary-color-alpha: rgba(74, 144, 226, 0.1);
+    --success-bg: rgba(40, 167, 69, 0.1);
+    
+    /* Ajustes específicos para modo claro */
+    --light-gray: #f8f9fa;
+    --gray: #6c757d;
+    --dark-gray: #343a40;
+}
+
+/* Mantener compatibilidad con clase dark-mode */
 .dark-mode {
     --bg-primary: #1a1a1a;
     --bg-secondary: #242424;
@@ -133,7 +173,7 @@ body {
 
 @keyframes scrollTextInfinite {
     0% { transform: rotate(-15deg) translate(0%, 0%); }
-    100% { transform: rotate(-15deg) translate(-15%, -15%); }
+    100% { transform: rotate(-15deg) translate(-25%, -25%); }
 }
 
 /* Contenedores de partículas dinámicas */
@@ -645,9 +685,64 @@ body {
     to { opacity: 1; }
 }
 
+/* Botón toggle theme */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  animation: themeFloat 3s ease-in-out infinite;
+}
 
+.theme-toggle:hover {
+  transform: scale(1.15) rotate(15deg);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.6);
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+}
 
+.theme-toggle:active {
+  transform: scale(0.95);
+}
 
+.theme-toggle i {
+  color: white;
+  font-size: 22px;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover i {
+  transform: rotate(-15deg) scale(1.1);
+}
+
+/* Mejoras para la transición del icono */
+.theme-toggle i {
+  color: white;
+  font-size: 22px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+@keyframes themeFloat {
+  0%, 100% { 
+    transform: translateY(0px);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+  }
+  50% { 
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.5);
+  }
+}
 
 /* Utility Classes */
 .text-center { text-align: center; }
@@ -725,5 +820,83 @@ body {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--dark-gray);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray);
+}
+
+/* Para Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--dark-gray) var(--black);
+}
+
+/* Ajustes específicos para tema claro */
+body.light-mode .background-text {
+    opacity: 0.09;
+    color: var(--text-primary);
+}
+
+body.light-mode .powered-by {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Partículas para modo claro */
+body.light-mode .dynamic-particle {
+    background: rgba(74, 144, 226, 0.8) !important;
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.6) !important;
+}
+
+body.light-mode .dynamic-text-particle {
+    color: rgba(74, 144, 226, 0.4) !important;
+}
+
+body.light-mode .particle {
+    background: rgba(74, 144, 226, 0.7) !important;
+}
+
+/* Header/Navegación para modo claro */
+body.light-mode .header,
+body.light-mode .nav {
+    background: var(--bg-primary) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+body.light-mode .nav-brand,
+body.light-mode .nav-subtitle,
+body.light-mode .nav-link {
+    color: var(--text-primary) !important;
+}
+
+body.light-mode .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+body.light-mode .nav-link-login {
+    background: var(--primary-color) !important;
+    color: white !important;
+}
+
+body.light-mode .nav-toggle span {
+    background: var(--text-primary) !important;
+}
+
+
 
 
