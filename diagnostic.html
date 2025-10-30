@@ -26,67 +26,24 @@
 
     <script src="assets/js/utils.js"></script>
     <script>
-        async function testConnection(url, name) {
+        async function testConnection() {
             try {
-                console.log(`Intentando conectar a: ${url}`);
-                const response = await fetch(url, {
-                    method: 'GET',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                
+                const response = await fetch(`${API_URL}/endpoint/diagnostic.php`);
                 const text = await response.text();
                 
-                let result = `=== ${name} ===\n`;
-                result += `URL: ${url}\n`;
-                result += `Response Status: ${response.status} ${response.statusText}\n`;
+                // Agregar información adicional
+                let result = `Response Status: ${response.status} ${response.statusText}\n`;
                 result += `Response Headers: ${JSON.stringify([...response.headers.entries()])}\n`;
                 result += `\n--- RESPONSE BODY ---\n`;
                 result += text;
-                result += `\n\n`;
                 
-                return result;
+                document.getElementById('result').textContent = result;
             } catch (error) {
-                console.error(`Error conectando a ${url}:`, error);
-                let result = `=== ${name} ===\n`;
-                result += `URL: ${url}\n`;
-                result += `Error Type: ${error.name}\n`;
-                result += `Error Message: ${error.message}\n`;
-                result += `Stack: ${error.stack}\n`;
-                
-                // Intentar más diagnósticos
-                if (url.includes(':8080')) {
-                    result += `\n--- POSIBLES CAUSAS (Docker) ---\n`;
-                    result += `- Docker container no está corriendo en puerto 8080\n`;
-                    result += `- Configuración de MySQL en Docker fallando\n`;
-                    result += `- Firewall bloqueando puerto 8080\n`;
-                    result += `- CORS bloqueado por el servidor\n`;
-                } else {
-                    result += `\n--- POSIBLES CAUSAS (VM Directa) ---\n`;
-                    result += `- Apache no está corriendo en la VM\n`;
-                    result += `- Firewall de la VM bloqueando puerto 80\n`;
-                    result += `- Archivos PHP no están en /var/www/html/\n`;
-                    result += `- IP ${url.split('/')[2]} no es accesible desde esta red\n`;
-                }
-                result += `\n\n`;
-                
-                return result;
+                document.getElementById('result').textContent = `Error conectando a: ${API_URL}/endpoint/diagnostic.php\nError: ${error.message}`;
             }
         }
 
-        async function runDiagnostics() {
-            document.getElementById('result').textContent = 'Probando conexión...\n';
-            
-            // Probar API_URL (Docker) - ruta corregida
-            const apiResult = await testConnection(`${API_URL}/diagnostic.php`, 'API_URL');
-            
-            document.getElementById('result').textContent = apiResult;
-        }
-
-        runDiagnostics();
+        testConnection();
     </script>
     
 </body>
