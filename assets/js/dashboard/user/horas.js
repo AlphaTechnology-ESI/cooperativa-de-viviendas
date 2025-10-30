@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         item.classList.add("activity-item");
 
         const botonComprobante = hora.comprobante_nombre
-            ? `<button class="btn btn-small btn-secondary" onclick="window.location.href='http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/user/descargar_comprobante.php?id=${hora.id_jornada}'" style="margin-left:10px;">📄</button>`
+            ? `<button class="btn btn-small btn-secondary" onclick="window.location.href='${API_URL}/endpoint/dashboard/user/descargar_comprobante.php?id=${hora.id_jornada}'" style="margin-left:10px;">📄</button>`
             : "";
 
         item.innerHTML = `
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function cargarHoras() {
         try {
-            const res = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/user/listar_horas.php", {
+            const res = await fetch(`${API_URL}/endpoint/dashboard/user/listar_horas.php`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id_usuario: idUsuario })
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (comprobante) formData.append("comprobantePago", comprobante);
 
         try {
-            const res = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/user/horas.php", {
+            const res = await fetch(`${API_URL}/endpoint/dashboard/user/horas.php`, {
                 method: "POST",
                 body: formData
             });

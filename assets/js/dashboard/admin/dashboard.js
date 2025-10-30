@@ -23,7 +23,7 @@ function loadAdminInfo() {
 
 const api = {
     getSolicitudes: async () => {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/solicitudes/obtener_solicitudes.php");
+        const response = await fetch(`${API_URL}/endpoint/solicitudes/obtener_solicitudes.php`);
         return await response.json();
     },
 };
@@ -123,7 +123,7 @@ function actualizarBadgeSolicitudes(solicitudes) {
 function loadSolicitudes() {
     showLoading("solicitudes-tbody");
 
-    fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/solicitudes/obtener_solicitudes.php")
+    fetch(`${API_URL}/endpoint/solicitudes/obtener_solicitudes.php`)
         .then(res => res.json())
         .then(result => {
             if (result.estado === "ok" && Array.isArray(result.solicitudes)) {

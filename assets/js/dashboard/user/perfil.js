@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     const idUsuario = sessionStorage.getItem("idUsuario");
 
     try {
-        const response = await fetch("http://localhost/cooperativa-de-viviendas-apis/endpoint/dashboard/user/perfil.php", {
+        const response = await fetch(`${API_URL}/endpoint/dashboard/user/perfil.php`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id_usuario: idUsuario })
