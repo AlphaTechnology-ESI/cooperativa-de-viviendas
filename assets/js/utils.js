@@ -1,6 +1,6 @@
 // Utilidades generales
 
-const API_URL = "http://192.168.1.48:8080/cooperativa-de-viviendas-apis";
+const API_URL = "http://192.168.1.48:8080";
 
 // Control de autenticación y autorización
 const paginasProtegidas = {
