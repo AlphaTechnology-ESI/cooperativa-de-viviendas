@@ -19,8 +19,30 @@ function setupNavigation() {
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
+            
+            // Efecto de vibración en el botón
+            navToggle.style.animation = 'none';
+            navToggle.offsetHeight; // Trigger reflow
+            navToggle.style.animation = 'menuButtonClick 0.3s ease-out';
         });
     }
+
+    // Cerrar menú al hacer click en un enlace
+    const navLinksItems = navLinks.querySelectorAll('.nav-link');
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+    
+    // Cerrar menú al hacer click fuera
+    document.addEventListener('click', function(event) {
+        if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
+            navToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+    });
 
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -145,3 +167,14 @@ function setupAnimations() {
         progressObserver.observe(bar);
     });
 }
+
+// Añadir animación CSS para el click del botón
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes menuButtonClick {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.15) rotate(180deg); }
+        100% { transform: scale(1) rotate(180deg); }
+    }
+`;
+document.head.appendChild(style);
