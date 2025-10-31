@@ -19,10 +19,16 @@
                 <img src="../img/cooptrack.png" alt="CoopTrack Admin" class="header-logo">
                 <h1>Panel de Administración</h1>
             </div>
+
             <div class="header-right">
                 <div class="user-info">
                     <span class="user-name" id="adminName">Cargando...</span>
                     <div class="user-avatar" id="adminAvatar">👤</div>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
                 <button class="btn btn-secondary btn-small" onclick="logout()">Cerrar Sesión</button>
             </div>
@@ -60,8 +66,27 @@
                     </li>
                 </ul>
             </nav>
-            
-            <!-- Botón toggle tema -->
+
+            <!-- Contenedor para ambos botones en responsive -->
+            <div class="sidebar-buttons-container">
+                <!-- Botón cerrar sesión - MISMO DISEÑO EXACTO -->
+                <div class="sidebar-logout-responsive">
+                    <button class="btn btn-secondary btn-small" onclick="logout()">
+                        <i class="logout-icon"></i>
+                        Cerrar Sesión
+                    </button>
+                </div>
+
+                <!-- Separador -->
+                <div class="buttons-separator"></div>
+
+                <!-- Botón toggle tema - MISMO DISEÑO EXACTO -->
+                <div class="sidebar-theme-toggle">
+                    <button class="theme-toggle-sidebar" id="themeToggle" aria-label="Cambiar tema">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </div>
+            </div>
             <div class="sidebar-theme-toggle">
                 <button class="theme-toggle-sidebar" id="themeToggle" aria-label="Cambiar tema">
                     <i class="fas fa-moon" id="themeIcon"></i>
@@ -71,13 +96,14 @@
 
         <!-- Sección de Dashboard -->
         <section id="dashboard-section" class="content-section active">
-                <div class="section-header">
-                    <div>
-                        <h2>Dashboard</h2>
-                        <p class="section-subtitle">Bienvenido al panel de administración</p>
-                        <p class="section-intro">Aquí puedes ver un resumen general de toda la actividad de CooviSur, incluyendo solicitudes pendientes, socios activos y estadísticas importantes del sistema.</p>
-                    </div>
+            <div class="section-header">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p class="section-subtitle">Bienvenido al panel de administración</p>
+                    <p class="section-intro">Aquí puedes ver un resumen general de toda la actividad de CooviSur,
+                        incluyendo solicitudes pendientes, socios activos y estadísticas importantes del sistema.</p>
                 </div>
+            </div>
 
             <div class="stats-grid">
                 <div class="stat-card">

@@ -290,3 +290,70 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+// JavaScript para menú hamburguesa - COPIADO EXACTAMENTE del landing
+document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.getElementById('navToggle');
+
+    const sidebar = document.querySelector('.sidebar');
+    const body = document.body;
+
+    // Toggle del menú
+    function toggleMenu() {
+        navToggle.classList.toggle('active');
+        sidebar.classList.toggle('active');
+        
+        // Bloquear/desbloquear scroll igual que landing
+        if (sidebar.classList.contains('active')) {
+            body.classList.add('menu-open', 'menu-active');
+            document.documentElement.style.overflow = 'hidden';
+        } else {
+            body.classList.remove('menu-open', 'menu-active');
+            document.documentElement.style.overflow = '';
+        }
+    }
+
+    // Event listener para el botón
+    navToggle.addEventListener('click', toggleMenu);
+
+    // Cerrar menú al hacer clic en un enlace (igual que landing)
+    const navLinks = document.querySelectorAll('.sidebar .nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            sidebar.classList.remove('active');
+            body.classList.remove('menu-open', 'menu-active');
+            document.documentElement.style.overflow = '';
+        });
+    });
+
+    // Cerrar menú al hacer clic fuera (solo en desktop)
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth > 768 && 
+            !navToggle.contains(e.target) && 
+            !sidebar.contains(e.target) &&
+            sidebar.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+
+    // Manejar resize de ventana
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            // Resetear estado en desktop
+            navToggle.classList.remove('active');
+            sidebar.classList.remove('active');
+            body.classList.remove('menu-open', 'menu-active');
+            document.documentElement.style.overflow = '';
+        }
+    });
+
+    // Prevenir scroll cuando menú está abierto en móviles
+    document.addEventListener('touchmove', function(e) {
+        if (body.classList.contains('menu-open')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+});
+

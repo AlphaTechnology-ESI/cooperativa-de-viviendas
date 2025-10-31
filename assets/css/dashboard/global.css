@@ -339,3 +339,483 @@ main.dashboard-main > .content-section {
     transform: rotate(-15deg) scale(1.1);
 }
 
+/* Botón hamburguesa COPIADO EXACTAMENTE del landing */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-normal);
+    position: relative;
+    z-index: 1001;
+}
+
+.nav-toggle:hover {
+    background: var(--bg-secondary);
+    transform: scale(1.1);
+}
+
+.nav-toggle:active {
+    transform: scale(0.95);
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
+    transform-origin: center;
+}
+
+/* Animación hamburguesa a X IGUAL que landing */
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Botón hamburguesa por defecto oculto */
+.nav-toggle {
+    display: none;
+}
+
+/* Sidebar por defecto visible en desktop */
+.sidebar {
+    /* Estados por defecto para desktop */
+    display: flex;
+    position: static;
+    width: auto;
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+}
+
+/* Header responsive para mostrar nav-toggle IGUAL que landing */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex: 1;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+/* Nav-toggle posicionamiento a la izquierda como landing */
+.nav-toggle {
+    position: relative;
+    z-index: 1001;
+    margin-right: var(--spacing-md); /* Espacio entre botón y logo */
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .nav-toggle {
+        display: flex;
+        margin-right: var(--spacing-md);
+    }
+
+    main.dashboard-main > .content-section {
+    margin-left: 0px !important;
+}
+}
+
+
+
+/* TABLETS (768px y menores) - SIMPLIFICADO Y FUNCIONAL */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .dashboard-header {
+        overflow: visible !important;
+        position: relative !important;
+        width: 100% !important;
+    }
+    
+    .header-content {
+        overflow: visible !important;
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Sidebar como menú desplegable - FORZAR ANCHO COMPLETO */
+    .sidebar {
+        display: none !important;
+        position: fixed !important;
+        top: 70px !important;
+        left: var(--spacing-md) !important;
+        right: var(--spacing-md) !important;
+        background: var(--bg-primary) !important;
+        flex-direction: column !important;
+        padding: var(--spacing-xl) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: var(--border-radius-lg) !important;
+        box-shadow: var(--shadow-xl) !important;
+        backdrop-filter: blur(15px) !important;
+        opacity: 0 !important;
+        transform: translateY(-10px) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        z-index: 1000 !important;
+        width: calc(100% - 2 * var(--spacing-md)) !important;
+        height: auto !important;
+        margin: 0 !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    .sidebar.active {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        width: calc(100% - 2 * var(--spacing-md)) !important;
+        left: var(--spacing-md) !important;
+        right: var(--spacing-md) !important;
+    }
+    
+    .sidebar-nav .nav-link {
+        padding: var(--spacing-lg) var(--spacing-md);
+        margin: var(--spacing-xs) 0;
+        border-radius: var(--border-radius);
+        transition: all var(--transition-normal);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .sidebar-nav .nav-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
+        transition: left 0.5s;
+    }
+    
+    .sidebar-nav .nav-link:hover::before {
+        left: 100%;
+    }
+    
+    .sidebar-nav .nav-link:hover {
+        background: var(--bg-secondary);
+        transform: translateX(5px);
+    }
+    
+    /* Estilos especiales para el botón de cierre sesión en menú móvil */
+    .nav-link-login {
+        margin-top: var(--spacing-md);
+        padding: var(--spacing-md) var(--spacing-lg);
+        text-align: center;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        border-radius: var(--border-radius-lg);
+        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    }
+    
+    .nav-link-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+    }
+}
+
+/* CONTENEDOR DE BOTONES RESPONSIVE - SIN CAMBIAR DISEÑO */
+.sidebar-buttons-container {
+    display: none; /* Oculto por defecto en desktop */
+}
+
+.sidebar-logout-responsive {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Botón de tema por defecto (fuera del contenedor) */
+.sidebar > .sidebar-theme-toggle {
+    /* Este es el que está FUERA del contenedor */
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Botón de tema dentro del contenedor */
+.sidebar-buttons-container .sidebar-theme-toggle {
+    /* Este es el que está DENTRO del contenedor */
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Contenedor de botones en responsive */
+@media (max-width: 768px) {
+    /* Ocultar el botón del header */
+    .header-right .btn {
+        display: none !important;
+    }
+    
+    /* OCULTAR el botón de tema que está FUERA del contenedor */
+    .sidebar > .sidebar-theme-toggle {
+        display: none !important;
+    }
+    
+    /* MOSTRAR el contenedor de botones */
+    .sidebar-buttons-container {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        margin-top: var(--spacing-md);
+        padding-top: var(--spacing-md);
+        border-top: 1px solid var(--border-color);
+        width: 100% !important;
+        gap: var(--spacing-md) !important;
+    }
+    
+    /* Botón de cerrar sesión ocupa 65% */
+    .sidebar-logout-responsive {
+        width: 65% !important;
+        display: flex !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .sidebar-logout-responsive .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: var(--spacing-xs) !important;
+    }
+    
+    /* MOSTRAR el botón de tema expandido y centrado */
+    .sidebar-buttons-container .sidebar-theme-toggle {
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 28.5% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        position: static !important;
+        height: 56px !important;
+    }
+    
+    /* Botón interno con border-radius y centrado perfecto */
+    .sidebar-buttons-container .sidebar-theme-toggle .theme-toggle-sidebar {
+        width: 100% !important;
+        height: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: var(--border-radius) !important;
+        margin: 0 auto !important;
+        padding: var(--spacing-sm) !important;
+        min-height: 32px !important;
+    }
+    
+    /* Icono centrado */
+    .sidebar-buttons-container .sidebar-theme-toggle .theme-toggle-sidebar i {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    
+
+    
+    /* Separador visual */
+    .buttons-separator {
+        width: 1px !important;
+        height: 30px !important;
+        background: var(--border-color) !important;
+        flex-shrink: 0 !important;
+    }
+    
+
+}
+
+/* FORZAR LAYOUT HORIZONTAL CORRECTO - EVITAR CONFLICTOS */
+@media (max-width: 768px) {
+    /* Anular cualquier posicionamiento absoluto o float del botón de tema */
+    .sidebar-buttons-container .sidebar-theme-toggle {
+        position: static !important;
+        float: none !important;
+        clear: none !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+    }
+    
+    /* Anular cualquier margin o padding que pueda estar afectando */
+    .sidebar-buttons-container .sidebar-theme-toggle,
+    .sidebar-buttons-container .sidebar-theme-toggle .theme-toggle-sidebar {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        border-top: none !important;
+        border-bottom: none !important;
+    }
+    
+    /* Asegurar que el contenedor padre no tenga flex-direction column */
+    .sidebar-buttons-container {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+    }
+}
+
+/* MÁXIMA PRIORIDAD - SIDEBAR DEBE SER VISIBLE */
+.sidebar.active {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+}
+
+/* Bloquear scroll del body cuando el menú está abierto - IGUAL que landing */
+body.menu-open,
+body:has(.sidebar.active) {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* JavaScript helper - aplicar cuando menu abierto */
+.menu-active {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Animaciones del menú desplegable COPIADAS del landing */
+@keyframes slideInMenu {
+    from {
+        opacity: 0;
+        transform: translateY(-15px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Animación para los elementos del menú */
+.sidebar.active .nav-link {
+    animation: fadeInMenuItem 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.sidebar.active .nav-link:nth-child(1) { animation-delay: 0.1s; }
+.sidebar.active .nav-link:nth-child(2) { animation-delay: 0.15s; }
+.sidebar.active .nav-link:nth-child(3) { animation-delay: 0.2s; }
+.sidebar.active .nav-link:nth-child(4) { animation-delay: 0.25s; }
+
+@keyframes fadeInMenuItem {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* FORZAR SIDEBAR DEBAJO DEL HEADER - MÁXIMA PRIORIDAD */
+@media (max-width: 768px) {
+    .sidebar.active {
+        position: fixed !important;
+        top: 70px !important;
+        left: var(--spacing-md) !important;
+        right: var(--spacing-md) !important;
+        width: calc(100vw - 2 * var(--spacing-md)) !important;
+        height: auto !important;
+        max-height: calc(100vh - 100px) !important;
+        overflow-y: visible !important;
+        z-index: 10000 !important;
+        background: var(--bg-primary) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: var(--border-radius-lg) !important;
+        padding: var(--spacing-xl) !important;
+        box-shadow: var(--shadow-xl) !important;
+        backdrop-filter: blur(15px) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        animation: slideInMenu 0.3s ease-out !important;
+    }
+    
+    /* Asegurar que el header no interfiera */
+    .dashboard-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 9998 !important;
+        height: 70px !important;
+        background: var(--bg-primary) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+    }
+    
+    /* Ajustar el contenido principal para que no se superponga */
+    .dashboard-main {
+        margin-top: 70px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    body.menu-open,
+    body:has(.sidebar.active),
+    html:has(.sidebar.active) {
+        background: var(--bg-primary) !important;
+        /* Si usas otro color de fondo, ponlo aquí */
+    }
+}
+
+/* Evitar el scroll horizontal y forzar el ancho máximo en móviles/tablets como en el landing */
+@media (max-width: 768px) {
+    html, body {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+}
