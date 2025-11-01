@@ -1,6 +1,6 @@
 // Utilidades generales
 
-const API_URL = "http://10.210.27.216:8080";
+const API_URL = window.CONFIG && window.CONFIG.API_URL ? window.CONFIG.API_URL : "http://localhost/cooperativa-de-viviendas-apis";
 // const API_URL = "http://localhost/cooperativa-de-viviendas-apis" 
 
 // Control de autenticación y autorización
