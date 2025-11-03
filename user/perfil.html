@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="icon" type="image/png" href="../img/cooptrack.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoopTrack - Mi Perfil</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/dashboard/user.css">
@@ -71,7 +73,7 @@
                     </li>
                 </ul>
             </nav>
-            
+
             <!-- Botón toggle tema -->
             <div class="sidebar-theme-toggle">
                 <button class="theme-toggle-sidebar" id="themeToggle" aria-label="Cambiar tema">
@@ -85,7 +87,8 @@
             <div class="section-header">
                 <h2>Mi Perfil</h2>
                 <p class="section-subtitle">Gestiona tu información personal</p>
-                <p class="section-intro">Aquí puedes actualizar y mantener al día toda tu información personal, datos de contacto y configuraciones de tu cuenta en la cooperativa.</p>
+                <p class="section-intro">Aquí puedes actualizar y mantener al día toda tu información personal, datos de
+                    contacto y configuraciones de tu cuenta en la cooperativa.</p>
             </div>
 
             <div class="profile-container">
@@ -95,31 +98,52 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="profileNombre" class="form-label">Nombre Completo</label>
-                                <input type="text" id="profileNombre" name="nombre" class="form-input" disabled>
+                                <input type="text" id="profileNombre" name="nombre" class="form-input"
+                                    value="Cargando..." disabled>
                             </div>
                             <div class="form-group">
                                 <label for="profileCedula" class="form-label">Cédula</label>
                                 <input type="text" id="profileCedula" name="cedula" class="form-input"
-                                    value="12.345.678" disabled>
+                                    value="Cargando..." disabled>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="profileEmail" class="form-label">Correo</label>
-                                <input type="email" id="profileEmail" name="email" class="form-input" required>
+                                <input type="email" id="profileEmail" name="email" class="form-input"
+                                    value="Cargando..." required>
                             </div>
                             <div class="form-group">
                                 <label for="profileTelefono" class="form-label">Teléfono</label>
-                                <input type="tel" id="profileTelefono" name="telefono" class="form-input" value="?"
-                                    required>
+                                <input type="tel" id="profileTelefono" name="telefono" class="form-input"
+                                    value="Cargando..." required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profileFechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                <input type="text" id="profileFechaNacimiento" name="fecha_nacimiento"
+                                    class="form-input" value="Cargando..." disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="profileEstadoCivil" class="form-label">Estado Civil</label>
+                                <select id="profileEstadoCivil" name="estado_civil" class="form-input">
+                                    <option value="">Cargando...</option>
+                                    <option value="soltero">Soltero</option>
+                                    <option value="casado">Casado</option>
+                                    <option value="divorciado">Divorciado</option>
+                                    <option value="viudo">Viudo</option>
+                                    <option value="union_convivencial">Unión Convivencial</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="profileDireccion" class="form-label">Dirección</label>
-                            <textarea id="profileDireccion" name="direccion" class="form-input form-textarea" rows="3"
-                                disabled>?</textarea>
+                            <label for="profileOcupacion" class="form-label">Ocupación</label>
+                            <input type="text" id="profileOcupacion" name="ocupacion" class="form-input"
+                                value="Cargando...">
                         </div>
                     </div>
 
@@ -128,11 +152,13 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="profileTipoSocio" class="form-label">Tipo de Socio</label>
-                                <input type="text" id="profileTipoSocio" name="tipoSocio" class="form-input" disabled>
+                                <input type="text" id="profileTipoSocio" name="tipoSocio" class="form-input"
+                                    value="Socio Común" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="profileEstado" class="form-label">Estado</label>
-                                <input type="text" id="profileEstado" name="estado" class="form-input" disabled>
+                                <input type="text" id="profileEstado" name="estado" class="form-input" value="Activo"
+                                    disabled>
                             </div>
                         </div>
 
@@ -140,15 +166,17 @@
                             <div class="form-group">
                                 <label for="profileFechaIngreso" class="form-label">Fecha de Ingreso</label>
                                 <input type="text" id="profileFechaIngreso" name="fechaIngreso" class="form-input"
-                                    disabled>
+                                    value="Cargando..." disabled>
                             </div>
                             <div class="form-group">
                                 <label for="profileIngresos" class="form-label">Rango de Ingresos</label>
                                 <select id="profileIngresos" name="ingresos" class="form-input">
-                                    <option value="menos-500">Menos de $500.000</option>
-                                    <option value="500-1000">$500.000 - $1.000.000</option>
-                                    <option value="1000-2000" selected>$1.000.000 - $2.000.000</option>
-                                    <option value="2000-mas">Más de $2.000.000</option>
+                                    <option value="">Cargando...</option>
+                                    <option value="hasta_500000">Hasta $500.000</option>
+                                    <option value="500000_1000000">$500.000 - $1.000.000</option>
+                                    <option value="1000000_1500000">$1.000.000 - $1.500.000</option>
+                                    <option value="1500000_2000000">$1.500.000 - $2.000.000</option>
+                                    <option value="mas_2000000">Más de $2.000.000</option>
                                 </select>
                             </div>
                         </div>

@@ -88,7 +88,6 @@ body {
 
 /* Para páginas individuales (horas, pagos, perfil, etc.) que tienen content-section directamente */
 main.dashboard-main > .content-section {
-    margin-left: 250px;
     padding: var(--spacing-xl);
 }
 
@@ -97,7 +96,6 @@ main.dashboard-main > .content-section {
 /* Sidebar Styles */
 .sidebar {
     position: fixed;
-    top: 70px;
     left: 0;
     width: 250px;
     height: calc(100vh - 70px);
@@ -105,6 +103,8 @@ main.dashboard-main > .content-section {
     border-right: 1px solid var(--border-color);
     overflow-y: auto;
     z-index: 999;
+    min-width: 250px;
+    max-width: 250px;
 }
 
 .sidebar-nav {
@@ -130,6 +130,7 @@ main.dashboard-main > .content-section {
     text-decoration: none;
     transition: all var(--transition-normal);
     position: relative;
+    border-radius: var(--border-radius);
 }
 
 .nav-link:hover {
@@ -172,14 +173,14 @@ main.dashboard-main > .content-section {
 /* Content Area */
 .dashboard-main .content-area {
     flex: 1;
-    margin-left: 250px;
+    margin-left: 200px;
     padding: var(--spacing-xl);
     min-height: calc(100vh - 70px);
 }
 
 .content-area {
     flex: 1;
-    margin-left: 250px;
+    margin-left: 200px;
     padding: var(--spacing-xl);
     min-height: calc(100vh - 70px);
 }
@@ -817,5 +818,24 @@ body:has(.sidebar.active) {
     html, body {
         max-width: 100vw !important;
         overflow-x: hidden !important;
+    }
+}
+
+/* Botón de tema para desktop: aseguramos que esté dentro del sidebar y en la parte inferior */
+@media (min-width: 769px) {
+    .sidebar > .sidebar-theme-toggle {
+        display: block;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--border-color);
+        padding-top: 20px;
+    }
+    .sidebar {
+        position: relative;
     }
 }

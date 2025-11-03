@@ -28,25 +28,31 @@
     <script src="assets/js/utils.js"></script>
     <script>
         async function testConnection() {
+            let endpointUrl;
+            if (API_URL.includes('localhost')) {
+                endpointUrl = `${API_URL}/cooperativa-de-viviendas-apis/endpoint/diagnostic.php`;
+            } else {
+                endpointUrl = `${API_URL}/endpoint/diagnostic.php`;
+            }
             try {
-                const response = await fetch(`${API_URL}/endpoint/diagnostic.php`);
+                const response = await fetch(endpointUrl);
                 const text = await response.text();
-                
+
                 // Agregar información adicional
                 let result = `Response Status: ${response.status} ${response.statusText}\n`;
                 result += `Response Headers: ${JSON.stringify([...response.headers.entries()])}\n`;
                 result += `\n--- RESPONSE BODY ---\n`;
                 result += text;
-                
+
                 document.getElementById('result').textContent = result;
             } catch (error) {
-                document.getElementById('result').textContent = `Error conectando a: ${API_URL}/endpoint/diagnostic.php\nError: ${error.message}`;
+                document.getElementById('result').textContent = `Error conectando a: ${endpointUrl}\nError: ${error.message}`;
             }
         }
 
         testConnection();
     </script>
-    
+
 </body>
 
 </html>

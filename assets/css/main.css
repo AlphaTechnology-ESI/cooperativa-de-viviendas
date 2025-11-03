@@ -839,10 +839,28 @@ body {
     background: var(--gray);
 }
 
+/* Scrollbar claro para modo claro */
+body.light-mode ::-webkit-scrollbar-track,
+html.light-mode ::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+body.light-mode ::-webkit-scrollbar-thumb,
+html.light-mode ::-webkit-scrollbar-thumb {
+    background: var(--gray);
+}
+body.light-mode ::-webkit-scrollbar-thumb:hover,
+html.light-mode ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
 /* Para Firefox */
 html {
     scrollbar-width: thin;
     scrollbar-color: var(--dark-gray) var(--black);
+}
+body.light-mode html,
+html.light-mode {
+    scrollbar-color: var(--primary-color) var(--bg-secondary);
 }
 
 /* Ajustes específicos para tema claro */

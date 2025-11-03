@@ -24,6 +24,11 @@
                     <span class="user-name" id="adminName">Cargando...</span>
                     <div class="user-avatar" id="adminAvatar">👤</div>
                 </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 <button class="btn btn-secondary btn-small" onclick="logout()">Cerrar Sesión</button>
             </div>
         </div>
@@ -60,8 +65,27 @@
                     </li>
                 </ul>
             </nav>
-            
-            <!-- Botón toggle tema -->
+
+            <!-- Contenedor para ambos botones en responsive -->
+            <div class="sidebar-buttons-container">
+                <!-- Botón cerrar sesión -->
+                <div class="sidebar-logout-responsive">
+                    <button class="btn btn-secondary btn-small" onclick="logout()">
+                        <i class="logout-icon"></i>
+                        Cerrar Sesión
+                    </button>
+                </div>
+
+                <!-- Separador -->
+                <div class="buttons-separator"></div>
+
+                <!-- Botón toggle tema -->
+                <div class="sidebar-theme-toggle">
+                    <button class="theme-toggle-sidebar" id="themeToggle" aria-label="Cambiar tema">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </div>
+            </div>
             <div class="sidebar-theme-toggle">
                 <button class="theme-toggle-sidebar" id="themeToggle" aria-label="Cambiar tema">
                     <i class="fas fa-moon" id="themeIcon"></i>
@@ -74,7 +98,9 @@
             <div class="section-header">
                 <h2>Gestión de Solicitudes</h2>
                 <p class="section-subtitle">Administrar solicitudes de vivienda</p>
-                <p class="section-intro">Aquí puedes revisar y gestionar todas las solicitudes de vivienda recibidas, aprobar o rechazar peticiones, y mantener un seguimiento completo del proceso de asignación de viviendas a los socios.</p>
+                <p class="section-intro">Aquí puedes revisar y gestionar todas las solicitudes de vivienda recibidas,
+                    aprobar o rechazar peticiones, y mantener un seguimiento completo del proceso de asignación de
+                    viviendas a los socios.</p>
             </div>
 
             <div class="filters-bar">

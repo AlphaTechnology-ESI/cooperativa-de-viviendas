@@ -4,7 +4,12 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
     const correo = document.getElementById("email").value.trim();
     const contrasena = document.getElementById("password").value;
-    const errorMessage = document.getElementById("errorMessage");
+
+    // Validación básica
+    if (!correo || !contrasena) {
+        showAlert("Por favor completa todos los campos", "warning");
+        return;
+    }
 
     try {
         const response = await fetch(`${API_URL}/endpoint/sesion/login.php`, {
@@ -13,10 +18,11 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             body: JSON.stringify({ correo, contrasena })
         });
 
-        const responseText = await response.text();
-        console.log("Respuesta cruda:", responseText);
+        if (!response.ok) {
+            throw new Error("Error en la respuesta del servidor");
+        }
 
-        const result = JSON.parse(responseText);
+        const result = await response.json();
 
         if (result.estado === "ok") {
             // Guardar datos de sesión
@@ -25,19 +31,83 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             sessionStorage.setItem("nombreUsuario", result.nombre);
             sessionStorage.setItem("idUsuario", result.id);
 
-            // Redirigir según rol
-            if (result.rol === "admins") {
-                window.location.href = "admin/dashboard.html";
-            } else {
-                window.location.href = "user/dashboard.html";
-            }
+            // Mostrar mensaje de éxito
+            showAlert("Inicio de sesión exitoso", "success");
+
+            // Redirigir según rol después de un breve delay
+            setTimeout(() => {
+                if (result.rol === "admins") {
+                    window.location.href = "admin/dashboard.html";
+                } else {
+                    window.location.href = "user/dashboard.html";
+                }
+            }, 800);
         } else {
-            errorMessage.textContent = result.mensaje || "Credenciales incorrectas.";
-            errorMessage.style.display = "block";
+            showAlert(result.mensaje || "Credenciales incorrectas", "error");
         }
     } catch (error) {
         console.error("Error al conectar:", error);
-        errorMessage.textContent = "Error al conectar con el servidor.";
-        errorMessage.style.display = "block";
+        showAlert("Error al conectar con el servidor", "error");
     }
 });
+
+// Eliminar el mensaje de error antiguo y usar el sistema de alertas moderno
+function showAlert(message, type) {
+    const alertDiv = document.createElement("div");
+    alertDiv.className = `alert alert-${type}`;
+    alertDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10001;
+        animation: slideIn 0.3s ease-out;
+        max-width: 400px;
+        font-weight: 500;
+    `;
+
+    const colors = {
+        success: { bg: "var(--success-color, #10b981)", color: "#fff" },
+        error: { bg: "var(--danger-color, #ef4444)", color: "#fff" },
+        warning: { bg: "var(--warning-color, #f59e0b)", color: "#fff" }
+    };
+
+    alertDiv.style.backgroundColor = colors[type].bg;
+    alertDiv.style.color = colors[type].color;
+    alertDiv.textContent = message;
+
+    document.body.appendChild(alertDiv);
+
+    setTimeout(() => {
+        alertDiv.style.animation = "slideOut 0.3s ease-in";
+        setTimeout(() => alertDiv.remove(), 300);
+    }, 3000);
+}
+
+// Agregar animaciones CSS
+const style = document.createElement("style");
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);

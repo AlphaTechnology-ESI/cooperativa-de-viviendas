@@ -197,6 +197,8 @@ function toggleTheme() {
                 localStorage.setItem('theme', 'dark');
                 updatePoweredByImage('dark');
                 updateCoopTrackImages('dark');
+                updateThemeColor(true); // Modo oscuro
+                document.documentElement.style.scrollbarColor = 'var(--dark-gray) var(--black)';
             } else {
                 // Cambiar a modo claro
                 body.classList.remove('dark-mode');
@@ -206,6 +208,8 @@ function toggleTheme() {
                 localStorage.setItem('theme', 'light');
                 updatePoweredByImage('light');
                 updateCoopTrackImages('light');
+                updateThemeColor(false); // Modo claro
+                document.documentElement.style.scrollbarColor = 'var(--gray) var(--bg-tertiary)';
             }
             
             // Restaurar el icono con efecto de aparición
@@ -218,6 +222,14 @@ function toggleTheme() {
             }, 150);
             
         }, 200);
+    }
+}
+
+// Función para actualizar el color de la barra de navegación en móviles
+function updateThemeColor(isDark) {
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+        themeColorMeta.setAttribute('content', isDark ? '#1a1a1a' : '#ffffff');
     }
 }
 
@@ -264,6 +276,7 @@ function loadSavedTheme() {
         }
         updatePoweredByImage('light');
         updateCoopTrackImages('light');
+        updateThemeColor(false); // Modo claro
     } else {
         // Por defecto modo oscuro
         body.classList.remove('light-mode');
@@ -274,6 +287,7 @@ function loadSavedTheme() {
         }
         updatePoweredByImage('dark');
         updateCoopTrackImages('dark');
+        updateThemeColor(true); // Modo oscuro
     }
 }
 
@@ -289,8 +303,14 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleTheme();
         });
     }
+    // Soporte para segundo botón de tema
+    const themeToggle2 = document.getElementById('themeToggle2');
+    if (themeToggle2) {
+        themeToggle2.addEventListener('click', function() {
+            toggleTheme();
+        });
+    }
 });
-
 
 // JavaScript para menú hamburguesa - COPIADO EXACTAMENTE del landing
 document.addEventListener('DOMContentLoaded', function() {
