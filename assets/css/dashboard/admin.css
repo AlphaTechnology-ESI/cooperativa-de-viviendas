@@ -1,5 +1,74 @@
 /* Admin Panel Styles - Admin Specific Only */
 
+/* Asegurar que body y html no tengan altura extra */
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Dashboard main debe ocupar el espacio restante */
+.dashboard-main {
+    flex: 1;
+    display: flex;
+    min-height: calc(100vh - 70px); /* Restar altura del header */
+    max-height: calc(100vh - 70px);
+    overflow: hidden;
+}
+
+/* Sidebar con altura correcta */
+.sidebar {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Content section con scroll independiente */
+.content-section {
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
+}
+
+/* Table container sin altura extra */
+.table-container {
+    margin-bottom: 0;
+    overflow-x: auto;
+}
+
+/* Admin table sin márgenes extra */
+.admin-table {
+    margin-bottom: 0;
+}
+
+/* Scroll horizontal para tablas */
+.table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Para Firefox */
+.table-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) var(--bg-tertiary);
+}
+
 /* Filtros específicos de admin */
 .filters-bar {
     display: flex;
@@ -252,25 +321,6 @@
 .ingresos-badge.mas_2000000 {
     background-color: #e3f2fd;
     color: #1976d2;
-}
-
-/* Scroll horizontal personalizado */
-.table-container::-webkit-scrollbar {
-    height: 8px;
-}
-
-.table-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-.table-container::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 4px;
-}
-
-.table-container::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-dark);
 }
 
 /* Coming Soon */

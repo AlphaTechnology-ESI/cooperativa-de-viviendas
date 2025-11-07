@@ -1,5 +1,39 @@
 /* User Dashboard Styles - User Specific Only */
 
+/* Asegurar que body y html no tengan altura extra */
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Dashboard main debe ocupar el espacio restante */
+.dashboard-main {
+    flex: 1;
+    display: flex;
+    min-height: calc(100vh - 70px); /* Restar altura del header */
+    max-height: calc(100vh - 70px);
+    overflow: hidden;
+}
+
+/* Sidebar con altura correcta */
+.sidebar {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Content section con scroll independiente */
+.content-section {
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
+}
+
 /* User specific dashboard components */
 .activity-list, .events-list {
     display: flex;
@@ -149,6 +183,12 @@
     overflow: hidden;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
+    margin-bottom: 0;
+}
+
+.payments-table {
+    margin-bottom: 0;
+    overflow-x: auto;
 }
 
 .payments-table table {
@@ -171,6 +211,29 @@
 
 .payments-table tr:hover {
     background: rgba(74, 144, 226, 0.05);
+}
+
+.payments-table::-webkit-scrollbar {
+    height: 8px;
+}
+
+.payments-table::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+.payments-table::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.payments-table::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Para Firefox */
+.payments-table {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) var(--bg-tertiary);
 }
 
 /* Documents Section */
