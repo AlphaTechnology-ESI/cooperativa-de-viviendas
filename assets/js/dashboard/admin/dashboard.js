@@ -1,5 +1,25 @@
 // Dashboard administrativo
 document.addEventListener('DOMContentLoaded', function () { 
+    const admin = JSON.parse(sessionStorage.getItem("usuario") || "{}");
+    
+    // Actualizar información del admin en header
+    document.getElementById('adminName').textContent = admin.nom_usu || 'Admin';
+    
+    // Actualizar información del admin en sidebar
+    const adminName2 = document.getElementById('adminName2');
+    if (adminName2) {
+        adminName2.textContent = admin.nom_usu || 'Admin';
+    }
+    
+    // Actualizar avatar con iniciales
+    const iniciales = admin.nom_usu ? admin.nom_usu.charAt(0).toUpperCase() : 'A';
+    document.getElementById('adminAvatar').textContent = iniciales;
+    
+    const adminAvatar2 = document.getElementById('adminAvatar2');
+    if (adminAvatar2) {
+        adminAvatar2.textContent = iniciales;
+    }
+    
     initializeAdmin(); 
     initializeSolicitudes();
 });

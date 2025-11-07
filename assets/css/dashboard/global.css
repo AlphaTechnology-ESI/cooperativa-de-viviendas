@@ -79,6 +79,14 @@ body {
     font-weight: 600;
 }
 
+/* User Info en sidebar - Oculto por defecto */
+.sidebar-user-info {
+    display: none;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--spacing-md);
+}
+
 /* Dashboard Main Layout */
 .dashboard-main {
     display: flex;
@@ -453,6 +461,16 @@ main.dashboard-main > .content-section {
 @media (max-width: 768px) {
     .nav-toggle {
         display: flex;
+    }
+    
+    /* Ocultar user-info del header en móvil */
+    .header-right .user-info {
+        display: none !important;
+    }
+    
+    /* Mostrar user-info en el sidebar */
+    .sidebar-user-info {
+        display: block !important;
     }
     
     .dashboard-header {
