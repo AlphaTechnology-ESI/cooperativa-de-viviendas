@@ -1,4 +1,3 @@
-// Sistema de partículas dinámico y texto infinito
 class ParticleSystem {
     constructor() {
         this.particles = [];
@@ -171,7 +170,6 @@ class ParticleSystem {
 
 }
 
-// Inicialización del sistema
 function initializeParticleSystem() {
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeParticleSystem);

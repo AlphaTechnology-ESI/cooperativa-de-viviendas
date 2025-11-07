@@ -1,7 +1,15 @@
-// JavaScript para index.html
+/* ============================================
+   PÁGINA DE INICIO - INDEX
+   ============================================ */
+
+/* Inicialización de la página */
 document.addEventListener('DOMContentLoaded', function() {
     initializeIndex();
 });
+
+/* ============================================
+   CONFIGURACIÓN INICIAL
+   ============================================ */
 
 function initializeIndex() {
     setupNavigation();
@@ -10,8 +18,12 @@ function initializeIndex() {
     setupAnimations();
 }
 
+/* ============================================
+   CONFIGURACIÓN DE NAVEGACIÓN
+   ============================================ */
+
 function setupNavigation() {
-    // Mobile menu toggle
+    /* Menú móvil - Botón hamburguesa */
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -20,14 +32,14 @@ function setupNavigation() {
             navToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
             
-            // Efecto de vibración en el botón
+            /* Efecto de animación en el botón */
             navToggle.style.animation = 'none';
-            navToggle.offsetHeight; // Trigger reflow
+            navToggle.offsetHeight; /* Forzar reflow */
             navToggle.style.animation = 'menuButtonClick 0.3s ease-out';
         });
     }
 
-    // Cerrar menú al hacer click en un enlace
+    /* Cerrar menú al hacer clic en un enlace */
     const navLinksItems = navLinks.querySelectorAll('.nav-link');
     navLinksItems.forEach(link => {
         link.addEventListener('click', () => {
@@ -36,7 +48,7 @@ function setupNavigation() {
         });
     });
     
-    // Cerrar menú al hacer click fuera
+    /* Cerrar menú al hacer clic fuera */
     document.addEventListener('click', function(event) {
         if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
             navToggle.classList.remove('active');
@@ -44,7 +56,7 @@ function setupNavigation() {
         }
     });
 
-    // Smooth scrolling
+    /* Desplazamiento suave a secciones */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -55,7 +67,7 @@ function setupNavigation() {
         });
     });
 
-    // Header scroll effect
+    /* Efecto de scroll en el encabezado */
     window.addEventListener('scroll', () => {
         const header = document.querySelector('.header');
         if (window.scrollY > 100) {
@@ -67,6 +79,10 @@ function setupNavigation() {
         }
     });
 }
+
+/* ============================================
+   CONFIGURACIÓN DE FILTROS
+   ============================================ */
 
 function setupFilters() {
     const filterSelects = document.querySelectorAll('.filter-select');
@@ -105,6 +121,10 @@ function setupFilters() {
     });
 }
 
+/* ============================================
+   CONFIGURACIÓN DE FORMULARIOS
+   ============================================ */
+
 function setupForms() {
     const form = document.getElementById('housing-request-form');
     if (form) {
@@ -135,8 +155,12 @@ function setupForms() {
     }
 }
 
+/* ============================================
+   CONFIGURACIÓN DE ANIMACIONES
+   ============================================ */
+
 function setupAnimations() {
-    // Intersection Observer para animaciones
+    /* Intersection Observer para animaciones */
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -149,7 +173,7 @@ function setupAnimations() {
         observer.observe(el);
     });
 
-    // Progress bars
+    /* Animación de barras de progreso */
     const progressObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -168,7 +192,11 @@ function setupAnimations() {
     });
 }
 
-// Añadir animación CSS para el click del botón
+/* ============================================
+   ESTILOS Y ANIMACIONES CSS
+   ============================================ */
+
+/* Agregar animación CSS para el botón del menú */
 const style = document.createElement('style');
 style.textContent = `
     @keyframes menuButtonClick {

@@ -1,11 +1,15 @@
-// Gestión de inicio de sesión
+/* ============================================
+   GESTIÓN DE INICIO DE SESIÓN
+   ============================================ */
+
+/* Manejo del formulario de login */
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const correo = document.getElementById("email").value.trim();
     const contrasena = document.getElementById("password").value;
 
-    // Validación básica
+    /* Validación de campos requeridos */
     if (!correo || !contrasena) {
         showAlert("Por favor completa todos los campos", "warning");
         return;
@@ -25,16 +29,16 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         const result = await response.json();
 
         if (result.estado === "ok") {
-            // Guardar datos de sesión
+            /* Guardar datos de sesión */
             sessionStorage.setItem("usuarioLogueado", "true");
             sessionStorage.setItem("rol", result.rol);
             sessionStorage.setItem("nombreUsuario", result.nombre);
             sessionStorage.setItem("idUsuario", result.id);
 
-            // Mostrar mensaje de éxito
+            /* Mostrar mensaje de éxito */
             showAlert("Inicio de sesión exitoso", "success");
 
-            // Redirigir según rol después de un breve delay
+            /* Redirigir según el rol del usuario */
             setTimeout(() => {
                 if (result.rol === "admins") {
                     window.location.href = "admin/dashboard.html";
@@ -51,7 +55,11 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     }
 });
 
-// Eliminar el mensaje de error antiguo y usar el sistema de alertas moderno
+/* ============================================
+   SISTEMA DE ALERTAS
+   ============================================ */
+
+/* Mostrar alerta al usuario */
 function showAlert(message, type) {
     const alertDiv = document.createElement("div");
     alertDiv.className = `alert alert-${type}`;
@@ -86,7 +94,11 @@ function showAlert(message, type) {
     }, 3000);
 }
 
-// Agregar animaciones CSS
+/* ============================================
+   ESTILOS Y ANIMACIONES CSS
+   ============================================ */
+
+/* Agregar animaciones CSS dinámicamente */
 const style = document.createElement("style");
 style.textContent = `
     @keyframes slideIn {

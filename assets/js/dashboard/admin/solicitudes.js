@@ -1,7 +1,17 @@
 
 
+/* ============================================
+   GESTIÓN DE SOLICITUDES - ADMINISTRADOR
+   ============================================ */
+
+/* Variable para almacenar la solicitud actual */
 let solicitudActual = null;
 
+/* ============================================
+   VISUALIZACIÓN DE SOLICITUD
+   ============================================ */
+
+/* Ver detalle de una solicitud */
 async function verSolicitud(id) {
     try {
         const response = await fetch(`${API_URL}/endpoint/solicitudes/obtener_solicitudes.php?id=` + id);
@@ -36,6 +46,7 @@ async function verSolicitud(id) {
 
                 document.getElementById('modal-solicitud').style.display = 'flex';
 
+                /* Ocultar botones de acción si la solicitud ya fue procesada */
                 const acciones = document.querySelectorAll('#modal-solicitud .btn-success, #modal-solicitud .btn-warning, #modal-solicitud .btn-error');
                 if (['aprobada', 'rechazada', 'en_revision'].includes(solicitudActual.estado_solicitud)) {
                     acciones.forEach(btn => btn.style.display = 'none');

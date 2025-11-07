@@ -1,10 +1,21 @@
-// Gestión de socios
+/* ============================================
+   GESTIÓN DE SOCIOS - ADMINISTRADOR
+   ============================================ */
+
+/* Variables globales */
 let sociosData = [];
 let socioSeleccionado = null;
+
+/* Inicialización */
 document.addEventListener('DOMContentLoaded', function() {
     loadSocios();
     configurarFiltros();
 });
+
+/* ============================================
+   CARGA DE SOCIOS
+   ============================================ */
+
 async function loadSocios() {
     try {
         const buscar = document.getElementById('filtro-buscar').value.trim();
@@ -41,6 +52,11 @@ async function loadSocios() {
         `;
     }
 }
+
+/* ============================================
+   VISUALIZACIÓN DE SOCIOS
+   ============================================ */
+
 function renderSociosTable(socios) {
     displaySociosWithIndicator(socios);
 }
@@ -73,6 +89,11 @@ function displaySocios(socios) {
         </tr>
     `).join('');
 }
+
+/* ============================================
+   DETALLE DEL SOCIO
+   ============================================ */
+
 async function verSocio(idUsuario) {
     const socio = sociosData.find(s => s.id_usuario == idUsuario);
     
@@ -142,13 +163,21 @@ async function verSocio(idUsuario) {
     
     document.getElementById('modal-socio').style.display = 'flex';
 }
+
+/* ============================================
+   CONFIGURACIÓN DE FILTROS
+   ============================================ */
+
 function configurarFiltros() {
     document.getElementById('filtro-buscar').addEventListener('input', debounce(loadSocios, 300));
     document.getElementById('filtro-estado-civil').addEventListener('change', loadSocios);
     document.getElementById('filtro-ingresos').addEventListener('change', loadSocios);
 }
 
-// Formateo de datos
+/* ============================================
+   FUNCIONES DE FORMATO
+   ============================================ */
+
 function formatEstadoCivil(estadoCivil) {
     const estados = {
         'soltero': 'Soltero/a',
@@ -181,7 +210,10 @@ function formatDate(dateString) {
     });
 }
 
-// Control de modales
+/* ============================================
+   GESTIÓN DE MODALES
+   ============================================ */
+
 function cerrarModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
     
@@ -196,7 +228,10 @@ function cerrarModal(modalId) {
     }
 }
 
-// Utilidades
+/* ============================================
+   FUNCIONES DE UTILIDAD
+   ============================================ */
+
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -213,6 +248,8 @@ function truncateText(text, maxLength) {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
 }
+
+/* Verificar indicador de scroll en tabla */
 function checkScrollIndicator() {
     const tableContainer = document.querySelector('.table-container');
     const table = document.getElementById('socios-table');
@@ -226,12 +263,18 @@ function checkScrollIndicator() {
         }
     }
 }
+
+/* Mostrar socios con indicador de scroll */
 function displaySociosWithIndicator(socios) {
     displaySocios(socios);
     setTimeout(checkScrollIndicator, 100);
 }
 
-// Eventos
+/* ============================================
+   EVENTOS GLOBALES
+   ============================================ */
+
+/* Cerrar modales al hacer clic fuera */
 document.addEventListener('click', function(event) {
     const modals = document.querySelectorAll('.modal');
     modals.forEach(modal => {
@@ -242,7 +285,10 @@ document.addEventListener('click', function(event) {
     });
 });
 
-// Gestión de eliminación
+/* ============================================
+   ELIMINACIÓN DE SOCIOS
+   ============================================ */
+
 async function eliminarSocio() {
     if (!socioSeleccionado) {
         alert('No hay socio seleccionado');

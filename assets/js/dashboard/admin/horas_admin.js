@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     cargarHoras();
 });
 
+/* ============================================
+   CARGA DE HORAS
+   ============================================ */
+
 async function cargarHoras() {
     const filtro = document.getElementById("filtro-estado").value;
     const tbody = document.getElementById("horas-tbody");

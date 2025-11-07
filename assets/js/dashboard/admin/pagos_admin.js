@@ -1,12 +1,19 @@
-// Variables globales
+/* ============================================
+   GESTIÓN DE PAGOS - ADMINISTRADOR
+   ============================================ */
+
+/* Variables globales */
 let pagoActual = null;
 
-// Cargar pagos al iniciar
+/* Inicialización */
 document.addEventListener("DOMContentLoaded", function() {
     cargarPagos();
 });
 
-// Cargar lista de pagos
+/* ============================================
+   CARGA DE PAGOS
+   ============================================ */
+
 async function cargarPagos() {
     const tbody = document.getElementById("pagos-tbody");
     const filtroEstado = document.getElementById("filtro-estado").value;
@@ -80,7 +87,10 @@ async function cargarPagos() {
     }
 }
 
-// Ver detalle del pago
+/* ============================================
+   DETALLE DEL PAGO
+   ============================================ */
+
 async function verDetalle(pago) {
     pagoActual = pago;
     const modal = document.getElementById("modal-pago");
@@ -197,14 +207,20 @@ async function verDetalle(pago) {
     modal.style.display = "flex";
 }
 
-// Cerrar modal
+/* ============================================
+   GESTIÓN DE MODALES
+   ============================================ */
+
 function cerrarModal() {
     const modal = document.getElementById("modal-pago");
     modal.style.display = "none";
     pagoActual = null;
 }
 
-// Actualizar estado del pago
+/* ============================================
+   ACTUALIZACIÓN DE ESTADO
+   ============================================ */
+
 async function actualizarEstado(nuevoEstado) {
     if (!pagoActual) {
         showToast("No hay pago seleccionado", "error");
@@ -239,7 +255,10 @@ async function actualizarEstado(nuevoEstado) {
     }
 }
 
-// Descargar comprobante
+/* ============================================
+   DESCARGA DE COMPROBANTES
+   ============================================ */
+
 function descargarComprobante(base64Data, nombreArchivo) {
     const isPDF = base64Data.startsWith('JVBER');
     const mimeType = isPDF ? 'application/pdf' : 'image/jpeg';
@@ -260,11 +279,15 @@ function descargarComprobante(base64Data, nombreArchivo) {
     window.URL.revokeObjectURL(url);
 }
 
-// Actualizar estado del pago
+/* ============================================
+   EVENTOS Y LISTENERS
+   ============================================ */
+
+/* Actualizar lista al cambiar filtros */
 document.getElementById("filtro-estado").addEventListener("change", cargarPagos);
 document.getElementById("filtro-tipo").addEventListener("change", cargarPagos);
 
-// Cerrar modal al hacer clic fuera
+/* Cerrar modal al hacer clic fuera */
 window.onclick = function(event) {
     const modal = document.getElementById("modal-pago");
     if (event.target === modal) {

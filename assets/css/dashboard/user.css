@@ -1,6 +1,8 @@
-/* User Dashboard Styles - User Specific Only */
+/* ============================================
+   ESTILOS DEL PANEL DE USUARIO
+   ============================================ */
 
-/* Asegurar que body y html no tengan altura extra */
+/* Configuración base de altura del documento */
 html, body {
     height: 100%;
     overflow-x: hidden;
@@ -12,70 +14,200 @@ body {
     flex-direction: column;
 }
 
-/* Dashboard main debe ocupar el espacio restante */
+/* ============================================
+   CONTENEDOR PRINCIPAL DEL DASHBOARD
+   ============================================ */
+
 .dashboard-main {
     flex: 1;
     display: flex;
-    min-height: calc(100vh - 70px); /* Restar altura del header */
+    min-height: calc(100vh - 70px);
     max-height: calc(100vh - 70px);
     overflow: hidden;
 }
 
-/* Sidebar con altura correcta */
+/* Barra lateral con desplazamiento independiente */
 .sidebar {
     height: 100%;
     overflow-y: auto;
 }
 
-/* Content section con scroll independiente */
+/* Sección de contenido con desplazamiento independiente */
 .content-section {
     flex: 1;
     overflow-y: auto;
     height: 100%;
 }
 
-/* User specific dashboard components */
-.activity-list, .events-list {
+/* ============================================
+   SECCIÓN DE BIENVENIDA
+   ============================================ */
+
+.welcome-section {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-xxl);
+}
+
+.welcome-section h1 {
+    font-size: var(--font-size-xxl);
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--primary-color);
+}
+
+.welcome-section p {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ============================================
+   GRILLA DE ESTADÍSTICAS
+   ============================================ */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
+}
+
+.stat-card {
+    background: var(--bg-primary);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
-}
-
-.activity-item, .event-item {
-    display: flex;
     align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md);
-    background: rgba(74, 144, 226, 0.05);
-    border-radius: var(--border-radius);
+    text-align: center;
 }
 
-.activity-icon {
-    font-size: var(--font-size-lg);
+.stat-card h3 {
+    font-size: var(--font-size-xxl);
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--primary-color);
 }
 
-.activity-content p, .event-content p {
+.stat-card p {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
     margin: 0;
-    font-weight: 600;
-    color: var(--text-primary);
 }
 
-.activity-content small, .event-content small {
-    color: var(--gray);
+/* ============================================
+   SECCIÓN DE SOLICITUDES
+   ============================================ */
+
+.requests-section {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
 }
 
-.event-date {
-    background: var(--primary-color);
-    color: var(--white);
-    padding: var(--spacing-sm);
+.requests-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.requests-header h2 {
+    font-size: var(--font-size-xl);
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.requests-header a {
+    font-size: var(--font-size-md);
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* ============================================
+   ESTADOS DE SOLICITUD
+   ============================================ */
+
+.request-status {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.status-pill {
+    padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--border-radius);
     font-size: var(--font-size-sm);
     font-weight: 600;
+    display: inline-block;
     text-align: center;
-    min-width: 50px;
 }
 
-/* Profile Section */
+.status-pending {
+    background: rgba(255, 193, 7, 0.2);
+    color: var(--warning-color);
+}
+
+.status-approved {
+    background: rgba(40, 167, 69, 0.2);
+    color: var(--success-color);
+}
+
+.status-rejected {
+    background: rgba(220, 53, 69, 0.2);
+    color: var(--error-color);
+}
+
+/* ============================================
+   SECCIÓN DE DOCUMENTOS
+   ============================================ */
+
+.documents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.document-card {
+    background: var(--bg-primary);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.document-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.document-info {
+    flex: 1;
+}
+
+.document-info h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.document-info p {
+    color: var(--gray);
+    margin: 0;
+}
+
+/* ============================================
+   SECCIÓN DE PERFIL
+   ============================================ */
+
 .profile-container {
     max-width: 800px;
 }
@@ -107,76 +239,10 @@ body {
     margin-top: var(--spacing-xl);
 }
 
-/* Projects Section */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-xl);
-}
+/* ============================================
+   SECCIÓN DE PAGOS
+   ============================================ */
 
-.project-card {
-    background: var(--bg-primary);
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
-}
-
-.project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-lg);
-}
-
-.project-header h3 {
-    color: var(--primary-color);
-    margin: 0;
-}
-
-.project-status {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-}
-
-.status-active {
-    background: rgba(40, 167, 69, 0.2);
-    color: var(--success-color);
-}
-
-.project-progress {
-    margin-bottom: var(--spacing-lg);
-}
-
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background: rgba(74, 144, 226, 0.2);
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: var(--spacing-sm);
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--primary-color);
-    transition: width 1s ease-out;
-}
-
-.progress-text {
-    font-size: var(--font-size-sm);
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.project-details p {
-    margin: var(--spacing-sm) 0;
-    color: var(--text-secondary);
-}
-
-/* Payments Section */
 .payments-container {
     background: var(--bg-primary);
     border-radius: var(--border-radius-lg);
@@ -236,78 +302,204 @@ body {
     scrollbar-color: var(--border-color) var(--bg-tertiary);
 }
 
-/* Documents Section */
-.documents-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
-}
+/* ============================================
+   SECCIÓN DE VIVIENDAS
+   ============================================ */
 
-.document-card {
+.housing-section {
     background: var(--bg-primary);
-    padding: var(--spacing-xl);
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
+}
+
+.housing-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
 }
 
-.document-icon {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
-.document-info {
-    flex: 1;
-}
-
-.document-info h4 {
-    color: var(--primary-color);
-    margin-bottom: var(--spacing-sm);
-}
-
-.document-info p {
-    color: var(--gray);
+.housing-header h2 {
+    font-size: var(--font-size-xl);
     margin: 0;
+    color: var(--primary-color);
 }
 
-/* Toast Messages */
-.toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: var(--spacing-md) var(--spacing-lg);
+.housing-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+}
+
+/* ============================================
+   SECCIÓN DE COMUNICACIONES
+   ============================================ */
+
+.messages-section {
+    background: var(--bg-primary);
     border-radius: var(--border-radius-lg);
-    color: var(--white);
-    font-weight: 600;
-    z-index: 9999;
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
+}
+
+.messages-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: var(--spacing-sm);
-    animation: slideInRight 0.3s ease-out;
-    backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-lg);
+    margin-bottom: var(--spacing-lg);
 }
 
-.toast-success {
-    background: linear-gradient(135deg, var(--success-color), #20c997);
+.messages-header h2 {
+    font-size: var(--font-size-xl);
+    margin: 0;
+    color: var(--primary-color);
 }
 
-.toast-error {
-    background: linear-gradient(135deg, var(--error-color), #e74c3c);
+.message-item {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(100%);
+.message-item:last-child {
+    border-bottom: none;
+}
+
+.message-content {
+    margin-left: var(--spacing-md);
+}
+
+.message-content h4 {
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--primary-color);
+}
+
+.message-content p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   SECCIÓN DE AYUDA
+   ============================================ */
+
+.help-section {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
+}
+
+.help-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.help-header h2 {
+    font-size: var(--font-size-xl);
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.help-content {
+    margin-top: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   SECCIÓN EN DESARROLLO
+   ============================================ */
+
+.development-section {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
+}
+
+.development-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.development-header h2 {
+    font-size: var(--font-size-xl);
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.development-content {
+    margin-top: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   DISEÑO RESPONSIVE
+   ============================================ */
+
+/* Tablets y dispositivos medianos */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
-    to {
-        opacity: 1;
-        transform: translateX(0);
+
+    .requests-section,
+    .documents-grid,
+    .payments-container,
+    .housing-section,
+    .messages-section,
+    .help-section,
+    .development-section {
+        padding: var(--spacing-lg);
+    }
+
+    .welcome-section {
+        padding: var(--spacing-lg);
     }
 }
 
-/* User specific responsive styles - if any needed */
+/* Dispositivos móviles */
+@media (max-width: 480px) {
+    .welcome-section h1 {
+        font-size: var(--font-size-xl);
+    }
+
+    .welcome-section p {
+        font-size: var(--font-size-md);
+    }
+
+    .stat-card h3 {
+        font-size: var(--font-size-xl);
+    }
+
+    .stat-card p {
+        font-size: var(--font-size-sm);
+    }
+
+    .requests-header h2,
+    .documents-header h2,
+    .payments-header h2,
+    .housing-header h2,
+    .messages-header h2,
+    .help-header h2,
+    .development-header h2 {
+        font-size: var(--font-size-lg);
+    }
+
+    .request-status {
+        flex-direction: column;
+    }
+
+    .status-pill {
+        width: 100%;
+        text-align: center;
+    }
+}

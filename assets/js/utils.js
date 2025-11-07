@@ -1,9 +1,15 @@
-// Utilidades generales
+/* ============================================
+   UTILIDADES GLOBALES
+   ============================================ */
 
+/* Configuración de URL de la API */
 const API_URL = window.CONFIG && window.CONFIG.API_URL ? window.CONFIG.API_URL : "http://localhost/cooperativa-de-viviendas-apis";
-// const API_URL = "http://localhost/cooperativa-de-viviendas-apis" 
 
-// Control de autenticación y autorización
+/* ============================================
+   CONTROL DE AUTENTICACIÓN Y AUTORIZACIÓN
+   ============================================ */
+
+/* Páginas protegidas por rol */
 const paginasProtegidas = {
   "user/dashboard.html": "usuario",
   "admin/dashboard.html": "admins"
@@ -35,12 +41,17 @@ if (paginasProtegidas[paginaActual]) {
   }
 }
 
+/* Cerrar sesión del usuario */
 function logout() {
   sessionStorage.clear();
   window.location.href = "../index.html";
 }
 
-// Notificaciones
+/* ============================================
+   SISTEMA DE NOTIFICACIONES
+   ============================================ */
+
+/* Mostrar notificación toast */
 function showToast(message, type = 'success') {
     const existingToasts = document.querySelectorAll('.toast');
     existingToasts.forEach(toast => toast.remove());
@@ -59,7 +70,11 @@ function showToast(message, type = 'success') {
     }, 4000);
 }
 
-// Formateo de datos
+/* ============================================
+   FORMATO DE DATOS
+   ============================================ */
+
+/* Formatear fecha a formato local */
 function formatDate(dateString) {
     if (!dateString) return '';
 
@@ -71,6 +86,7 @@ function formatDate(dateString) {
     });
 }
 
+/* Formatear moneda */
 function formatCurrency(amount) {
     if (!amount) return '$0';
 
@@ -82,6 +98,7 @@ function formatCurrency(amount) {
     }).format(amount);
 }
 
+/* Alternar visibilidad de contraseña */
 function togglePassword() {
     const passwordInput = document.getElementById('password');
     const toggleIcon = document.getElementById('toggleIcon');
@@ -97,7 +114,11 @@ function togglePassword() {
     }
 }
 
-// Navegación y scroll
+/* ============================================
+   NAVEGACIÓN Y SCROLL
+   ============================================ */
+
+/* Desplazamiento suave a elemento */
 function smoothScroll(target) {
     const element = document.querySelector(target);
     if (element) {
@@ -107,12 +128,17 @@ function smoothScroll(target) {
     }
 }
 
-// Validaciones
+/* ============================================
+   VALIDACIONES
+   ============================================ */
+
+/* Validar formato de email */
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
 
+/* Validar campos requeridos de formulario */
 function validateForm(formData, requiredFields) {
     const errors = [];
 
@@ -132,7 +158,11 @@ function validateForm(formData, requiredFields) {
     };
 }
 
-// Control de errores
+/* ============================================
+   CONTROL DE ERRORES
+   ============================================ */
+
+/* Manejar errores de API */
 function handleApiError(error, defaultMessage = 'Ha ocurrido un error') {
     console.error('API Error:', error);
 
@@ -143,7 +173,11 @@ function handleApiError(error, defaultMessage = 'Ha ocurrido un error') {
     }
 }
 
-// Optimización de rendimiento
+/* ============================================
+   OPTIMIZACIÓN DE RENDIMIENTO
+   ============================================ */
+
+/* Función debounce para limitar ejecución */
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -156,7 +190,11 @@ function debounce(func, wait) {
     };
 }
 
-// Estados de UI
+/* ============================================
+   ESTADOS DE INTERFAZ
+   ============================================ */
+
+/* Establecer estado de carga en botón */
 function setButtonLoading(button, loading = true) {
     if (!button) return;
 
@@ -168,14 +206,22 @@ function setButtonLoading(button, loading = true) {
         button.disabled = false;
     }
 }
+
+/* Formatear número con separadores de miles */
 function formatNumber(num) {
     return new Intl.NumberFormat('es-AR').format(num);
 }
+
+/* Capitalizar primera letra de texto */
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// Alternar tema completo (oscuro/claro) con efectos
+/* ============================================
+   GESTIÓN DE TEMAS (CLARO/OSCURO)
+   ============================================ */
+
+/* Alternar entre tema claro y oscuro */
 function toggleTheme() {
     const body = document.body;
     const themeIcon = document.getElementById('themeIcon');
@@ -249,7 +295,7 @@ function toggleTheme() {
     }, 200);
 }
 
-// Función para actualizar el color de la barra de navegación en móviles
+/* Actualizar color de tema en meta tag para móviles */
 function updateThemeColor(isDark) {
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     if (themeColorMeta) {
@@ -257,7 +303,7 @@ function updateThemeColor(isDark) {
     }
 }
 
-// Actualizar imagen del powered by según el tema
+/* Actualizar imagen del logo según el tema */
 function updatePoweredByImage(theme) {
     const poweredByImg = document.querySelector('.powered-by img');
     if (poweredByImg) {
@@ -269,11 +315,11 @@ function updatePoweredByImage(theme) {
     }
 }
 
-// Actualizar imagen de CoopTrack según el tema
+/* Actualizar imágenes de CoopTrack según el tema */
 function updateCoopTrackImages(theme) {
     const coopTrackImages = document.querySelectorAll('img[src*="cooptrack"], .auth-logo, .nav-logo-img, .hero-logo-img, .footer-logo-img, .header-logo');
     coopTrackImages.forEach(img => {
-        // Detectar si estamos en una subcarpeta (admin, user, etc.)
+        /* Detectar si estamos en una subcarpeta */
         const isInSubfolder = window.location.pathname.includes('/admin/') || window.location.pathname.includes('/user/');
         const basePath = isInSubfolder ? '../img/' : 'img/';
         
@@ -285,7 +331,7 @@ function updateCoopTrackImages(theme) {
     });
 }
 
-// Cargar tema guardado al inicializar la página
+/* Cargar tema guardado al inicializar */
 function loadSavedTheme() {
     const savedTheme = localStorage.getItem('theme');
     const body = document.body;
@@ -323,19 +369,24 @@ function loadSavedTheme() {
     }
 }
 
-// Inicializar funcionalidad del botón de cambio de tema
+/* ============================================
+   INICIALIZACIÓN DE TEMA
+   ============================================ */
+
+/* Inicializar funcionalidad del tema al cargar la página */
 document.addEventListener('DOMContentLoaded', function() {
-    // Cargar tema guardado primero
+    /* Cargar tema guardado */
     loadSavedTheme();
     
-    // Configurar evento del botón
+    /* Configurar evento del botón principal */
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', function() {
             toggleTheme();
         });
     }
-    // Soporte para segundo botón de tema
+    
+    /* Soporte para segundo botón de tema */
     const themeToggle2 = document.getElementById('themeToggle2');
     if (themeToggle2) {
         themeToggle2.addEventListener('click', function() {
@@ -344,20 +395,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+/* ============================================
+   MENÚ HAMBURGUESA Y NAVEGACIÓN
+   ============================================ */
 
-// JavaScript para menú hamburguesa - COPIADO EXACTAMENTE del landing
+/* Configuración del menú móvil */
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('navToggle');
 
     const sidebar = document.querySelector('.sidebar');
     const body = document.body;
 
-    // Toggle del menú
+    /* Alternar estado del menú */
     function toggleMenu() {
         navToggle.classList.toggle('active');
         sidebar.classList.toggle('active');
         
-        // Bloquear/desbloquear scroll igual que landing
+        /* Bloquear/desbloquear scroll del body */
         if (sidebar.classList.contains('active')) {
             body.classList.add('menu-open', 'menu-active');
             document.documentElement.style.overflow = 'hidden';
@@ -367,10 +421,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event listener para el botón
+    /* Evento del botón hamburguesa */
     navToggle.addEventListener('click', toggleMenu);
 
-    // Cerrar menú al hacer clic en un enlace (igual que landing)
+    /* Cerrar menú al hacer clic en un enlace */
     const navLinks = document.querySelectorAll('.sidebar .nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -381,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Cerrar menú al hacer clic fuera (solo en desktop)
+    /* Cerrar menú al hacer clic fuera (solo en desktop) */
     document.addEventListener('click', function(e) {
         if (window.innerWidth > 768 && 
             !navToggle.contains(e.target) && 
@@ -391,10 +445,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Manejar resize de ventana
+    /* Manejar cambio de tamaño de ventana */
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
-            // Resetear estado en desktop
+            /* Resetear estado en pantallas grandes */
             navToggle.classList.remove('active');
             sidebar.classList.remove('active');
             body.classList.remove('menu-open', 'menu-active');
@@ -402,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Prevenir scroll cuando menú está abierto en móviles
+    /* Prevenir scroll cuando el menú está abierto en móviles */
     document.addEventListener('touchmove', function(e) {
         if (body.classList.contains('menu-open')) {
             e.preventDefault();

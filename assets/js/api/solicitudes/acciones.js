@@ -1,3 +1,12 @@
+/* ============================================
+   ACCIONES SOBRE SOLICITUDES
+   ============================================ */
+
+/* ============================================
+   APROBAR SOLICITUD
+   ============================================ */
+
+/* Aprobar una solicitud de vivienda */
 async function aprobarSolicitud() {
     if (!solicitudActual) return;
 
@@ -25,6 +34,11 @@ async function aprobarSolicitud() {
     }
 }
 
+/* ============================================
+   RECHAZAR SOLICITUD
+   ============================================ */
+
+/* Rechazar una solicitud de vivienda */
 async function rechazarSolicitud() {
     if (!solicitudActual) return;
 
@@ -54,17 +68,27 @@ async function rechazarSolicitud() {
     }
 }
 
+/* ============================================
+   GESTIÓN DE MODALES
+   ============================================ */
+
+/* Cerrar modal de solicitud */
 function cerrarModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.style.display = 'none';
 
+        /* Restaurar visibilidad de botones de acción */
         const botonesAccion = modal.querySelectorAll('.btn-success, .btn-warning, .btn-error');
         botonesAccion.forEach(btn => btn.style.display = 'inline-block');
     }
 }
 
+/* ============================================
+   CONTROL DE BOTONES DE ACCIÓN
+   ============================================ */
 
+/* Ocultar botones de acción en el modal */
 function ocultarBotonesAccion() {
     const modalFooter = document.querySelector("#modal-solicitud .modal-footer");
     if (!modalFooter) return;

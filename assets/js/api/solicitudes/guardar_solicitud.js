@@ -1,3 +1,8 @@
+/* ============================================
+   GUARDAR SOLICITUD DE VIVIENDA
+   ============================================ */
+
+/* Manejo del formulario de solicitud */
 document.getElementById("housing-request-form").addEventListener("submit", async function(e) {
     e.preventDefault();
 

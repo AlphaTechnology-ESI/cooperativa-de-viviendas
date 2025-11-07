@@ -1,9 +1,17 @@
-// Gestión de horas de trabajo
+/* ============================================
+   GESTIÓN DE HORAS - USUARIO
+   ============================================ */
+
+/* Inicialización del módulo de horas */
 document.addEventListener("DOMContentLoaded", function () {
     const btn = document.getElementById("btnRegistrarHoras");
     const listaHoras = document.getElementById("listaHoras");
     const horasForm = document.getElementById("horasForm");
     const idUsuario = sessionStorage.getItem("idUsuario");
+
+    /* ============================================
+       VISUALIZACIÓN DE HORAS
+       ============================================ */
 
     function agregarHoraAlListado(hora) {
         const item = document.createElement("div");
@@ -25,6 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
         listaHoras.prepend(item);
     }
 
+    /* ============================================
+       CARGA DE HORAS
+       ============================================ */
+
     async function cargarHoras() {
         try {
             const res = await fetch(`${API_URL}/endpoint/dashboard/user/listar_horas.php`, {
@@ -44,6 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Error al conectar con el servidor.");
         }
     }
+
+    /* ============================================
+       REGISTRO DE HORAS
+       ============================================ */
 
     btn.addEventListener("click", async function () {
         const fecha = document.getElementById("fechaTrabajo").value;
@@ -85,5 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    /* Cargar horas al iniciar */
     cargarHoras();
 });

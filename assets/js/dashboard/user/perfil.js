@@ -1,3 +1,8 @@
+/* ============================================
+   GESTIÓN DE PERFIL - USUARIO
+   ============================================ */
+
+/* Inicialización y carga de datos del perfil */
 document.addEventListener("DOMContentLoaded", async function() {
     const idUsuario = sessionStorage.getItem("idUsuario");
 
@@ -22,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             document.getElementById("profileOcupacion").value = usuario.ocupacion || "";
             document.getElementById("profileIngresos").value = usuario.ingresos || "";
             
-            // Formatear y mostrar fecha de ingreso
+            /* Formatear y mostrar fecha de ingreso */
             if (usuario.fecha_ingreso) {
                 const fecha = new Date(usuario.fecha_ingreso);
                 const fechaFormateada = fecha.toLocaleDateString('es-UY', { 
@@ -41,7 +46,10 @@ document.addEventListener("DOMContentLoaded", async function() {
         console.error("Error al cargar perfil:", error);
     }
 
-    // Manejar el envío del formulario
+    /* ============================================
+       FORMULARIO DE CAMBIO DE CONTRASEÑA
+       ============================================ */
+
     const profileForm = document.getElementById("profileForm");
     profileForm.addEventListener("submit", async function(e) {
         e.preventDefault();
@@ -50,25 +58,25 @@ document.addEventListener("DOMContentLoaded", async function() {
         const newPassword = document.getElementById("newPassword").value;
         const confirmPassword = document.getElementById("confirmPassword").value;
 
-        // Validar que los campos de contraseña estén llenos
+        /* Validar que los campos de contraseña estén completos */
         if (!currentPassword || !newPassword || !confirmPassword) {
             showAlert("Por favor, completa todos los campos de contraseña", "warning");
             return;
         }
 
-        // Validar que las nuevas contraseñas coincidan
+        /* Validar que las nuevas contraseñas coincidan */
         if (newPassword !== confirmPassword) {
             showAlert("Las contraseñas nuevas no coinciden", "error");
             return;
         }
 
-        // Validar longitud mínima
+        /* Validar longitud mínima de la contraseña */
         if (newPassword.length < 4) {
             showAlert("La nueva contraseña debe tener al menos 4 caracteres", "warning");
             return;
         }
 
-        // Mostrar overlay de carga
+        /* Mostrar indicador de carga */
         showLoadingOverlay();
 
         try {
@@ -84,12 +92,12 @@ document.addEventListener("DOMContentLoaded", async function() {
 
             const result = await response.json();
 
-            // Ocultar overlay de carga
+            /* Ocultar indicador de carga */
             hideLoadingOverlay();
 
             if (result.estado === "ok") {
                 showAlert("Contraseña actualizada correctamente", "success");
-                // Limpiar campos
+                /* Limpiar campos del formulario */
                 document.getElementById("currentPassword").value = "";
                 document.getElementById("newPassword").value = "";
                 document.getElementById("confirmPassword").value = "";
@@ -104,6 +112,11 @@ document.addEventListener("DOMContentLoaded", async function() {
     });
 });
 
+/* ============================================
+   INDICADOR DE CARGA
+   ============================================ */
+
+/* Mostrar overlay de carga */
 function showLoadingOverlay() {
     const overlay = document.createElement("div");
     overlay.id = "loadingOverlay";
@@ -159,6 +172,7 @@ function showLoadingOverlay() {
     document.body.appendChild(overlay);
 }
 
+/* Ocultar overlay de carga */
 function hideLoadingOverlay() {
     const overlay = document.getElementById("loadingOverlay");
     if (overlay) {
@@ -167,6 +181,11 @@ function hideLoadingOverlay() {
     }
 }
 
+/* ============================================
+   SISTEMA DE ALERTAS
+   ============================================ */
+
+/* Mostrar alerta al usuario */
 function showAlert(message, type) {
     const alertDiv = document.createElement("div");
     alertDiv.className = `alert alert-${type}`;
@@ -201,7 +220,11 @@ function showAlert(message, type) {
     }, 3000);
 }
 
-// Agregar animaciones CSS
+/* ============================================
+   ESTILOS Y ANIMACIONES CSS
+   ============================================ */
+
+/* Agregar animaciones CSS dinámicamente */
 const style = document.createElement("style");
 style.textContent = `
     @keyframes slideIn {

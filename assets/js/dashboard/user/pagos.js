@@ -1,9 +1,16 @@
-// Cargar pagos al iniciar
+/* ============================================
+   GESTIÓN DE PAGOS - USUARIO
+   ============================================ */
+
+/* Inicialización del módulo de pagos */
 document.addEventListener("DOMContentLoaded", async function() {
     await cargarPagos();
 });
 
-// Cargar lista de pagos
+/* ============================================
+   CARGA DE PAGOS
+   ============================================ */
+
 async function cargarPagos() {
     const idUsuario = sessionStorage.getItem("idUsuario");
     const tbody = document.getElementById("paymentsTableBody");
@@ -100,7 +107,11 @@ async function cargarPagos() {
     }
 }
 
-// Abrir modal para realizar pago
+/* ============================================
+   GESTIÓN DE MODAL DE PAGO
+   ============================================ */
+
+/* Abrir modal para realizar pago */
 function abrirModalPago(idPago, monto, concepto, tipo) {
     const modal = document.getElementById("pagoModal");
     document.getElementById("pagoIdPago").value = idPago;
@@ -115,14 +126,17 @@ function abrirModalPago(idPago, monto, concepto, tipo) {
     modal.style.display = "flex";
 }
 
-// Cerrar modal de pago
+/* Cerrar modal de pago */
 function cerrarModalPago() {
     const modal = document.getElementById("pagoModal");
     modal.style.display = "none";
     document.getElementById("pagoForm").reset();
 }
 
-// Enviar pago
+/* ============================================
+   ENVÍO DE PAGO
+   ============================================ */
+
 document.getElementById("pagoForm").addEventListener("submit", async function(e) {
     e.preventDefault();
     
@@ -135,7 +149,7 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
         return;
     }
 
-    // Validar tamaño del archivo (5MB)
+    /* Validar tamaño del archivo (5MB) */
     if (comprobante.size > 5 * 1024 * 1024) {
         showAlert("El archivo no debe superar los 5MB", "warning");
         return;
@@ -174,7 +188,10 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
     }
 });
 
-// Ver comprobante
+/* ============================================
+   VISUALIZACIÓN DE COMPROBANTE
+   ============================================ */
+
 async function verComprobante(idPago) {
     const idUsuario = sessionStorage.getItem("idUsuario");
     
@@ -220,13 +237,17 @@ async function verComprobante(idPago) {
     }
 }
 
-// Cerrar modal de comprobante
+/* Cerrar modal de comprobante */
 function cerrarModalComprobante() {
     const modal = document.getElementById("comprobanteModal");
     modal.style.display = "none";
 }
 
-// Cerrar modales al hacer clic fuera
+/* ============================================
+   EVENTOS GLOBALES
+   ============================================ */
+
+/* Cerrar modales al hacer clic fuera */
 window.onclick = function(event) {
     const pagoModal = document.getElementById("pagoModal");
     const comprobanteModal = document.getElementById("comprobanteModal");
@@ -239,7 +260,10 @@ window.onclick = function(event) {
     }
 }
 
-// Funciones de utilidad
+/* ============================================
+   FUNCIONES DE UTILIDAD
+   ============================================ */
+
 function showAlert(message, type) {
     const alertDiv = document.createElement("div");
     alertDiv.className = `alert alert-${type}`;

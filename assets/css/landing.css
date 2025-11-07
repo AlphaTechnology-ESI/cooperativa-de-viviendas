@@ -1,6 +1,9 @@
 /* Estilos de página principal */
 
-/* Header */
+/* ============================================
+   HEADER Y NAVEGACIÓN
+   ============================================ */
+
 .header {
     position: fixed;
     top: 0;
@@ -14,7 +17,7 @@
     box-shadow: var(--shadow-md);
 }
 
-/* Modo oscuro */
+/* Estilos para modo oscuro */
 body.dark-mode .header {
     background: #242424 !important;
     background-color: #242424 !important;
@@ -25,6 +28,7 @@ body.dark-mode .nav {
     background: transparent !important;
 }
 
+/* Contenedor principal de navegación */
 .nav {
     display: flex;
     align-items: center;
@@ -151,7 +155,7 @@ body.dark-mode .nav {
     transform-origin: center;
 }
 
-/* Animación hamburguesa a X */
+/* Transformación del menú hamburguesa */
 .nav-toggle.active span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
@@ -165,13 +169,19 @@ body.dark-mode .nav {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Main Content */
+/* ============================================
+   CONTENIDO PRINCIPAL
+   ============================================ */
+
 .main {
     position: relative;
     z-index: 2;
 }
 
-/* Hero Section */
+/* ============================================
+   SECCIÓN HERO
+   ============================================ */
+
 .hero {
     min-height: 100vh;
     display: flex;
@@ -182,7 +192,7 @@ body.dark-mode .nav {
     position: relative;
 }
 
-.hero-container {
+.hero-container { 
     max-width: 900px;
     margin: 0 auto;
 }
@@ -335,7 +345,10 @@ body.dark-mode .nav {
     }
 }
 
-/* Sections */
+/* ============================================
+   SECCIONES GENERALES
+   ============================================ */
+
 .section {
     padding: var(--spacing-xxl) 0;
     position: relative;
@@ -365,7 +378,10 @@ body.dark-mode .nav {
     font-size: var(--font-size-lg);
 }
 
-/* Housing Filters */
+/* ============================================
+   FILTROS DE VIVIENDAS
+   ============================================ */
+
 .housing-filters {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -404,7 +420,10 @@ body.dark-mode .nav {
     padding: var(--spacing-sm);
 }
 
-/* Housing Grid */
+/* ============================================
+   GRILLA DE VIVIENDAS
+   ============================================ */
+
 .housing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -577,7 +596,10 @@ body.dark-mode .nav {
     text-align: center;
 }
 
-/* About Section */
+/* ============================================
+   SECCIÓN ACERCA DE
+   ============================================ */
+
 .about-content {
     max-width: 1000px;
     margin: 0 auto;
@@ -645,7 +667,10 @@ body.dark-mode .nav {
     line-height: 1.6;
 }
 
-/* Services Section */
+/* ============================================
+   SECCIÓN SERVICIOS
+   ============================================ */
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -689,7 +714,10 @@ body.dark-mode .nav {
     line-height: 1.6;
 }
 
-/* Contact Section */
+/* ============================================
+   SECCIÓN CONTACTO
+   ============================================ */
+
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -740,7 +768,10 @@ body.dark-mode .nav {
     line-height: 1.5;
 }
 
-/* Footer */
+/* ============================================
+   FOOTER
+   ============================================ */
+
 .footer {
     background: var(--bg-secondary);
     backdrop-filter: blur(10px);
@@ -861,7 +892,10 @@ body.dark-mode .nav {
     opacity: 1;
 }
 
-/* Housing Request Form */
+/* ============================================
+   FORMULARIO DE SOLICITUD DE VIVIENDA
+   ============================================ */
+
 .housing-request-form {
   max-width: 900px;
   margin: 0 auto;
@@ -886,7 +920,7 @@ body.dark-mode .nav {
   padding-bottom: var(--spacing-sm);
 }
 
-/* Contact Info Grid */
+/* Grilla de información de contacto */
 .contact-info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -932,14 +966,18 @@ body.dark-mode .nav {
 
 
 
-/* Scroll suave */
+/* ============================================
+   COMPORTAMIENTO GENERAL
+   ============================================ */
+
+/* Desplazamiento suave */
 html {
     scroll-behavior: smooth;
 }
 
-
-
-/* Animaciones adicionales */
+/* ============================================
+   ANIMACIONES Y EFECTOS
+   ============================================ */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -950,7 +988,7 @@ html {
     animation: pulse 1s ease-in-out;
 }
 
-/* Loading states */
+/* Estados de carga */
 .housing-card.loading {
     opacity: 0.7;
     pointer-events: none;
@@ -969,7 +1007,7 @@ html {
     justify-content: center;
 }
 
-/* Enhanced hover effects */
+/* Efectos de hover mejorados */
 .nav-logo:hover .nav-logo-img {
     transform: scale(1.1) rotate(5deg);
 }
@@ -979,7 +1017,7 @@ html {
     transform: scale(1.1);
 }
 
-/* Focus styles */
+/* Estilos de enfoque para accesibilidad */
 .btn:focus,
 .filter-select:focus,
 .form-input:focus {
@@ -987,7 +1025,7 @@ html {
     outline-offset: 2px;
 }
 
-/* Animaciones de entrada */
+/* Animación de aparición gradual */
 .fade-in {
     opacity: 0;
     animation: fadeInAnimation 1s ease-out forwards;
@@ -999,9 +1037,11 @@ html {
     }
 }
 
-/* Diseño Responsive */
+/* ============================================
+   DISEÑO RESPONSIVE
+   ============================================ */
 
-/* Tablets grandes y laptops pequeñas (768px - 1024px) */
+/* Tablets grandes y laptops pequeñas */
 @media (max-width: 1024px) {
     .container {
         padding: 0 var(--spacing-md);
@@ -1035,9 +1075,9 @@ html {
     }
 }
 
-/* Tablets (481px - 768px) */
+/* Tablets */
 @media (max-width: 768px) {
-    /* Header y navegación */
+    /* Navegación adaptativa */
     .nav-links {
         display: none;
         position: absolute;
@@ -1111,7 +1151,7 @@ html {
         box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
     }
     
-    /* Hero section */
+    /* Sección hero adaptativa */
     .hero-title {
         font-size: 2.5rem;
         margin-bottom: var(--spacing-md);
@@ -1142,7 +1182,7 @@ html {
         max-width: 250px;
     }
     
-    /* Stats grid */
+    /* Grilla de estadísticas */
     .stats-grid {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-md);
@@ -1163,7 +1203,7 @@ html {
         margin-bottom: var(--spacing-xl);
     }
     
-    /* Housing grid */
+    /* Grilla de viviendas adaptativa */
     .housing-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
@@ -1171,19 +1211,19 @@ html {
         max-width: 100%;
     }
     
-    /* About grid */
+    /* Grilla de información */
     .about-grid {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-lg);
     }
     
-    /* Services grid */
+    /* Grilla de servicios */
     .services-grid {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-lg);
     }
     
-    /* Formulario */
+    /* Formularios adaptativos */
     .form-row {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
@@ -1209,9 +1249,9 @@ html {
     }
 }
 
-/* Móviles (320px - 480px) */
+/* Dispositivos móviles */
 @media (max-width: 480px) {
-    /* Prevenir scroll horizontal */
+    /* Prevención de desbordamiento horizontal */
     * {
         max-width: 100%;
         box-sizing: border-box;
@@ -1223,7 +1263,7 @@ html {
         max-width: 100vw;
     }
     
-    /* Container principal */
+    /* Contenedor principal adaptativo */
     .container {
         padding: 0 var(--spacing-sm);
         width: 100%;
@@ -1279,7 +1319,7 @@ html {
         margin-top: var(--spacing-md);
     }
     
-    /* Hero section */
+    /* Sección hero para móviles */
     .hero-container {
         padding: var(--spacing-xl) var(--spacing-sm);
         width: 100%;
@@ -1359,7 +1399,7 @@ html {
         margin-bottom: var(--spacing-md);
     }
     
-    /* Housing filters */
+    /* Filtros de vivienda para móviles */
     .housing-filters {
         grid-template-columns: 1fr;
         gap: var(--spacing-sm);
@@ -1370,7 +1410,7 @@ html {
         font-size: var(--font-size-sm);
     }
     
-    /* Housing cards */
+    /* Tarjetas de vivienda para móviles */
     .housing-card {
         padding: var(--spacing-md);
         width: 100%;
@@ -1403,7 +1443,7 @@ html {
         min-height: 36px;
     }
     
-    /* About y Services */
+    /* Grillas de información y servicios */
     .about-grid, .services-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
@@ -1505,7 +1545,7 @@ html {
     }
 }
 
-/* Móviles muy pequeños (menos de 360px) */
+/* Dispositivos móviles pequeños */
 @media (max-width: 360px) {
     .container {
         padding: 0 10px;
@@ -1542,9 +1582,9 @@ html {
     }
 }
 
-/* Menú móvil overlay completo - fuera del header */
+/* Menú móvil en pantalla completa */
 @media (max-width: 480px) {
-    /* Asegurar que el header no contenga el menú */
+    /* Configuración de header para menú móvil */
     .header {
         overflow: visible !important;
     }
@@ -1554,7 +1594,7 @@ html {
         position: relative !important;
     }
     
-    /* Menú posicionado fuera del flujo del header */
+    /* Menú móvil en capa superior */
     .nav-links {
         position: fixed !important;
         top: 0 !important;
@@ -1609,7 +1649,7 @@ html {
     }
 }
 
-/* Animaciones del menú desplegable */
+/* Animación de despliegue del menú */
 @keyframes slideInMenu {
     from {
         opacity: 0;
@@ -1621,7 +1661,7 @@ html {
     }
 }
 
-/* Animación para los elementos del menú */
+/* Animación escalonada de elementos del menú */
 .nav-links.active .nav-link {
     animation: fadeInMenuItem 0.4s ease-out forwards;
     opacity: 0;
@@ -1645,7 +1685,7 @@ html {
     }
 }
 
-/* Bloquear scroll del body cuando el menú móvil está abierto */
+/* Bloqueo de desplazamiento con menú abierto */
 body.menu-open,
 body:has(.nav-links.active) {
     overflow: hidden !important;
@@ -1656,7 +1696,7 @@ body:has(.nav-links.active) {
     left: 0 !important;
 }
 
-/* Alternativa para móviles - bloquear scroll cuando nav-links está activo */
+/* Bloqueo de desplazamiento en móviles */
 @media (max-width: 480px) {
     body:has(.nav-links.active),
     html:has(.nav-links.active) {
@@ -1666,7 +1706,7 @@ body:has(.nav-links.active) {
         height: 100% !important;
     }
     
-    /* Bloquear scroll en el contenedor principal también */
+    /* Bloqueo en contenedor principal */
     .nav-links.active ~ .main,
     .nav-links.active ~ * {
         overflow: hidden !important;
@@ -1674,28 +1714,23 @@ body:has(.nav-links.active) {
     }
 }
 
-/* Reglas adicionales para bloquear scroll completamente */
+/* Bloqueo completo de interacción con menú activo */
 @media (max-width: 480px) {
-    /* Cuando el menú está activo, bloquear todo */
     .nav-links.active {
-        /* El menú ocupa toda la pantalla y bloquea interacción */
         touch-action: none !important;
     }
     
-    /* Bloquear scroll en todos los elementos cuando menu activo */
     .nav-links.active ~ * {
         overflow: hidden !important;
         touch-action: none !important;
     }
     
-    /* Aplicar directamente cuando hay clase active */
     .nav-toggle.active ~ .nav-links {
-        /* Asegurar que está arriba de todo */
         z-index: 99999 !important;
     }
 }
 
-/* JavaScript helper - aplicar cuando menu abierto */
+/* Clase auxiliar para bloqueo de menú */
 .menu-active {
     overflow: hidden !important;
     position: fixed !important;

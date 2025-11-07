@@ -1,11 +1,14 @@
-// Dashboard administrativo
+/* ============================================
+   DASHBOARD ADMINISTRATIVO
+   ============================================ */
+
 document.addEventListener('DOMContentLoaded', function () { 
     const admin = JSON.parse(sessionStorage.getItem("usuario") || "{}");
     
-    // Actualizar información del admin en header
+    // Actualizar información del administrador en el encabezado
     document.getElementById('adminName').textContent = admin.nom_usu || 'Admin';
     
-    // Actualizar información del admin en sidebar
+    // Actualizar información del administrador en la barra lateral
     const adminName2 = document.getElementById('adminName2');
     if (adminName2) {
         adminName2.textContent = admin.nom_usu || 'Admin';
@@ -24,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeSolicitudes();
 });
 
+/* ============================================
+   INICIALIZACIÓN
+   ============================================ */
+
 function initializeAdmin() { 
     loadAdminInfo(); 
     setupModals(); 
@@ -34,12 +41,19 @@ function initializeSolicitudes() {
     loadSolicitudes();
 }
 
-// Cargar información del administrador
+/* ============================================
+   INFORMACIÓN DEL ADMINISTRADOR
+   ============================================ */
+
 function loadAdminInfo() {
     const adminName = sessionStorage.getItem("nombreUsuario") || "Admin";
     document.getElementById('adminName').textContent = adminName;
     document.getElementById('adminAvatar').textContent = adminName.charAt(0).toUpperCase();
 }
+
+/* ============================================
+   API DE SOLICITUDES
+   ============================================ */
 
 const api = {
     getSolicitudes: async () => {
@@ -47,6 +61,10 @@ const api = {
         return await response.json();
     },
 };
+
+/* ============================================
+   VISUALIZACIÓN DE SOLICITUDES
+   ============================================ */
 
 function displaySolicitudes(solicitudes) {
     const tbody = document.getElementById('solicitudes-tbody'); if (!tbody) return;
@@ -70,7 +88,10 @@ function displaySolicitudes(solicitudes) {
 
 }
 
-// Funciones de formato
+/* ============================================
+   FUNCIONES DE FORMATO
+   ============================================ */
+
 function formatDate(dateStr) { 
     const d = new Date(dateStr); 
     return d.toLocaleDateString('es-UY'); 
@@ -102,7 +123,10 @@ function getEstadoLabel(estado) {
     return labels[estado] || estado; 
 }
 
-// Funciones de UI
+/* ============================================
+   FUNCIONES DE INTERFAZ
+   ============================================ */
+
 function showLoading(elementId) { 
     const element = document.getElementById(elementId); 
     if (element) { 
@@ -117,11 +141,19 @@ function showError(elementId, message) {
     } 
 }
 
+/* ============================================
+   ESTADÍSTICAS DEL DASHBOARD
+   ============================================ */
+
 function loadDashboardStats() { 
     document.getElementById('total-viviendas').textContent = '6'; 
     document.getElementById('total-socios').textContent = '250'; 
     document.getElementById('viviendas-construccion').textContent = '4'; 
 }
+
+/* ============================================
+   CONFIGURACIÓN DE MODALES
+   ============================================ */
 
 function setupModals() { 
     window.addEventListener('click', function (e) { 
@@ -131,6 +163,10 @@ function setupModals() {
     }); 
 }
 
+/* ============================================
+   GESTIÓN DE BADGES Y CONTADORES
+   ============================================ */
+
 function actualizarBadgeSolicitudes(solicitudes) {
     const badge = document.getElementById('solicitudes-badge');
     if (!badge) return;
@@ -139,6 +175,10 @@ function actualizarBadgeSolicitudes(solicitudes) {
 
     badge.textContent = pendientes;
 }
+
+/* ============================================
+   CARGA DE SOLICITUDES
+   ============================================ */
 
 function loadSolicitudes() {
     showLoading("solicitudes-tbody");

@@ -1,6 +1,8 @@
-/* Dashboard Styles */
+/* ============================================
+   ESTILOS GLOBALES DEL DASHBOARD
+   ============================================ */
 
-/* Dashboard Body Background */
+/* Configuración del fondo del dashboard */
 body {
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
     margin: 0;
@@ -8,6 +10,10 @@ body {
     font-family: var(--font-family);
     color: var(--text-primary);
 }
+
+/* ============================================
+   ENCABEZADO DEL DASHBOARD
+   ============================================ */
 
 .dashboard-header {
     position: fixed;
@@ -55,7 +61,10 @@ body {
     gap: var(--spacing-lg);
 }
 
-/* User Info Styles */
+/* ============================================
+   INFORMACIÓN DE USUARIO
+   ============================================ */
+
 .user-info {
     display: flex;
     align-items: center;
@@ -79,7 +88,7 @@ body {
     font-weight: 600;
 }
 
-/* User Info en sidebar - Oculto por defecto */
+/* Información de usuario en la barra lateral */
 .sidebar-user-info {
     display: none;
     padding: var(--spacing-lg);
@@ -87,21 +96,25 @@ body {
     margin-bottom: var(--spacing-md);
 }
 
-/* Dashboard Main Layout */
+/* ============================================
+   DISEÑO PRINCIPAL DEL DASHBOARD
+   ============================================ */
+
 .dashboard-main {
     display: flex;
     margin-top: 70px;
     min-height: calc(100vh - 70px);
 }
 
-/* Para páginas individuales (horas, pagos, perfil, etc.) que tienen content-section directamente */
+/* Ajuste de padding para páginas individuales */
 main.dashboard-main > .content-section {
     padding: var(--spacing-xl);
 }
 
+/* ============================================
+   BARRA LATERAL
+   ============================================ */
 
-
-/* Sidebar Styles */
 .sidebar {
     position: fixed;
     left: 0;
@@ -178,7 +191,10 @@ main.dashboard-main > .content-section {
     text-align: center;
 }
 
-/* Content Area */
+/* ============================================
+   ÁREA DE CONTENIDO
+   ============================================ */
+
 .dashboard-main .content-area {
     flex: 1;
     margin-left: 200px;
@@ -201,7 +217,10 @@ main.dashboard-main > .content-section {
     display: block;
 }
 
-/* Section Header */
+/* ============================================
+   ENCABEZADO DE SECCIÓN
+   ============================================ */
+
 .section-header {
     margin-bottom: var(--spacing-xxl);
 }
@@ -219,7 +238,10 @@ main.dashboard-main > .content-section {
     margin: var(--spacing-sm) 0 0 0;
 }
 
-/* Stats Grid */
+/* ============================================
+   GRILLA DE ESTADÍSTICAS
+   ============================================ */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -275,7 +297,10 @@ main.dashboard-main > .content-section {
     font-weight: 600;
 }
 
-/* Dashboard Grid */
+/* ============================================
+   GRILLA DE TARJETAS
+   ============================================ */
+
 .dashboard-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -296,7 +321,7 @@ main.dashboard-main > .content-section {
     font-size: var(--font-size-xl);
 }
 
-/* Estilos para textos introductorios */
+/* Textos introductorios de sección */
 .section-intro {
     color: var(--text-muted);
     font-size: var(--font-size-sm);
@@ -306,7 +331,10 @@ main.dashboard-main > .content-section {
     max-width: 800px;
 }
 
-/* Botón toggle theme en sidebar */
+/* ============================================
+   BOTÓN ALTERNADOR DE TEMA
+   ============================================ */
+
 .sidebar-theme-toggle {
     position: absolute;
     bottom: 20px;
@@ -348,7 +376,10 @@ main.dashboard-main > .content-section {
     transform: rotate(-15deg) scale(1.1);
 }
 
-/* Botón hamburguesa COPIADO EXACTAMENTE del landing */
+/* ============================================
+   BOTÓN MENÚ HAMBURGUESA
+   ============================================ */
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -379,7 +410,7 @@ main.dashboard-main > .content-section {
     transform-origin: center;
 }
 
-/* Animación hamburguesa a X IGUAL que landing */
+/* Transformación del menú hamburguesa */
 .nav-toggle.active span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
@@ -393,14 +424,13 @@ main.dashboard-main > .content-section {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Botón hamburguesa por defecto oculto */
+/* Configuración por defecto del menú hamburguesa */
 .nav-toggle {
     display: none;
 }
 
-/* Sidebar por defecto visible en desktop */
+/* Configuración por defecto de la barra lateral */
 .sidebar {
-    /* Estados por defecto para desktop */
     display: flex;
     position: static;
     width: auto;
@@ -411,7 +441,10 @@ main.dashboard-main > .content-section {
     transition: none;
 }
 
-/* Header responsive para mostrar nav-toggle IGUAL que landing */
+/* ============================================
+   DISEÑO RESPONSIVE DEL ENCABEZADO
+   ============================================ */
+
 .header-content {
     display: flex;
     align-items: center;
@@ -433,12 +466,16 @@ main.dashboard-main > .content-section {
     gap: var(--spacing-md);
 }
 
-/* Nav-toggle posicionamiento a la izquierda como landing */
+/* Posicionamiento del botón hamburguesa */
 .nav-toggle {
     position: relative;
     z-index: 1001;
-    margin-right: var(--spacing-md); /* Espacio entre botón y logo */
+    margin-right: var(--spacing-md);
 }
+
+/* ============================================
+   AJUSTES PARA TABLETS
+   ============================================ */
 
 @media (max-width: 768px) {
     .header-content {
@@ -455,20 +492,18 @@ main.dashboard-main > .content-section {
 }
 }
 
-
-
-/* TABLETS (768px y menores) - SIMPLIFICADO Y FUNCIONAL */
+/* Menú desplegable para tablets y móviles */
 @media (max-width: 768px) {
     .nav-toggle {
         display: flex;
     }
     
-    /* Ocultar user-info del header en móvil */
+    /* Ocultar información de usuario en el encabezado móvil */
     .header-right .user-info {
         display: none !important;
     }
     
-    /* Mostrar user-info en el sidebar */
+    /* Mostrar información de usuario en la barra lateral */
     .sidebar-user-info {
         display: block !important;
     }
@@ -486,7 +521,7 @@ main.dashboard-main > .content-section {
         max-width: 100% !important;
     }
     
-    /* Sidebar como menú desplegable - FORZAR ANCHO COMPLETO */
+    /* Barra lateral como menú desplegable */
     .sidebar {
         display: none !important;
         position: fixed !important;
@@ -551,7 +586,7 @@ main.dashboard-main > .content-section {
         transform: translateX(5px);
     }
     
-    /* Estilos especiales para el botón de cierre sesión en menú móvil */
+    /* Estilos del botón de cierre de sesión en menú móvil */
     .nav-link-login {
         margin-top: var(--spacing-md);
         padding: var(--spacing-md) var(--spacing-lg);
@@ -567,9 +602,12 @@ main.dashboard-main > .content-section {
     }
 }
 
-/* CONTENEDOR DE BOTONES RESPONSIVE - SIN CAMBIAR DISEÑO */
+/* ============================================
+   CONTENEDOR DE BOTONES RESPONSIVE
+   ============================================ */
+
 .sidebar-buttons-container {
-    display: none; /* Oculto por defecto en desktop */
+    display: none;
 }
 
 .sidebar-logout-responsive {
@@ -578,9 +616,8 @@ main.dashboard-main > .content-section {
     border: none;
 }
 
-/* Botón de tema por defecto (fuera del contenedor) */
+/* Botón de tema fuera del contenedor */
 .sidebar > .sidebar-theme-toggle {
-    /* Este es el que está FUERA del contenedor */
     margin-top: var(--spacing-md);
     padding-top: var(--spacing-md);
     border-top: 1px solid var(--border-color);
@@ -588,25 +625,24 @@ main.dashboard-main > .content-section {
 
 /* Botón de tema dentro del contenedor */
 .sidebar-buttons-container .sidebar-theme-toggle {
-    /* Este es el que está DENTRO del contenedor */
     margin: 0;
     padding: 0;
     border: none;
 }
 
-/* Contenedor de botones en responsive */
+/* Distribución de botones en modo responsive */
 @media (max-width: 768px) {
-    /* Ocultar el botón del header */
+    /* Ocultar botón del encabezado */
     .header-right .btn {
         display: none !important;
     }
     
-    /* OCULTAR el botón de tema que está FUERA del contenedor */
+    /* Ocultar botón de tema fuera del contenedor */
     .sidebar > .sidebar-theme-toggle {
         display: none !important;
     }
     
-    /* MOSTRAR el contenedor de botones */
+    /* Mostrar el contenedor de botones */
     .sidebar-buttons-container {
         display: flex !important;
         flex-direction: row !important;
@@ -619,7 +655,7 @@ main.dashboard-main > .content-section {
         gap: var(--spacing-md) !important;
     }
     
-    /* Botón de cerrar sesión ocupa 65% */
+    /* Botón de cerrar sesión con ancho del 65% */
     .sidebar-logout-responsive {
         width: 65% !important;
         display: flex !important;
@@ -634,7 +670,7 @@ main.dashboard-main > .content-section {
         gap: var(--spacing-xs) !important;
     }
     
-    /* MOSTRAR el botón de tema expandido y centrado */
+    /* Mostrar botón de tema expandido */
     .sidebar-buttons-container .sidebar-theme-toggle {
         flex-shrink: 0 !important;
         display: flex !important;
@@ -649,7 +685,7 @@ main.dashboard-main > .content-section {
         height: 56px !important;
     }
     
-    /* Botón interno con border-radius y centrado perfecto */
+    /* Estilo del botón interno de tema */
     .sidebar-buttons-container .sidebar-theme-toggle .theme-toggle-sidebar {
         width: 100% !important;
         height: auto !important;
@@ -662,7 +698,7 @@ main.dashboard-main > .content-section {
         min-height: 32px !important;
     }
     
-    /* Icono centrado */
+    /* Icono del botón de tema centrado */
     .sidebar-buttons-container .sidebar-theme-toggle .theme-toggle-sidebar i {
         display: flex !important;
         align-items: center !important;
@@ -672,7 +708,7 @@ main.dashboard-main > .content-section {
     
 
     
-    /* Separador visual */
+    /* Separador visual entre botones */
     .buttons-separator {
         width: 1px !important;
         height: 30px !important;
@@ -683,9 +719,9 @@ main.dashboard-main > .content-section {
 
 }
 
-/* FORZAR LAYOUT HORIZONTAL CORRECTO - EVITAR CONFLICTOS */
+/* Corrección de layout horizontal */
 @media (max-width: 768px) {
-    /* Anular cualquier posicionamiento absoluto o float del botón de tema */
+    /* Anular posicionamiento absoluto del botón de tema */
     .sidebar-buttons-container .sidebar-theme-toggle {
         position: static !important;
         float: none !important;
@@ -697,7 +733,7 @@ main.dashboard-main > .content-section {
         transform: none !important;
     }
     
-    /* Anular cualquier margin o padding que pueda estar afectando */
+    /* Anular márgenes que puedan afectar el diseño */
     .sidebar-buttons-container .sidebar-theme-toggle,
     .sidebar-buttons-container .sidebar-theme-toggle .theme-toggle-sidebar {
         margin-top: 0 !important;
@@ -708,14 +744,17 @@ main.dashboard-main > .content-section {
         border-bottom: none !important;
     }
     
-    /* Asegurar que el contenedor padre no tenga flex-direction column */
+    /* Asegurar dirección horizontal del contenedor */
     .sidebar-buttons-container {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
     }
 }
 
-/* MÁXIMA PRIORIDAD - SIDEBAR DEBE SER VISIBLE */
+/* ============================================
+   VISIBILIDAD DE LA BARRA LATERAL
+   ============================================ */
+
 .sidebar.active {
     display: flex !important;
     opacity: 1 !important;
@@ -725,7 +764,7 @@ main.dashboard-main > .content-section {
     pointer-events: auto !important;
 }
 
-/* Bloquear scroll del body cuando el menú está abierto - IGUAL que landing */
+/* Bloqueo de desplazamiento con menú abierto */
 body.menu-open,
 body:has(.sidebar.active) {
     overflow: hidden !important;
@@ -736,7 +775,7 @@ body:has(.sidebar.active) {
     left: 0 !important;
 }
 
-/* JavaScript helper - aplicar cuando menu abierto */
+/* Clase auxiliar para bloqueo de menú */
 .menu-active {
     overflow: hidden !important;
     position: fixed !important;
@@ -744,7 +783,10 @@ body:has(.sidebar.active) {
     height: 100% !important;
 }
 
-/* Animaciones del menú desplegable COPIADAS del landing */
+/* ============================================
+   ANIMACIONES DEL MENÚ
+   ============================================ */
+
 @keyframes slideInMenu {
     from {
         opacity: 0;
@@ -756,7 +798,7 @@ body:has(.sidebar.active) {
     }
 }
 
-/* Animación para los elementos del menú */
+/* Animación escalonada de elementos del menú */
 .sidebar.active .nav-link {
     animation: fadeInMenuItem 0.4s ease-out forwards;
     opacity: 0;
@@ -778,7 +820,7 @@ body:has(.sidebar.active) {
     }
 }
 
-/* FORZAR SIDEBAR DEBAJO DEL HEADER - MÁXIMA PRIORIDAD */
+/* Posicionamiento de la barra lateral debajo del encabezado */
 @media (max-width: 768px) {
     .sidebar.active {
         position: fixed !important;
@@ -804,7 +846,7 @@ body:has(.sidebar.active) {
         animation: slideInMenu 0.3s ease-out !important;
     }
     
-    /* Asegurar que el header no interfiera */
+    /* Asegurar posicionamiento correcto del encabezado */
     .dashboard-header {
         position: fixed !important;
         top: 0 !important;
@@ -816,22 +858,22 @@ body:has(.sidebar.active) {
         border-bottom: 1px solid var(--border-color) !important;
     }
     
-    /* Ajustar el contenido principal para que no se superponga */
+    /* Ajustar margen del contenido principal */
     .dashboard-main {
         margin-top: 70px !important;
     }
 }
 
+/* Ajuste de fondo con menú abierto */
 @media (max-width: 768px) {
     body.menu-open,
     body:has(.sidebar.active),
     html:has(.sidebar.active) {
         background: var(--bg-primary) !important;
-        /* Si usas otro color de fondo, ponlo aquí */
     }
 }
 
-/* Evitar el scroll horizontal y forzar el ancho máximo en móviles/tablets como en el landing */
+/* Prevención de desbordamiento horizontal */
 @media (max-width: 768px) {
     html, body {
         max-width: 100vw !important;
@@ -839,7 +881,7 @@ body:has(.sidebar.active) {
     }
 }
 
-/* Botón de tema para desktop: aseguramos que esté dentro del sidebar y en la parte inferior */
+/* Posicionamiento del botón de tema en escritorio */
 @media (min-width: 769px) {
     .sidebar > .sidebar-theme-toggle {
         display: block;
@@ -858,7 +900,10 @@ body:has(.sidebar.active) {
     }
 }
 
-/* Modales */
+/* ============================================
+   MODALES
+   ============================================ */
+
 .modal {
     display: none;
     position: fixed;
@@ -950,6 +995,7 @@ body:has(.sidebar.active) {
     flex: 1;
 }
 
+/* Acciones del modal */
 .modal-actions {
     display: flex;
     gap: var(--spacing-md);
@@ -963,7 +1009,7 @@ body:has(.sidebar.active) {
     min-width: 120px;
 }
 
-/* Botones de modal footer */
+/* Pie de modal */
 .modal-footer {
     display: flex;
     gap: var(--spacing-md);
@@ -1009,7 +1055,7 @@ body:has(.sidebar.active) {
     transform: scale(1.05);
 }
 
-/* Responsive modals */
+/* Modales en dispositivos móviles */
 @media (max-width: 768px) {
     .modal-content {
         width: 95%;
@@ -1026,7 +1072,10 @@ body:has(.sidebar.active) {
     }
 }
 
-/* Scrollbar personalizado */
+/* ============================================
+   SCROLLBAR PERSONALIZADO
+   ============================================ */
+
 *::-webkit-scrollbar {
     width: 8px;
 }
@@ -1044,7 +1093,7 @@ body:has(.sidebar.active) {
     background: #6c757d;
 }
 
-/* Scrollbar claro para modo claro */
+/* Scrollbar para modo claro */
 body.light-mode *::-webkit-scrollbar-track,
 html.light-mode *::-webkit-scrollbar-track {
     background: #e9ecef;
@@ -1060,7 +1109,7 @@ html.light-mode *::-webkit-scrollbar-thumb:hover {
     background: #357ABD;
 }
 
-/* Para Firefox */
+/* Scrollbar para Firefox */
 * {
     scrollbar-width: thin;
     scrollbar-color: #343a40 #000000;
