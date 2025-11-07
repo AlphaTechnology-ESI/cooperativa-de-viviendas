@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="icon" type="image/png" href="../img/cooptrack.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoopTrack - Pagos</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/dashboard/user.css">
@@ -23,6 +25,11 @@
                 <div class="user-info">
                     <span class="user-name" id="userName">Cargando...</span>
                     <div class="user-avatar" id="userAvatar">👤</div>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
                 <button class="btn btn-secondary btn-small" onclick="logout()">Cerrar Sesión</button>
             </div>
@@ -72,9 +79,28 @@
                 </ul>
             </nav>
             
-            <!-- Botón toggle tema -->
+            <!-- Contenedor para ambos botones en responsive -->
+            <div class="sidebar-buttons-container">
+                <!-- Botón cerrar sesión -->
+                <div class="sidebar-logout-responsive">
+                    <button class="btn btn-secondary btn-small" onclick="logout()">
+                        <i class="logout-icon"></i>
+                        Cerrar Sesión
+                    </button>
+                </div>
+
+                <!-- Separador -->
+                <div class="buttons-separator"></div>
+
+                <!-- Botón toggle tema -->
+                <div class="sidebar-theme-toggle">
+                    <button class="theme-toggle-sidebar" id="themeToggle" aria-label="Cambiar tema">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </div>
+            </div>
             <div class="sidebar-theme-toggle">
-                <button class="theme-toggle-sidebar" id="themeToggle" aria-label="Cambiar tema">
+                <button class="theme-toggle-sidebar" id="themeToggle2" aria-label="Cambiar tema">
                     <i class="fas fa-moon" id="themeIcon"></i>
                 </button>
             </div>
@@ -89,7 +115,7 @@
             </div>
 
             <div class="payments-container">
-                <div class="payments-table">
+                <div class="payments-table" style="overflow-x: auto;">
                     <table>
                         <thead>
                             <tr>
@@ -102,25 +128,10 @@
                         </thead>
                         <tbody id="paymentsTableBody">
                             <tr>
-                                <td>15 Ene 2024</td>
-                                <td>Cuota Mensual Enero</td>
-                                <td>$150.000</td>
-                                <td><span class="badge badge-aprobada">Pagado</span></td>
-                                <td><button class="btn btn-small">Ver Comprobante</button></td>
-                            </tr>
-                            <tr>
-                                <td>15 Dic 2023</td>
-                                <td>Cuota Mensual Diciembre</td>
-                                <td>$150.000</td>
-                                <td><span class="badge badge-aprobada">Pagado</span></td>
-                                <td><button class="btn btn-small">Ver Comprobante</button></td>
-                            </tr>
-                            <tr>
-                                <td>15 Feb 2024</td>
-                                <td>Cuota Mensual Febrero</td>
-                                <td>$150.000</td>
-                                <td><span class="badge badge-pendiente">Pendiente</span></td>
-                                <td><button class="btn btn-small btn-primary">Pagar</button></td>
+                                <td colspan="5" style="text-align: center; padding: 2rem;">
+                                    <div class="spinner" style="margin: 0 auto;"></div>
+                                    <p style="margin-top: 1rem; color: var(--text-secondary);">Cargando pagos...</p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -129,7 +140,65 @@
         </section>
     </main>
 
+    <!-- Modal para realizar pago -->
+    <div id="pagoModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Realizar Pago</h3>
+                <button class="modal-close" onclick="cerrarModalPago()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="pagoForm">
+                    <input type="hidden" id="pagoIdPago" name="id_pago">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Concepto</label>
+                        <input type="text" id="pagoConcepto" class="form-input" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Monto</label>
+                        <input type="text" id="pagoMonto" class="form-input" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pagoComprobante" class="form-label">Comprobante de Pago *</label>
+                        <input type="file" id="pagoComprobante" name="comprobante" class="form-input" accept="image/*,.pdf" required>
+                        <small class="form-text">Formatos permitidos: JPG, PNG, PDF (Máx. 5MB)</small>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="cerrarModalPago()">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">Enviar Pago</span>
+                            <span class="btn-loading" style="display: none;">
+                                <span class="spinner"></span>
+                                Enviando...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ver comprobante -->
+    <div id="comprobanteModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Comprobante de Pago</h3>
+                <button class="modal-close" onclick="cerrarModalComprobante()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="comprobanteViewer" style="text-align: center;">
+                    <!-- Aquí se cargará el comprobante -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/dashboard/user/pagos.js"></script>
     <script src="../assets/js/dashboard/user_dashboard.js"></script>
 </body>
 
