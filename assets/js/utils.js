@@ -179,50 +179,74 @@ function capitalize(str) {
 function toggleTheme() {
     const body = document.body;
     const themeIcon = document.getElementById('themeIcon');
+    const themeIcon2 = document.querySelector('#themeToggle2 i');
     
     if (themeIcon) {
-        // Añadir efecto de rotación y escala antes del cambio
         themeIcon.style.transform = 'rotate(180deg) scale(0.8)';
         themeIcon.style.opacity = '0.5';
+    }
+    
+    if (themeIcon2) {
+        themeIcon2.style.transform = 'rotate(180deg) scale(0.8)';
+        themeIcon2.style.opacity = '0.5';
+    }
         
-        // Esperar a que termine la animación antes de cambiar el tema
-        setTimeout(() => {
-            // Cambiar tema
-            if (body.classList.contains('light-mode')) {
-                // Cambiar a modo oscuro
-                body.classList.remove('light-mode');
-                body.classList.add('dark-mode');
+    setTimeout(() => {
+        if (body.classList.contains('light-mode')) {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            
+            if (themeIcon) {
                 themeIcon.classList.remove('fa-sun');
                 themeIcon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'dark');
-                updatePoweredByImage('dark');
-                updateCoopTrackImages('dark');
-                updateThemeColor(true); // Modo oscuro
-                document.documentElement.style.scrollbarColor = 'var(--dark-gray) var(--black)';
-            } else {
-                // Cambiar a modo claro
-                body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'light');
-                updatePoweredByImage('light');
-                updateCoopTrackImages('light');
-                updateThemeColor(false); // Modo claro
-                document.documentElement.style.scrollbarColor = 'var(--gray) var(--bg-tertiary)';
+            }
+            if (themeIcon2) {
+                themeIcon2.classList.remove('fa-sun');
+                themeIcon2.classList.add('fa-moon');
             }
             
-            // Restaurar el icono con efecto de aparición
+            localStorage.setItem('theme', 'dark');
+            updatePoweredByImage('dark');
+            updateCoopTrackImages('dark');
+            updateThemeColor(true);
+            document.documentElement.style.scrollbarColor = 'var(--dark-gray) var(--black)';
+        } else {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+            if (themeIcon2) {
+                themeIcon2.classList.remove('fa-moon');
+                themeIcon2.classList.add('fa-sun');
+            }
+            
+            localStorage.setItem('theme', 'light');
+            updatePoweredByImage('light');
+            updateCoopTrackImages('light');
+            updateThemeColor(false);
+            document.documentElement.style.scrollbarColor = 'var(--gray) var(--bg-tertiary)';
+        }
+        
+        if (themeIcon) {
             themeIcon.style.transform = 'rotate(0deg) scale(1.1)';
             themeIcon.style.opacity = '1';
-            
-            // Volver al tamaño normal después de un momento
             setTimeout(() => {
                 themeIcon.style.transform = 'rotate(0deg) scale(1)';
             }, 150);
-            
-        }, 200);
-    }
+        }
+        
+        if (themeIcon2) {
+            themeIcon2.style.transform = 'rotate(0deg) scale(1.1)';
+            themeIcon2.style.opacity = '1';
+            setTimeout(() => {
+                themeIcon2.style.transform = 'rotate(0deg) scale(1)';
+            }, 150);
+        }
+        
+    }, 200);
 }
 
 // Función para actualizar el color de la barra de navegación en móviles
@@ -266,6 +290,7 @@ function loadSavedTheme() {
     const savedTheme = localStorage.getItem('theme');
     const body = document.body;
     const themeIcon = document.getElementById('themeIcon');
+    const themeIcon2 = document.querySelector('#themeToggle2 i');
     
     if (savedTheme === 'light') {
         body.classList.remove('dark-mode');
@@ -274,20 +299,27 @@ function loadSavedTheme() {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
         }
+        if (themeIcon2) {
+            themeIcon2.classList.remove('fa-moon');
+            themeIcon2.classList.add('fa-sun');
+        }
         updatePoweredByImage('light');
         updateCoopTrackImages('light');
-        updateThemeColor(false); // Modo claro
+        updateThemeColor(false);
     } else {
-        // Por defecto modo oscuro
         body.classList.remove('light-mode');
         body.classList.add('dark-mode');
         if (themeIcon) {
             themeIcon.classList.remove('fa-sun');
             themeIcon.classList.add('fa-moon');
         }
+        if (themeIcon2) {
+            themeIcon2.classList.remove('fa-sun');
+            themeIcon2.classList.add('fa-moon');
+        }
         updatePoweredByImage('dark');
         updateCoopTrackImages('dark');
-        updateThemeColor(true); // Modo oscuro
+        updateThemeColor(true);
     }
 }
 
@@ -311,6 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
 
 // JavaScript para menú hamburguesa - COPIADO EXACTAMENTE del landing
 document.addEventListener('DOMContentLoaded', function() {
