@@ -2,44 +2,32 @@
    DASHBOARD DE USUARIO
    ============================================ */
 
-/* Inicialización del dashboard */
-document.addEventListener('DOMContentLoaded', function () { initializeDashboard(); });
-
-/* ============================================
-   CONFIGURACIÓN INICIAL
-   ============================================ */
-
-function initializeDashboard() {
-    loadUserInfo();
-    setupNavigation();
-    setupProfileForm();
-    setupHorasForm();
-    loadDashboardData();
-}
-
-/* ============================================
-   INFORMACIÓN DEL USUARIO
-   ============================================ */
-
-function loadUserInfo() {
-    const usuario = JSON.parse(sessionStorage.getItem("usuario") || "{}");
-    const idUsuario = sessionStorage.getItem("id_usuario");
+document.addEventListener('DOMContentLoaded', function () {
+    const nombreUsuario = sessionStorage.getItem("nombreUsuario") || "Usuario";
 
     /* Actualizar información del usuario en encabezado */
-    document.getElementById('userName').textContent = usuario.nom_usu || 'Usuario';
+    document.getElementById('userName').textContent = nombreUsuario;
+
+    /* Actualizar información del usuario en la barra lateral */
     const userName2 = document.getElementById('userName2');
     if (userName2) {
-        userName2.textContent = usuario.nom_usu || 'Usuario';
+        userName2.textContent = nombreUsuario;
     }
-    
+
     /* Actualizar avatar con iniciales del usuario */
-    const iniciales = usuario.nom_usu ? usuario.nom_usu.charAt(0).toUpperCase() : 'U';
+    const iniciales = nombreUsuario.charAt(0).toUpperCase();
     document.getElementById('userAvatar').textContent = iniciales;
+
     const userAvatar2 = document.getElementById('userAvatar2');
     if (userAvatar2) {
         userAvatar2.textContent = iniciales;
     }
-}
+
+    setupNavigation();
+    setupProfileForm();
+    setupHorasForm();
+    loadDashboardData();
+});
 
 /* ============================================
    FORMULARIO DE PERFIL
