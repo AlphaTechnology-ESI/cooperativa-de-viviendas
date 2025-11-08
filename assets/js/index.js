@@ -122,40 +122,6 @@ function setupFilters() {
 }
 
 /* ============================================
-   CONFIGURACIÓN DE FORMULARIOS
-   ============================================ */
-
-function setupForms() {
-    const form = document.getElementById('housing-request-form');
-    if (form) {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const btn = this.querySelector('button[type="submit"]');
-            btn.classList.add('loading');
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            try {
-                const response = await api.createSolicitud(data);
-                
-                if (response.success) {
-                    showToast('¡Solicitud enviada exitosamente! Te contactaremos pronto.', 'success');
-                    this.reset();
-                } else {
-                    showToast(response.message || 'Error al enviar la solicitud', 'error');
-                }
-            } catch (error) {
-                showToast('Error de conexión. Inténtalo nuevamente.', 'error');
-            } finally {
-                btn.classList.remove('loading');
-            }
-        });
-    }
-}
-
-/* ============================================
    CONFIGURACIÓN DE ANIMACIONES
    ============================================ */
 
