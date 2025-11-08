@@ -1,11 +1,14 @@
-
-
 /* ============================================
    GESTIÓN DE SOLICITUDES - ADMINISTRADOR
    ============================================ */
 
 /* Variable para almacenar la solicitud actual */
 let solicitudActual = null;
+
+/* Inicialización */
+document.addEventListener("DOMContentLoaded", () => {
+    loadSolicitudes();
+});
 
 /* ============================================
    VISUALIZACIÓN DE SOLICITUD
@@ -46,16 +49,33 @@ async function verSolicitud(id) {
 
                 document.getElementById('modal-solicitud').style.display = 'flex';
 
-                /* Ocultar botones de acción si la solicitud ya fue procesada */
+                /* Ocultar botones de acción si la solicitud ya fue aprobada o rechazada */
                 const acciones = document.querySelectorAll('#modal-solicitud .btn-success, #modal-solicitud .btn-warning, #modal-solicitud .btn-error');
-                if (['aprobada', 'rechazada', 'en_revision'].includes(solicitudActual.estado_solicitud)) {
+                if (['aprobada', 'rechazada'].includes(solicitudActual.estado_solicitud)) {
                     acciones.forEach(btn => btn.style.display = 'none');
                 } else {
-                    acciones.forEach(btn => btn.style.display = 'inline-block');
+                    acciones.forEach(btn => btn.style.display = '');
                 }
             }
         }
     } catch (error) {
         console.error('Error al cargar la solicitud:', error);
     }
+}
+
+/* ============================================
+   FUNCIONES DE CONFIRMACIÓN
+   ============================================ */
+
+function confirmarRechazo() {
+    document.getElementById('modal-confirmar-rechazo').style.display = 'flex';
+}
+
+function cerrarModalRechazo() {
+    document.getElementById('modal-confirmar-rechazo').style.display = 'none';
+}
+
+function rechazarSolicitudConfirmado() {
+    rechazarSolicitud();
+    cerrarModalRechazo();
 }

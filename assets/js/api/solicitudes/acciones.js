@@ -11,6 +11,15 @@ async function aprobarSolicitud() {
     if (!solicitudActual) return;
 
     const idUsuario = solicitudActual.id_usuario;
+    
+    const btnAprobar = document.querySelector('#modal-solicitud .btn-success');
+    const btnRevision = document.querySelector('#modal-solicitud .btn-warning');
+    const btnRechazar = document.querySelector('#modal-solicitud .btn-error');
+    
+    btnAprobar.disabled = true;
+    btnRevision.disabled = true;
+    btnRechazar.disabled = true;
+    btnAprobar.textContent = 'Aprobando...';
 
     try {
         const response = await fetch(`${API_URL}/endpoint/solicitudes/acciones/aprobar_solicitudes.php`, {
@@ -22,15 +31,23 @@ async function aprobarSolicitud() {
         const result = await response.json();
 
         if (result.estado === "ok") {
-            alert("Solicitud aprobada correctamente");
-            document.getElementById('modal-solicitud').style.display = 'none';
+            showToast("Solicitud aprobada correctamente", "success");
+            cerrarModal('modal-solicitud');
             loadSolicitudes();
         } else {
-            alert("Error: " + result.mensaje);
+            showToast("Error: " + result.mensaje, "error");
+            btnAprobar.disabled = false;
+            btnRevision.disabled = false;
+            btnRechazar.disabled = false;
+            btnAprobar.textContent = 'Aprobar';
         }
     } catch (error) {
         console.error("Error al aprobar solicitud:", error);
-        alert("Error al conectar con el servidor");
+        showToast("Error al conectar con el servidor", "error");
+        btnAprobar.disabled = false;
+        btnRevision.disabled = false;
+        btnRechazar.disabled = false;
+        btnAprobar.textContent = 'Aprobar';
     }
 }
 
@@ -43,6 +60,15 @@ async function rechazarSolicitud() {
     if (!solicitudActual) return;
 
     const idUsuario = solicitudActual.id_usuario;
+    
+    const btnAprobar = document.querySelector('#modal-solicitud .btn-success');
+    const btnRevision = document.querySelector('#modal-solicitud .btn-warning');
+    const btnRechazar = document.querySelector('#modal-solicitud .btn-error');
+    
+    btnAprobar.disabled = true;
+    btnRevision.disabled = true;
+    btnRechazar.disabled = true;
+    btnRechazar.textContent = 'Rechazando...';
 
     try {
         const response = await fetch(`${API_URL}/endpoint/solicitudes/acciones/rechazar_solicitudes.php`, {
@@ -54,17 +80,73 @@ async function rechazarSolicitud() {
         const result = await response.json();
 
         if (result.estado === "ok") {
-            alert("Solicitud rechazada correctamente");
-            ocultarBotonesAccion();
-
+            showToast("Solicitud rechazada correctamente", "success");
+            cerrarModal('modal-solicitud');
             loadSolicitudes();
         }
         else {
-            alert("Error: " + result.mensaje);
+            showToast("Error: " + result.mensaje, "error");
+            btnAprobar.disabled = false;
+            btnRevision.disabled = false;
+            btnRechazar.disabled = false;
+            btnRechazar.textContent = 'Rechazar';
         }
     } catch (error) {
         console.error("Error al rechazar solicitud:", error);
-        alert("Error al conectar con el servidor");
+        showToast("Error al conectar con el servidor", "error");
+        btnAprobar.disabled = false;
+        btnRevision.disabled = false;
+        btnRechazar.disabled = false;
+        btnRechazar.textContent = 'Rechazar';
+    }
+}
+
+/* ============================================
+   REVISIÓN DE SOLICITUD
+   ============================================ */
+
+/* Poner solicitud en revisión */
+async function ponerEnRevision() {
+    if (!solicitudActual) return;
+
+    const idUsuario = solicitudActual.id_usuario;
+    
+    const btnAprobar = document.querySelector('#modal-solicitud .btn-success');
+    const btnRevision = document.querySelector('#modal-solicitud .btn-warning');
+    const btnRechazar = document.querySelector('#modal-solicitud .btn-error');
+    
+    btnAprobar.disabled = true;
+    btnRevision.disabled = true;
+    btnRechazar.disabled = true;
+    btnRevision.textContent = 'Procesando...';
+
+    try {
+        const response = await fetch(`${API_URL}/endpoint/solicitudes/acciones/revision_solicitudes.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id_usuario: idUsuario })
+        });
+
+        const result = await response.json();
+
+        if (result.estado === "ok") {
+            showToast("Solicitud puesta en revisión", "success");
+            cerrarModal('modal-solicitud');
+            loadSolicitudes();
+        } else {
+            showToast("Error: " + result.mensaje, "error");
+            btnAprobar.disabled = false;
+            btnRevision.disabled = false;
+            btnRechazar.disabled = false;
+            btnRevision.textContent = 'En Revisión';
+        }
+    } catch (error) {
+        console.error("Error al poner en revisión:", error);
+        showToast("Error al conectar con el servidor", "error");
+        btnAprobar.disabled = false;
+        btnRevision.disabled = false;
+        btnRechazar.disabled = false;
+        btnRevision.textContent = 'En Revisión';
     }
 }
 
@@ -78,9 +160,21 @@ function cerrarModal(modalId) {
     if (modal) {
         modal.style.display = 'none';
 
-        /* Restaurar visibilidad de botones de acción */
+        /* Restaurar visibilidad y estado de botones de acción */
         const botonesAccion = modal.querySelectorAll('.btn-success, .btn-warning, .btn-error');
-        botonesAccion.forEach(btn => btn.style.display = 'inline-block');
+        botonesAccion.forEach(btn => {
+            btn.style.display = 'inline-block';
+            btn.disabled = false;
+        });
+        
+        /* Restaurar textos originales */
+        const btnAprobar = modal.querySelector('.btn-success');
+        const btnRevision = modal.querySelector('.btn-warning');
+        const btnRechazar = modal.querySelector('.btn-error');
+        
+        if (btnAprobar) btnAprobar.textContent = 'Aprobar';
+        if (btnRevision) btnRevision.textContent = 'En Revisión';
+        if (btnRechazar) btnRechazar.textContent = 'Rechazar';
     }
 }
 

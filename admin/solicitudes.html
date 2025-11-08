@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div class="sidebar-theme-toggle">
-                <button class="theme-toggle-sidebar" id="themeToggle" aria-label="Cambiar tema">
+                <button class="theme-toggle-sidebar" id="themeToggle2" aria-label="Cambiar tema">
                     <i class="fas fa-moon" id="themeIcon"></i>
                 </button>
             </div>
@@ -164,8 +164,27 @@
             <div class="modal-footer">
                 <button class="btn btn-success" onclick="aprobarSolicitud()">Aprobar</button>
                 <button class="btn btn-warning" onclick="ponerEnRevision()">En Revisión</button>
-                <button class="btn btn-error" onclick="rechazarSolicitud()">Rechazar</button>
+                <button class="btn btn-error" onclick="confirmarRechazo()">Rechazar</button>
                 <button class="btn btn-secondary" onclick="cerrarModal('modal-solicitud')">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para rechazar -->
+    <div id="modal-confirmar-rechazo" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Confirmar Rechazo</h2>
+                <button class="modal-close" onclick="cerrarModalRechazo()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; margin: var(--spacing-lg) 0;">
+                    ¿Estás seguro de que deseas rechazar esta solicitud?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-error" onclick="rechazarSolicitudConfirmado()">Sí, Rechazar</button>
+                <button class="btn btn-secondary" onclick="cerrarModalRechazo()">Cancelar</button>
             </div>
         </div>
     </div>
