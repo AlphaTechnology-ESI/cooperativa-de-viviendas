@@ -15,6 +15,12 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         return;
     }
 
+    const btnLogin = e.target.querySelector('button[type="submit"]');
+    const textoOriginal = btnLogin.innerHTML;
+    
+    btnLogin.disabled = true;
+    btnLogin.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Iniciando sesión...';
+
     try {
         const response = await fetch(`${API_URL}/endpoint/sesion/login.php`, {
             method: "POST",
@@ -48,10 +54,14 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             }, 800);
         } else {
             showAlert(result.mensaje || "Credenciales incorrectas", "error");
+            btnLogin.disabled = false;
+            btnLogin.innerHTML = textoOriginal;
         }
     } catch (error) {
         console.error("Error al conectar:", error);
         showAlert("Error al conectar con el servidor", "error");
+        btnLogin.disabled = false;
+        btnLogin.innerHTML = textoOriginal;
     }
 });
 
