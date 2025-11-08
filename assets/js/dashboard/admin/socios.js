@@ -228,6 +228,19 @@ function cerrarModal(modalId) {
     }
 }
 
+function confirmarEliminacion() {
+    document.getElementById('modal-confirmar-eliminacion').style.display = 'flex';
+}
+
+function cerrarModalConfirmacion() {
+    document.getElementById('modal-confirmar-eliminacion').style.display = 'none';
+}
+
+function eliminarSocioConfirmado() {
+    eliminarSocio();
+    cerrarModalConfirmacion();
+}
+
 /* ============================================
    FUNCIONES DE UTILIDAD
    ============================================ */
@@ -291,20 +304,7 @@ document.addEventListener('click', function(event) {
 
 async function eliminarSocio() {
     if (!socioSeleccionado) {
-        alert('No hay socio seleccionado');
-        return;
-    }
-    
-    const confirmacion = confirm(
-        `¿Estás seguro de que deseas eliminar al usuario "${socioSeleccionado.nom_usu}"?\n\n` +
-        `Esta acción eliminará:\n` +
-        `- El usuario y toda su información personal\n` +
-        `- Sus horas trabajadas registradas\n` +
-        `- Sus solicitudes realizadas\n\n` +
-        `Esta acción NO se puede deshacer.`
-    );
-    
-    if (!confirmacion) {
+        showToast('No hay socio seleccionado', 'error');
         return;
     }
     
@@ -326,7 +326,7 @@ async function eliminarSocio() {
         const result = await response.json();
         
         if (result.estado === 'ok') {
-            alert(`Usuario "${result.usuario_eliminado.nombre}" eliminado exitosamente`);
+            showToast(`Usuario "${result.usuario_eliminado.nombre}" eliminado exitosamente`, 'success');
             
             cerrarModal('modal-socio');
             await loadSocios();
@@ -338,7 +338,7 @@ async function eliminarSocio() {
         
     } catch (error) {
         console.error('Error al eliminar socio:', error);
-        alert('Error al eliminar usuario: ' + error.message);
+        showToast('Error al eliminar usuario: ' + error.message, 'error');
         
         const btnEliminar = document.getElementById('btn-eliminar-socio');
         btnEliminar.disabled = false;

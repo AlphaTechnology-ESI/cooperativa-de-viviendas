@@ -177,12 +177,31 @@
                     <!-- Se llenará dinámicamente -->
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger" id="btn-eliminar-socio" onclick="eliminarSocio()">Eliminar
+                    <button class="btn btn-danger" id="btn-eliminar-socio" onclick="confirmarEliminacion()">Eliminar
                         Usuario</button>
                     <button class="btn btn-secondary" onclick="cerrarModal('modal-socio')">Cerrar</button>
                 </div>
             </div>
         </div>
+
+    <!-- Modal de confirmación para eliminar -->
+    <div id="modal-confirmar-eliminacion" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Confirmar Eliminación</h2>
+                <button class="modal-close" onclick="cerrarModalConfirmacion()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; margin: var(--spacing-lg) 0;">
+                    ¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-error" onclick="eliminarSocioConfirmado()">Sí, Eliminar</button>
+                <button class="btn btn-secondary" onclick="cerrarModalConfirmacion()">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/utils.js"></script>
     <script src="../assets/js/dashboard/admin/dashboard.js"></script>
