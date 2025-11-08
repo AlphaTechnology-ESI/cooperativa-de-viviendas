@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
         userAvatar2.textContent = iniciales;
     }
 
-    setupNavigation();
     setupProfileForm();
     setupHorasForm();
     loadDashboardData();
@@ -41,7 +40,7 @@ function setupProfileForm() {
         document.getElementById('profileEmail').value = user.email || '';
         document.getElementById('profileTipoSocio').value = user.tipo || '';
         document.getElementById('profileEstado').value = 'Activo';
-        document.getElementById('profileFechaIngreso').value = '15 de Enero, 2024';
+        document.getElementById('profileFechaIngreso').value = '';
     }
 
     if (form) {

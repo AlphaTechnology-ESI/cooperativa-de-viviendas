@@ -227,6 +227,22 @@ async function actualizarEstado(nuevoEstado) {
         return;
     }
 
+    // Obtener todos los botones del modal
+    const modalFooter = document.querySelector('#modal-pago .modal-footer');
+    const botones = modalFooter.querySelectorAll('button');
+    const textosBotones = [];
+    
+    // Guardar texto original y bloquear todos los botones
+    botones.forEach(btn => {
+        textosBotones.push(btn.innerHTML);
+        btn.disabled = true;
+    });
+    
+    // Cambiar texto del botón que se clickeó
+    const btnActual = event.target;
+    const textoOriginal = btnActual.innerHTML;
+    btnActual.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+
     try {
         const response = await fetch(`${API_URL}/endpoint/dashboard/admin/pagos_admin.php`, {
             method: "POST",
@@ -248,10 +264,20 @@ async function actualizarEstado(nuevoEstado) {
             cargarPagos();
         } else {
             showToast(result.mensaje || "Error al actualizar el pago", "error");
+            // Restaurar botones si hay error
+            botones.forEach((btn, index) => {
+                btn.disabled = false;
+                btn.innerHTML = textosBotones[index];
+            });
         }
     } catch (error) {
         console.error("Error al actualizar estado:", error);
         showToast("Error al conectar con el servidor", "error");
+        // Restaurar botones si hay error
+        botones.forEach((btn, index) => {
+            btn.disabled = false;
+            btn.innerHTML = textosBotones[index];
+        });
     }
 }
 
