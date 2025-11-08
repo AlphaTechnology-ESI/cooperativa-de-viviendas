@@ -107,7 +107,7 @@ body {
 }
 
 /* Ajuste de padding para páginas individuales */
-main.dashboard-main > .content-section {
+main.dashboard-main>.content-section {
     padding: var(--spacing-xl);
 }
 
@@ -189,6 +189,59 @@ main.dashboard-main > .content-section {
     margin-left: auto;
     min-width: 18px;
     text-align: center;
+}
+
+/* ============================================
+   BADGES Y ETIQUETAS DE ESTADO
+   ============================================ */
+
+.badge {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-pendiente {
+    background: rgba(255, 193, 7, 0.2);
+    color: #856404;
+}
+
+.badge-en_revision {
+    background: rgba(23, 162, 184, 0.2);
+    color: #0c5460;
+}
+
+.badge-aprobada {
+    background: rgba(40, 167, 69, 0.2);
+    color: #155724;
+}
+
+.badge-rechazada {
+    background: rgba(220, 53, 69, 0.2);
+    color: #721c24;
+}
+
+.badge-planificacion {
+    background: rgba(23, 162, 184, 0.2);
+    color: #0c5460;
+}
+
+.badge-construccion {
+    background: rgba(255, 193, 7, 0.2);
+    color: #856404;
+}
+
+.badge-terminada {
+    background: rgba(40, 167, 69, 0.2);
+    color: #155724;
+}
+
+.badge-entregada {
+    background: rgba(74, 144, 226, 0.2);
+    color: #1e3a8a;
 }
 
 /* ============================================
@@ -481,15 +534,15 @@ main.dashboard-main > .content-section {
     .header-content {
         padding: 0 var(--spacing-md);
     }
-    
+
     .nav-toggle {
         display: flex;
         margin-right: var(--spacing-md);
     }
 
-    main.dashboard-main > .content-section {
-    margin-left: 0px !important;
-}
+    main.dashboard-main>.content-section {
+        margin-left: 0px !important;
+    }
 }
 
 /* Menú desplegable para tablets y móviles */
@@ -497,30 +550,30 @@ main.dashboard-main > .content-section {
     .nav-toggle {
         display: flex;
     }
-    
+
     /* Ocultar información de usuario en el encabezado móvil */
     .header-right .user-info {
         display: none !important;
     }
-    
+
     /* Mostrar información de usuario en la barra lateral */
     .sidebar-user-info {
         display: block !important;
     }
-    
+
     .dashboard-header {
         overflow: visible !important;
         position: relative !important;
         width: 100% !important;
     }
-    
+
     .header-content {
         overflow: visible !important;
         position: relative !important;
         width: 100% !important;
         max-width: 100% !important;
     }
-    
+
     /* Barra lateral como menú desplegable */
     .sidebar {
         display: none !important;
@@ -546,7 +599,7 @@ main.dashboard-main > .content-section {
         min-width: 0 !important;
         box-sizing: border-box !important;
     }
-    
+
     .sidebar.active {
         display: flex !important;
         opacity: 1 !important;
@@ -556,7 +609,7 @@ main.dashboard-main > .content-section {
         left: var(--spacing-md) !important;
         right: var(--spacing-md) !important;
     }
-    
+
     .sidebar-nav .nav-link {
         padding: var(--spacing-lg) var(--spacing-md);
         margin: var(--spacing-xs) 0;
@@ -565,7 +618,7 @@ main.dashboard-main > .content-section {
         position: relative;
         overflow: hidden;
     }
-    
+
     .sidebar-nav .nav-link::before {
         content: '';
         position: absolute;
@@ -576,16 +629,16 @@ main.dashboard-main > .content-section {
         background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
         transition: left 0.5s;
     }
-    
+
     .sidebar-nav .nav-link:hover::before {
         left: 100%;
     }
-    
+
     .sidebar-nav .nav-link:hover {
         background: var(--bg-secondary);
         transform: translateX(5px);
     }
-    
+
     /* Estilos del botón de cierre de sesión en menú móvil */
     .nav-link-login {
         margin-top: var(--spacing-md);
@@ -595,7 +648,7 @@ main.dashboard-main > .content-section {
         border-radius: var(--border-radius-lg);
         box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
     }
-    
+
     .nav-link-login:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
@@ -617,7 +670,7 @@ main.dashboard-main > .content-section {
 }
 
 /* Botón de tema fuera del contenedor */
-.sidebar > .sidebar-theme-toggle {
+.sidebar>.sidebar-theme-toggle {
     margin-top: var(--spacing-md);
     padding-top: var(--spacing-md);
     border-top: 1px solid var(--border-color);
@@ -632,16 +685,17 @@ main.dashboard-main > .content-section {
 
 /* Distribución de botones en modo responsive */
 @media (max-width: 768px) {
+
     /* Ocultar botón del encabezado */
     .header-right .btn {
         display: none !important;
     }
-    
+
     /* Ocultar botón de tema fuera del contenedor */
-    .sidebar > .sidebar-theme-toggle {
+    .sidebar>.sidebar-theme-toggle {
         display: none !important;
     }
-    
+
     /* Mostrar el contenedor de botones */
     .sidebar-buttons-container {
         display: flex !important;
@@ -654,14 +708,14 @@ main.dashboard-main > .content-section {
         width: 100% !important;
         gap: var(--spacing-md) !important;
     }
-    
+
     /* Botón de cerrar sesión con ancho del 65% */
     .sidebar-logout-responsive {
         width: 65% !important;
         display: flex !important;
         flex-shrink: 0 !important;
     }
-    
+
     .sidebar-logout-responsive .btn {
         width: 100% !important;
         justify-content: center !important;
@@ -669,7 +723,7 @@ main.dashboard-main > .content-section {
         align-items: center !important;
         gap: var(--spacing-xs) !important;
     }
-    
+
     /* Mostrar botón de tema expandido */
     .sidebar-buttons-container .sidebar-theme-toggle {
         flex-shrink: 0 !important;
@@ -684,7 +738,7 @@ main.dashboard-main > .content-section {
         position: static !important;
         height: 56px !important;
     }
-    
+
     /* Estilo del botón interno de tema */
     .sidebar-buttons-container .sidebar-theme-toggle .theme-toggle-sidebar {
         width: 100% !important;
@@ -697,7 +751,7 @@ main.dashboard-main > .content-section {
         padding: var(--spacing-sm) !important;
         min-height: 32px !important;
     }
-    
+
     /* Icono del botón de tema centrado */
     .sidebar-buttons-container .sidebar-theme-toggle .theme-toggle-sidebar i {
         display: flex !important;
@@ -705,9 +759,9 @@ main.dashboard-main > .content-section {
         justify-content: center !important;
         width: 100% !important;
     }
-    
 
-    
+
+
     /* Separador visual entre botones */
     .buttons-separator {
         width: 1px !important;
@@ -715,12 +769,13 @@ main.dashboard-main > .content-section {
         background: var(--border-color) !important;
         flex-shrink: 0 !important;
     }
-    
+
 
 }
 
 /* Corrección de layout horizontal */
 @media (max-width: 768px) {
+
     /* Anular posicionamiento absoluto del botón de tema */
     .sidebar-buttons-container .sidebar-theme-toggle {
         position: static !important;
@@ -732,7 +787,7 @@ main.dashboard-main > .content-section {
         right: auto !important;
         transform: none !important;
     }
-    
+
     /* Anular márgenes que puedan afectar el diseño */
     .sidebar-buttons-container .sidebar-theme-toggle,
     .sidebar-buttons-container .sidebar-theme-toggle .theme-toggle-sidebar {
@@ -743,7 +798,7 @@ main.dashboard-main > .content-section {
         border-top: none !important;
         border-bottom: none !important;
     }
-    
+
     /* Asegurar dirección horizontal del contenedor */
     .sidebar-buttons-container {
         flex-direction: row !important;
@@ -792,6 +847,7 @@ body:has(.sidebar.active) {
         opacity: 0;
         transform: translateY(-15px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -804,16 +860,28 @@ body:has(.sidebar.active) {
     opacity: 0;
 }
 
-.sidebar.active .nav-link:nth-child(1) { animation-delay: 0.1s; }
-.sidebar.active .nav-link:nth-child(2) { animation-delay: 0.15s; }
-.sidebar.active .nav-link:nth-child(3) { animation-delay: 0.2s; }
-.sidebar.active .nav-link:nth-child(4) { animation-delay: 0.25s; }
+.sidebar.active .nav-link:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.sidebar.active .nav-link:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.sidebar.active .nav-link:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.sidebar.active .nav-link:nth-child(4) {
+    animation-delay: 0.25s;
+}
 
 @keyframes fadeInMenuItem {
     from {
         opacity: 0;
         transform: translateX(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -845,7 +913,7 @@ body:has(.sidebar.active) {
         transform: none !important;
         animation: slideInMenu 0.3s ease-out !important;
     }
-    
+
     /* Asegurar posicionamiento correcto del encabezado */
     .dashboard-header {
         position: fixed !important;
@@ -857,7 +925,7 @@ body:has(.sidebar.active) {
         background: var(--bg-primary) !important;
         border-bottom: 1px solid var(--border-color) !important;
     }
-    
+
     /* Ajustar margen del contenido principal */
     .dashboard-main {
         margin-top: 70px !important;
@@ -866,6 +934,7 @@ body:has(.sidebar.active) {
 
 /* Ajuste de fondo con menú abierto */
 @media (max-width: 768px) {
+
     body.menu-open,
     body:has(.sidebar.active),
     html:has(.sidebar.active) {
@@ -875,7 +944,9 @@ body:has(.sidebar.active) {
 
 /* Prevención de desbordamiento horizontal */
 @media (max-width: 768px) {
-    html, body {
+
+    html,
+    body {
         max-width: 100vw !important;
         overflow-x: hidden !important;
     }
@@ -883,7 +954,7 @@ body:has(.sidebar.active) {
 
 /* Posicionamiento del botón de tema en escritorio */
 @media (min-width: 769px) {
-    .sidebar > .sidebar-theme-toggle {
+    .sidebar>.sidebar-theme-toggle {
         display: block;
         position: absolute;
         bottom: 20px;
@@ -895,6 +966,7 @@ body:has(.sidebar.active) {
         border-top: 1px solid var(--border-color);
         padding-top: 20px;
     }
+
     .sidebar {
         position: relative;
     }
@@ -944,6 +1016,7 @@ body:has(.sidebar.active) {
         opacity: 0;
         transform: translateY(-50px) scale(0.9);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -994,6 +1067,7 @@ body:has(.sidebar.active) {
     overflow-y: auto;
     flex: 1;
 }
+
 
 /* Acciones del modal */
 .modal-actions {
@@ -1062,11 +1136,11 @@ body:has(.sidebar.active) {
         max-width: none;
         margin: var(--spacing-md);
     }
-    
+
     .modal-actions {
         flex-direction: column;
     }
-    
+
     .modal-actions .btn {
         width: 100%;
     }
