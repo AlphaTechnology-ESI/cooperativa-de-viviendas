@@ -16,6 +16,7 @@ async function cargarPagos() {
     const tbody = document.getElementById("paymentsTableBody");
 
     if (!idUsuario) {
+        console.error("ID de usuario no encontrado en sessionStorage");
         tbody.innerHTML = `
             <tr>
                 <td colspan="5" style="text-align: center; padding: 2rem; color: var(--danger-color);">
@@ -26,15 +27,34 @@ async function cargarPagos() {
         return;
     }
 
+    console.log("Cargando pagos para usuario:", idUsuario);
+
     try {
-        const response = await fetch(`${API_URL}/endpoint/dashboard/user/pagos.php`, {
+        const url = `${API_URL}/endpoint/dashboard/user/pagos.php`;
+        const requestBody = { id_usuario: idUsuario, accion: "listar" };
+        
+        console.log("URL:", url);
+        console.log("Request body:", requestBody);
+        
+        const response = await fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id_usuario: idUsuario, accion: "listar" })
+            body: JSON.stringify(requestBody)
         });
 
-        const result = await response.json();
-        console.log("Respuesta pagos:", result);
+        console.log("Response status:", response.status);
+        console.log("Response ok:", response.ok);
+        console.log("Response headers:", response.headers);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const responseText = await response.text();
+        console.log("Response text:", responseText);
+        
+        const result = JSON.parse(responseText);
+        console.log("Respuesta pagos parseada:", result);
 
         if (result.estado === "ok") {
             tbody.innerHTML = "";
@@ -61,13 +81,13 @@ async function cargarPagos() {
 
                 if (pago.estado_pago === "pagado" || pago.estado_pago === "aprobado" || pago.estado_pago === "aprobada") {
                     estadoBadge = `<span class="badge badge-aprobada">Pagado</span>`;
-                    accionBtn = pago.comprobante_pago ? 
-                        `<button class="btn btn-small" onclick="verComprobante('${pago.id_pago}', '${pago.tipo}')">Ver Comprobante</button>` :
+                    accionBtn = pago.tiene_comprobante ? 
+                        `<button class="btn btn-small" onclick="verComprobante('${pago.id_pago}', '${pago.tipo}', '${pago.id_aporte || 0}')">Ver Comprobante</button>` :
                         `<span style="color: var(--text-muted);">Sin comprobante</span>`;
                 } else if (pago.estado_pago === "pendiente") {
-                    estadoBadge = `<span class="badge badge-pendiente">Pendiente Aprobación</span>`;
-                    accionBtn = pago.comprobante_pago ? 
-                        `<span style="color: var(--text-muted);">En revisión</span>` :
+                    estadoBadge = `<span class="badge badge-pendiente">Pendiente</span>`;
+                    accionBtn = pago.tiene_comprobante ? 
+                        `<span class="badge badge-pendiente">En revisión</span>` :
                         `<button class="btn btn-small btn-primary" onclick="abrirModalPago('${pago.id_pago}', '${monto}', '${concepto}', '${pago.tipo}')">Pagar</button>`;
                 } else if (pago.estado_pago === "rechazado" || pago.estado_pago === "rechazada") {
                     estadoBadge = `<span class="badge badge-rechazada">Rechazado</span>`;
@@ -97,6 +117,7 @@ async function cargarPagos() {
         }
     } catch (error) {
         console.error("Error al cargar pagos:", error);
+        console.error("Error completo:", error.message, error.stack);
         tbody.innerHTML = `
             <tr>
                 <td colspan="5" style="text-align: center; padding: 2rem; color: var(--danger-color);">
@@ -144,6 +165,8 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
     const idPago = document.getElementById("pagoIdPago").value;
     const comprobante = document.getElementById("pagoComprobante").files[0];
 
+    console.log("Enviando pago - ID Usuario:", idUsuario, "ID Pago:", idPago);
+
     if (!comprobante) {
         showAlert("Por favor selecciona un comprobante", "warning");
         return;
@@ -163,7 +186,9 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
     formData.append("tipo_pago", e.target.dataset.tipoPago || "mensual");
 
     const submitBtn = e.target.querySelector('button[type="submit"]');
-    setButtonLoading(submitBtn, true);
+    const textoOriginal = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
 
     try {
         const response = await fetch(`${API_URL}/endpoint/dashboard/user/pagos.php`, {
@@ -172,6 +197,7 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
         });
 
         const result = await response.json();
+        console.log("Resultado registro pago:", result);
 
         if (result.estado === "ok") {
             showAlert("Pago registrado correctamente", "success");
@@ -184,7 +210,8 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
         console.error("Error al enviar pago:", error);
         showAlert("Error al conectar con el servidor", "error");
     } finally {
-        setButtonLoading(submitBtn, false);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = textoOriginal;
     }
 });
 
@@ -192,8 +219,10 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
    VISUALIZACIÓN DE COMPROBANTE
    ============================================ */
 
-async function verComprobante(idPago) {
+async function verComprobante(idPago, tipo, idAporte) {
     const idUsuario = sessionStorage.getItem("idUsuario");
+    
+    console.log("Ver comprobante - ID Usuario:", idUsuario, "ID Pago:", idPago, "Tipo:", tipo, "ID Aporte:", idAporte);
     
     try {
         const response = await fetch(`${API_URL}/endpoint/dashboard/user/pagos.php`, {
@@ -201,29 +230,40 @@ async function verComprobante(idPago) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ 
                 id_usuario: idUsuario, 
-                id_pago: idPago,
+                id_pago: tipo === 'aporte_inicial' ? 0 : idPago,
+                id_aporte: tipo === 'aporte_inicial' ? idAporte : 0,
+                tipo: tipo,
                 accion: "ver_comprobante" 
             })
         });
 
         const result = await response.json();
+        console.log("Resultado ver comprobante:", result);
 
         if (result.estado === "ok" && result.comprobante) {
             const modal = document.getElementById("comprobanteModal");
             const viewer = document.getElementById("comprobanteViewer");
             
-            if (result.tipo === "pdf") {
+            const isPDF = result.comprobante.startsWith('JVBER');
+            
+            if (isPDF) {
                 viewer.innerHTML = `
                     <embed src="data:application/pdf;base64,${result.comprobante}" 
                            type="application/pdf" 
                            width="100%" 
                            height="600px" />
+                    <button class="btn btn-small btn-primary" onclick="descargarComprobante('${result.comprobante}', 'comprobante.pdf')" style="margin-top: 10px;">
+                        <i class="fas fa-download"></i> Descargar PDF
+                    </button>
                 `;
             } else {
                 viewer.innerHTML = `
                     <img src="data:image/jpeg;base64,${result.comprobante}" 
                          alt="Comprobante" 
                          style="max-width: 100%; height: auto;" />
+                    <button class="btn btn-small btn-primary" onclick="descargarComprobante('${result.comprobante}', 'comprobante.jpg')" style="margin-top: 10px;">
+                        <i class="fas fa-download"></i> Descargar Imagen
+                    </button>
                 `;
             }
             
@@ -241,6 +281,27 @@ async function verComprobante(idPago) {
 function cerrarModalComprobante() {
     const modal = document.getElementById("comprobanteModal");
     modal.style.display = "none";
+}
+
+/* Descargar comprobante */
+function descargarComprobante(base64Data, nombreArchivo) {
+    const isPDF = base64Data.startsWith('JVBER');
+    const mimeType = isPDF ? 'application/pdf' : 'image/jpeg';
+    
+    const byteCharacters = atob(base64Data);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: mimeType });
+    
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = nombreArchivo;
+    a.click();
+    window.URL.revokeObjectURL(url);
 }
 
 /* ============================================
