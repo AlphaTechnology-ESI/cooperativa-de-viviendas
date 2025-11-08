@@ -17,6 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
    ============================================ */
 
 async function loadSocios() {
+    document.getElementById('socios-tbody').innerHTML = `
+        <tr>
+            <td colspan="9" class="text-center">
+                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i> 
+                <span style="margin-left: 10px;">Cargando...</span>
+            </td>
+        </tr>
+    `;
+    
     try {
         const buscar = document.getElementById('filtro-buscar').value.trim();
         const estadoCivil = document.getElementById('filtro-estado-civil').value;

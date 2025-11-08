@@ -12,6 +12,8 @@ async function cargarHoras() {
     const filtro = document.getElementById("filtro-estado").value;
     const tbody = document.getElementById("horas-tbody");
 
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i> <span style="margin-left: 10px;">Cargando...</span></td></tr>';
+
     try {
         const res = await fetch(`${API_URL}/endpoint/dashboard/admin/listar_horas_admin.php`, {
             method: "POST",
@@ -50,7 +52,7 @@ async function abrirModal(id) {
     const modalBody = document.getElementById("modal-body");
     modal.style.display = "flex";
 
-    modalBody.innerHTML = "<p>Cargando...</p>";
+    modalBody.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i> <span style="margin-left: 10px;">Cargando...</span></div>';
 
     try {
         const res = await fetch(`${API_URL}/endpoint/dashboard/admin/ver_hora_admin.php?id=` + id);

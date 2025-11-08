@@ -96,7 +96,7 @@ function getEstadoLabel(estado) {
 function showLoading(elementId) {
     const element = document.getElementById(elementId);
     if (element) {
-        element.innerHTML = '<tr><td colspan="7" class="text-center">Cargando...</td></tr>';
+        element.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i> <span style="margin-left: 10px;">Cargando...</span></td></tr>';
     }
 }
 

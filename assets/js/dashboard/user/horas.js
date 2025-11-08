@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
        ============================================ */
 
     async function cargarHoras() {
+        listaHoras.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i> <span style="margin-left: 10px;">Cargando...</span></div>';
+        
         try {
             const res = await fetch(`${API_URL}/endpoint/dashboard/user/listar_horas.php`, {
                 method: "POST",

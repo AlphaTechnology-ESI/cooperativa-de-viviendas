@@ -27,14 +27,11 @@ async function cargarPagos() {
         return;
     }
 
-    console.log("Cargando pagos para usuario:", idUsuario);
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i> <span style="margin-left: 10px;">Cargando...</span></td></tr>';
 
     try {
         const url = `${API_URL}/endpoint/dashboard/user/pagos.php`;
         const requestBody = { id_usuario: idUsuario, accion: "listar" };
-        
-        console.log("URL:", url);
-        console.log("Request body:", requestBody);
         
         const response = await fetch(url, {
             method: "POST",
@@ -42,19 +39,11 @@ async function cargarPagos() {
             body: JSON.stringify(requestBody)
         });
 
-        console.log("Response status:", response.status);
-        console.log("Response ok:", response.ok);
-        console.log("Response headers:", response.headers);
-
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const responseText = await response.text();
-        console.log("Response text:", responseText);
-        
-        const result = JSON.parse(responseText);
-        console.log("Respuesta pagos parseada:", result);
+        const result = await response.json();
 
         if (result.estado === "ok") {
             tbody.innerHTML = "";
@@ -165,8 +154,6 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
     const idPago = document.getElementById("pagoIdPago").value;
     const comprobante = document.getElementById("pagoComprobante").files[0];
 
-    console.log("Enviando pago - ID Usuario:", idUsuario, "ID Pago:", idPago);
-
     if (!comprobante) {
         showAlert("Por favor selecciona un comprobante", "warning");
         return;
@@ -197,7 +184,6 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
         });
 
         const result = await response.json();
-        console.log("Resultado registro pago:", result);
 
         if (result.estado === "ok") {
             showAlert("Pago registrado correctamente", "success");
@@ -222,8 +208,6 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
 async function verComprobante(idPago, tipo, idAporte) {
     const idUsuario = sessionStorage.getItem("idUsuario");
     
-    console.log("Ver comprobante - ID Usuario:", idUsuario, "ID Pago:", idPago, "Tipo:", tipo, "ID Aporte:", idAporte);
-    
     try {
         const response = await fetch(`${API_URL}/endpoint/dashboard/user/pagos.php`, {
             method: "POST",
@@ -238,7 +222,6 @@ async function verComprobante(idPago, tipo, idAporte) {
         });
 
         const result = await response.json();
-        console.log("Resultado ver comprobante:", result);
 
         if (result.estado === "ok" && result.comprobante) {
             const modal = document.getElementById("comprobanteModal");

@@ -19,7 +19,7 @@ async function cargarPagos() {
     const filtroEstado = document.getElementById("filtro-estado").value;
     const filtroTipo = document.getElementById("filtro-tipo").value;
 
-    tbody.innerHTML = '<tr><td colspan="6" class="text-center">Cargando...</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i> <span style="margin-left: 10px;">Cargando...</span></td></tr>';
 
     try {
         const response = await fetch(`${API_URL}/endpoint/dashboard/admin/pagos_admin.php`, {
