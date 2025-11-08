@@ -224,55 +224,6 @@ body {
    BADGES Y ETIQUETAS DE ESTADO
    ============================================ */
 
-.badge {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.badge-pendiente {
-    background: rgba(255, 193, 7, 0.2);
-    color: #856404;
-}
-
-.badge-en_revision {
-    background: rgba(23, 162, 184, 0.2);
-    color: #0c5460;
-}
-
-.badge-aprobada {
-    background: rgba(40, 167, 69, 0.2);
-    color: #155724;
-}
-
-.badge-rechazada {
-    background: rgba(220, 53, 69, 0.2);
-    color: #721c24;
-}
-
-.badge-planificacion {
-    background: rgba(23, 162, 184, 0.2);
-    color: #0c5460;
-}
-
-.badge-construccion {
-    background: rgba(255, 193, 7, 0.2);
-    color: #856404;
-}
-
-.badge-terminada {
-    background: rgba(40, 167, 69, 0.2);
-    color: #155724;
-}
-
-.badge-entregada {
-    background: rgba(74, 144, 226, 0.2);
-    color: #1e3a8a;
-}
-
 /* Badges de estado civil */
 .estado-civil-badge {
     padding: 4px 8px;
