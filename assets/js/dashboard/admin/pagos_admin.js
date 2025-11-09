@@ -37,7 +37,6 @@ async function cargarPagos() {
         }
 
         const result = await response.json();
-        console.log("Respuesta pagos admin:", result);
 
         if (result.estado === "ok" && result.pagos) {
             tbody.innerHTML = "";
@@ -81,8 +80,6 @@ async function cargarPagos() {
             tbody.innerHTML = `<tr><td colspan="6" class="text-center">${result.mensaje || "Error al cargar pagos"}</td></tr>`;
         }
     } catch (error) {
-        console.error("Error al cargar pagos:", error);
-        console.error("Error completo:", error.message);
         tbody.innerHTML = `<tr><td colspan="6" class="text-center">Error al cargar los pagos: ${error.message}</td></tr>`;
     }
 }
@@ -156,7 +153,6 @@ async function verDetalle(pago) {
                 }
             }
         } catch (error) {
-            console.error("Error al cargar comprobante:", error);
         }
     }
 
@@ -271,7 +267,6 @@ async function actualizarEstado(nuevoEstado) {
             });
         }
     } catch (error) {
-        console.error("Error al actualizar estado:", error);
         showToast("Error al conectar con el servidor", "error");
         // Restaurar botones si hay error
         botones.forEach((btn, index) => {

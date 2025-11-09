@@ -50,11 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (result.estado === "ok") {
                 listaHoras.innerHTML = "";
                 result.horas.forEach(h => agregarHoraAlListado(h));
-            } else {
-                console.warn("No se encontraron horas o error:", result.mensaje);
             }
         } catch (err) {
-            console.error("Error al cargar las horas:", err);
             alert("Error al conectar con el servidor.");
         }
     }
@@ -98,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert(result.mensaje || "Error al registrar las horas");
             }
         } catch (err) {
-            console.error("Error al guardar las horas:", err);
             alert("Error al conectar con el servidor.");
         }
     });

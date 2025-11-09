@@ -42,7 +42,6 @@ async function aprobarSolicitud() {
             btnAprobar.textContent = 'Aprobar';
         }
     } catch (error) {
-        console.error("Error al aprobar solicitud:", error);
         showToast("Error al conectar con el servidor", "error");
         btnAprobar.disabled = false;
         btnRevision.disabled = false;
@@ -92,7 +91,6 @@ async function rechazarSolicitud() {
             btnRechazar.textContent = 'Rechazar';
         }
     } catch (error) {
-        console.error("Error al rechazar solicitud:", error);
         showToast("Error al conectar con el servidor", "error");
         btnAprobar.disabled = false;
         btnRevision.disabled = false;
@@ -141,7 +139,6 @@ async function ponerEnRevision() {
             btnRevision.textContent = 'En Revisión';
         }
     } catch (error) {
-        console.error("Error al poner en revisión:", error);
         showToast("Error al conectar con el servidor", "error");
         btnAprobar.disabled = false;
         btnRevision.disabled = false;

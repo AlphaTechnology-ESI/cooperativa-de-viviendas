@@ -45,7 +45,6 @@ async function loadSocios() {
             sociosData = result.socios;
             displaySociosWithIndicator(sociosData);
         } else {
-            console.error('Error al cargar socios:', result.mensaje);
             document.getElementById('socios-tbody').innerHTML = `
                 <tr>
                     <td colspan="9" class="text-center error">Error al cargar socios: ${result.mensaje}</td>
@@ -53,7 +52,6 @@ async function loadSocios() {
             `;
         }
     } catch (error) {
-        console.error('Error al cargar socios:', error);
         document.getElementById('socios-tbody').innerHTML = `
             <tr>
                 <td colspan="9" class="text-center error">Error de conexión</td>
@@ -107,7 +105,6 @@ async function verSocio(idUsuario) {
     const socio = sociosData.find(s => s.id_usuario == idUsuario);
     
     if (!socio) {
-        console.error('Socio no encontrado');
         return;
     }
     
@@ -346,7 +343,6 @@ async function eliminarSocio() {
         }
         
     } catch (error) {
-        console.error('Error al eliminar socio:', error);
         showToast('Error al eliminar usuario: ' + error.message, 'error');
         
         const btnEliminar = document.getElementById('btn-eliminar-socio');

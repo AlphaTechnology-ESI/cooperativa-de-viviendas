@@ -247,7 +247,6 @@ document.getElementById("housing-request-form").addEventListener("submit", async
         btnLoading.style.display = 'none';
         
     } catch (error) {
-        console.error("Error al enviar la solicitud:", error);
         showToast("Error al conectar con el servidor. Intente nuevamente.", "error");
         
         // Reactivar botón

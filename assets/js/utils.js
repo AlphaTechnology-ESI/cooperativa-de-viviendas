@@ -164,8 +164,6 @@ function validateForm(formData, requiredFields) {
 
 /* Manejar errores de API */
 function handleApiError(error, defaultMessage = 'Ha ocurrido un error') {
-    console.error('API Error:', error);
-
     if (error.message) {
         showToast(error.message, 'error');
     } else {

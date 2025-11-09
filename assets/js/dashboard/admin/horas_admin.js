@@ -41,7 +41,6 @@ async function cargarHoras() {
             tbody.appendChild(tr);
         });
     } catch (err) {
-        console.error(err);
         tbody.innerHTML = `<tr><td colspan="5" class="text-center">Error al conectar con el servidor</td></tr>`;
     }
 }
@@ -60,7 +59,6 @@ async function abrirModal(id) {
 
         if (!data || data.estado !== "ok" || !data.hora) {
             modalBody.innerHTML = `<p>Error al cargar los datos del registro.</p>`;
-            console.error("Respuesta del servidor:", data);
             return;
         }
 
@@ -85,10 +83,9 @@ async function abrirModal(id) {
             </button>
         </div>
     ` : `<p>No hay comprobante disponible.</p>`}
-`;
+    `;
 
     } catch (err) {
-        console.error(err);
         modalBody.innerHTML = "<p>Error al conectar con el servidor.</p>";
     }
 }

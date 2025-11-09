@@ -39,7 +39,6 @@ function displaySolicitudes(solicitudes) {
         tbody.innerHTML = '<tr><td colspan="7" class="text-center">No hay solicitudes</td></tr>';
         return;
     }
-    console.log('Solicitudes:', solicitudes);
     tbody.innerHTML = solicitudes.map(s => `
     <tr>
         <td>${formatDate(s.fecha_solicitud)}</td>
@@ -153,7 +152,6 @@ function loadSolicitudes() {
             }
         })
         .catch(error => {
-            console.error("Error al cargar solicitudes:", error);
             showError("solicitudes-tbody", "Error al cargar las solicitudes");
             actualizarContadoresPendientes([]);
             actualizarBadgeSolicitudes([]);
@@ -176,17 +174,13 @@ function actualizarContadoresPendientes(solicitudes) {
    ============================================ */
 
 async function cargarEstadisticas() {
-    console.log('Iniciando carga de estadísticas...');
-
     // Mostrar spinner en lugar de números
     const elementosConSpinner = ['total-viviendas', 'total-socios', 'viviendas-construccion', 'total-solicitudes'];
 
     elementosConSpinner.forEach(id => {
         const elemento = document.getElementById(id);
-        console.log(`Buscando elemento: ${id}`, elemento);
         if (elemento) {
             elemento.innerHTML = '<i class="fas fa-spinner fa-spin" style="color: var(--primary-color);"></i>';
-            console.log(`Spinner agregado a: ${id}`);
         }
     });
 
@@ -194,14 +188,11 @@ async function cargarEstadisticas() {
     const badge = document.getElementById('solicitudes-badge');
     if (badge) {
         badge.innerHTML = '<i class="fas fa-spinner fa-spin" style="font-size: 10px;"></i>';
-        console.log('Spinner agregado al badge');
     }
 
     try {
-        console.log('Haciendo fetch a:', `${API_URL}/endpoint/dashboard/admin/estadisticas.php`);
         const response = await fetch(`${API_URL}/endpoint/dashboard/admin/estadisticas.php`);
         const result = await response.json();
-        console.log('Resultado recibido:', result);
 
         if (result.estado === "ok") {
             const elementos = {
@@ -215,19 +206,14 @@ async function cargarEstadisticas() {
                 const elemento = document.getElementById(id);
                 if (elemento) {
                     elemento.textContent = elementos[id];
-                    console.log(`Actualizado ${id} con valor:`, elementos[id]);
                 }
             });
 
             if (badge) {
                 badge.textContent = result.solicitudes_pendientes || '0';
-                console.log('Badge actualizado con:', result.solicitudes_pendientes);
             }
-        } else {
-            console.error('Error en respuesta:', result);
         }
     } catch (error) {
-        console.error("Error al cargar estadísticas:", error);
         // Si hay error, mostrar 0 en lugar del spinner
         elementosConSpinner.forEach(id => {
             const elemento = document.getElementById(id);

@@ -39,11 +39,8 @@ document.addEventListener("DOMContentLoaded", async function() {
             } else {
                 document.getElementById("profileFechaIngreso").value = "No disponible";
             }
-        } else {
-            console.warn("No se encontraron datos del usuario:", result.mensaje);
         }
     } catch (error) {
-        console.error("Error al cargar perfil:", error);
     }
 
     /* ============================================
@@ -105,7 +102,6 @@ document.addEventListener("DOMContentLoaded", async function() {
                 showAlert(result.mensaje || "Error al cambiar la contraseña", "error");
             }
         } catch (error) {
-            console.error("Error al cambiar contraseña:", error);
             hideLoadingOverlay();
             showAlert("Error de conexión al cambiar la contraseña", "error");
         }

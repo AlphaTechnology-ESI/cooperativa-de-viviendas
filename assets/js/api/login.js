@@ -58,7 +58,6 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             btnLogin.innerHTML = textoOriginal;
         }
     } catch (error) {
-        console.error("Error al conectar:", error);
         showAlert("Error al conectar con el servidor", "error");
         btnLogin.disabled = false;
         btnLogin.innerHTML = textoOriginal;

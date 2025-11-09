@@ -59,7 +59,6 @@ async function verSolicitud(id) {
             }
         }
     } catch (error) {
-        console.error('Error al cargar la solicitud:', error);
     }
 }
 

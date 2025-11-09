@@ -16,7 +16,6 @@ async function cargarPagos() {
     const tbody = document.getElementById("paymentsTableBody");
 
     if (!idUsuario) {
-        console.error("ID de usuario no encontrado en sessionStorage");
         tbody.innerHTML = `
             <tr>
                 <td colspan="5" style="text-align: center; padding: 2rem; color: var(--danger-color);">
@@ -105,8 +104,6 @@ async function cargarPagos() {
             `;
         }
     } catch (error) {
-        console.error("Error al cargar pagos:", error);
-        console.error("Error completo:", error.message, error.stack);
         tbody.innerHTML = `
             <tr>
                 <td colspan="5" style="text-align: center; padding: 2rem; color: var(--danger-color);">
@@ -193,7 +190,6 @@ document.getElementById("pagoForm").addEventListener("submit", async function(e)
             showAlert(result.mensaje || "Error al registrar el pago", "error");
         }
     } catch (error) {
-        console.error("Error al enviar pago:", error);
         showAlert("Error al conectar con el servidor", "error");
     } finally {
         submitBtn.disabled = false;
@@ -255,7 +251,6 @@ async function verComprobante(idPago, tipo, idAporte) {
             showAlert("No se pudo cargar el comprobante", "error");
         }
     } catch (error) {
-        console.error("Error al ver comprobante:", error);
         showAlert("Error al cargar el comprobante", "error");
     }
 }
