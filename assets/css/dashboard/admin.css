@@ -409,6 +409,46 @@ body {
     flex-shrink: 0;
 }
 
+@media (max-width: 600px) {
+  #modal-solicitud .modal-content,
+  #modal-hora .modal-content {
+    max-height: 90vh;
+    width: 98vw;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  #modal-solicitud .modal-body,
+  #modal-hora .modal-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    max-height: none;
+    margin-bottom: 0;
+    min-width: 0;
+  }
+
+  #modal-solicitud .modal-footer, 
+  #modal-hora .modal-footer {
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    box-sizing: border-box;
+  }
+
+  #modal-solicitud .modal-footer .btn, 
+  #modal-hora .modal-footer .btn {
+    min-width: 120px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
+
 /* ============================================
    VISTA DETALLE DE SOCIO
    ============================================ */
