@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Instalación - CoopTrack CooviSur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center !important;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(74, 144, 226, 0.2);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4A90E2, transparent);
+        }
+
+        .terminos-logo {
+            height: 60px;
+            width: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(74, 144, 226, 0.3));
+        }
+
+        h1 {
+            color: #4A90E2;
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .terminos-subtitle {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .terminos-date {
+            color: #999;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        h2 {
+            color: #4A90E2;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        h3 {
+            color: #357ABD;
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul,
+        ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p.terminos-subtitle,
+        p.terminos-date {
+            text-align: center !important;
+        }
+
+        .step p {
+            color: #333;
+        }
+
+        .note {
+            background: #e3f2fd;
+            border-left: 4px solid #4A90E2;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .danger {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        .code-inline {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #c7254e;
+            font-size: 0.9em;
+        }
+
+        .step {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4A90E2;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #4A90E2;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .step.p {
+            margin-bottom: 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            padding: 8px 0;
+        }
+
+        .toc a {
+            color: #4A90E2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #4A90E2;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            .note,
+            .warning,
+            .tip,
+            .danger,
+            .step {
+                page-break-inside: avoid;
+            }
+
+            h2,
+            h3 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="../img/cooptrack_blanco.png" alt="CoopTrack Logo" class="terminos-logo">
+            <h1>Manual de Instalación</h1>
+            <p class="terminos-subtitle">CoopTrack - Sistema de Gestión de Cooperativa de Viviendas</p>
+            <p class="terminos-subtitle">Cooperativa de Vivienda del Sur - CooviSur</p>
+        </header>
+
+        <div class="toc">
+            <h2>📑 Índice de Contenidos</h2>
+            <ul>
+                <li><a href="#introduccion">1. Introducción</a></li>
+                <li><a href="#requisitos">2. Requisitos del Sistema</a></li>
+                <li><a href="#estructura">3. Estructura del Proyecto</a></li>
+                <li><a href="#instalacion-local">4. Instalación Local (XAMPP)</a></li>
+                <li><a href="#instalacion-docker">5. Instalación con Docker</a></li>
+                <li><a href="#configuracion">6. Configuración del Sistema</a></li>
+                <li><a href="#base-datos">7. Configuración de Base de Datos</a></li>
+                <li><a href="#verificacion">8. Verificación de la Instalación</a></li>
+                <li><a href="#solucion-problemas">9. Solución de Problemas</a></li>
+                <li><a href="#repositorios">10. Repositorios Git</a></li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN 1: INTRODUCCIÓN -->
+        <section id="introduccion">
+            <h2>1. Introducción</h2>
+
+            <h3>¿Qué es CoopTrack?</h3>
+            <p>
+                CoopTrack es un sistema web completo para la gestión de cooperativas de vivienda.
+                Consta de dos componentes principales: el frontend (interfaz de usuario) y el backend (APIs).
+            </p>
+
+            <div class="note">
+                <strong>💡 Nota Importante:</strong> Este manual está dirigido a desarrolladores, técnicos de sistemas
+                o administradores que necesitan instalar y configurar CoopTrack en un servidor o entorno de desarrollo.
+            </div>
+
+            <h3>Componentes del Sistema</h3>
+            <ul>
+                <li><strong>Frontend:</strong> Aplicación web HTML/CSS/JavaScript</li>
+                <li><strong>Backend:</strong> APIs REST desarrolladas en PHP</li>
+                <li><strong>Base de Datos:</strong> MySQL/MariaDB</li>
+                <li><strong>Servidor Web:</strong> Apache</li>
+            </ul>
+        </section>
+
+        <!-- SECCIÓN 2: REQUISITOS -->
+        <section id="requisitos">
+            <h2>2. Requisitos del Sistema</h2>
+
+            <h3>2.1. Requisitos de Software</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Versión Mínima</th>
+                        <th>Recomendado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PHP</td>
+                        <td>7.4</td>
+                        <td>8.0 o superior</td>
+                    </tr>
+                    <tr>
+                        <td>MySQL / MariaDB</td>
+                        <td>5.7 / 10.3</td>
+                        <td>8.0 / 10.6</td>
+                    </tr>
+                    <tr>
+                        <td>Apache</td>
+                        <td>2.4</td>
+                        <td>2.4.x</td>
+                    </tr>
+                    <tr>
+                        <td>Navegador Web</td>
+                        <td>Chrome 90+, Firefox 88+, Safari 14+, Edge 90+</td>
+                        <td>Última versión</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2.2. Extensiones de PHP Requeridas</h3>
+            <ul>
+                <li><code class="code-inline">mysqli</code> - Conexión a MySQL</li>
+                <li><code class="code-inline">json</code> - Manejo de datos JSON</li>
+                <li><code class="code-inline">session</code> - Gestión de sesiones</li>
+                <li><code class="code-inline">mbstring</code> - Manejo de cadenas multibyte</li>
+                <li><code class="code-inline">fileinfo</code> - Información de archivos</li>
+            </ul>
+
+            <h3>2.3. Requisitos de Hardware (Mínimos)</h3>
+            <ul>
+                <li><strong>Procesador:</strong> Dual Core 2.0 GHz</li>
+                <li><strong>RAM:</strong> 2 GB</li>
+                <li><strong>Disco:</strong> 500 MB de espacio libre</li>
+                <li><strong>Conexión:</strong> Internet estable</li>
+            </ul>
+
+            <div class="warning">
+                <strong>⚠️ Importante:</strong> Para entornos de producción, se recomienda aumentar
+                estos requisitos según la cantidad de usuarios concurrentes esperados.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: ESTRUCTURA -->
+        <section id="estructura">
+            <h2>3. Estructura del Proyecto</h2>
+
+            <p>El proyecto CoopTrack se divide en dos repositorios independientes:</p>
+
+            <h3>3.1. Frontend (cooperativa-de-viviendas)</h3>
+            <div class="code-block">cooperativa-de-viviendas/
+├── admin/                    # Dashboard administrativo
+├── user/                     # Dashboard de usuario
+├── assets/
+│   ├── css/                  # Estilos CSS
+│   ├── js/                   # Scripts JavaScript
+│   │   ├── api/              # Llamadas a APIs
+│   │   ├── dashboard/        # Lógica de dashboards
+│   │   ├── utils.js          # Utilidades globales
+│   │   └── config.js         # ⚠️ Configuración de API URL
+│   └── img/                  # Imágenes
+├── index.html                # Página principal
+├── login.html                # Página de inicio de sesión
+├── diagnostic.html           # Diagnóstico de conexión
+└── .gitignore
+</div>
+
+            <h3>3.2. Backend (cooperativa-de-viviendas-apis)</h3>
+            <div class="code-block">cooperativa-de-viviendas-apis/
+├── config/
+│   ├── db.php                # Conexión a base de datos
+│   └── db.sql                # Script de creación de BD
+├── endpoint/
+│   ├── sesion/               # Login y registro
+│   ├── solicitudes/          # Gestión de solicitudes
+│   ├── dashboard/
+│   │   ├── admin/            # Endpoints admin
+│   │   └── user/             # Endpoints usuario
+│   └── diagnostic.php        # Diagnóstico del servidor
+├── backups/                  # Copias de seguridad de BD
+├── Dockerfile                # Configuración Docker
+├── .htaccess                 # Configuración CORS
+├── backup_bd.sh              # Script de backup (Linux)
+├── backup_bd_win.bat         # Script de backup (Windows)
+└── .gitignore
+</div>
+
+            <div class="note">
+                <strong>💡 Archivos Importantes:</strong>
+                <ul>
+                    <li><code class="code-inline">assets/config.js</code> - Configuración de URL de las APIs</li>
+                    <li><code class="code-inline">.env</code> - Credenciales de base de datos (en la raíz del proyecto APIs)</li>
+                    <li><code class="code-inline">config/db.sql</code> - Script de creación de base de datos</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: INSTALACIÓN LOCAL -->
+        <section id="instalacion-local">
+            <h2>4. Instalación Local con XAMPP</h2>
+
+            <p>
+                XAMPP es la forma más sencilla de instalar CoopTrack en un entorno de desarrollo local
+                en Windows, macOS o Linux.
+            </p>
+
+            <h3>4.1. Instalar XAMPP</h3>
+
+            <div class="step">
+                <p><span class="step-number">1</span> Descarga XAMPP desde <a href="https://www.apachefriends.org"
+                        target="_blank">apachefriends.org</a></p>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">2</span> Ejecuta el instalador y selecciona los componentes:</p>
+                <ul>
+                    <li>✓ Apache</li>
+                    <li>✓ MySQL/MariaDB</li>
+                    <li>✓ PHP</li>
+                    <li>✓ phpMyAdmin (opcional pero recomendado)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">3</span> Instala en la ruta predeterminada: <code
+                        class="code-inline">C:\xampp</code> (Windows) o <code class="code-inline">/opt/lampp</code>
+                    (Linux)</p>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">4</span> Inicia el Panel de Control de XAMPP y arranca Apache y MySQL</p>
+            </div>
+
+            <h3>4.2. Clonar los Repositorios</h3>
+
+            <div class="step">
+                <p><span class="step-number">1</span> Abre la terminal/cmd y navega a la carpeta htdocs de XAMPP:</p>
+                <div class="code-block"># Windows cd C:\xampp\htdocs
+# Linux/Mac cd /opt/lampp/htdocs</div>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">2</span> Clona el repositorio del frontend:</p>
+                <div class="code-block">git clone https://github.com/AlphaTechnology-ESI/cooperativa-de-viviendas.git</div>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">3</span> Clona el repositorio de las APIs:</p>
+                <div class="code-block">git clone https://github.com/AlphaTechnology-ESI/cooperativa-de-viviendas-apis.git</div>
+            </div>
+
+            <div class="tip">
+                <strong>✅ Resultado:</strong> Deberías tener dos carpetas:
+                <ul>
+                    <li><code class="code-inline">C:\xampp\htdocs\cooperativa-de-viviendas\</code></li>
+                    <li><code class="code-inline">C:\xampp\htdocs\cooperativa-de-viviendas-apis\</code></li>
+                </ul>
+            </div>
+
+            <h3>4.3. Configurar la Base de Datos</h3>
+
+            <div class="step">
+                <p><span class="step-number">1</span> Accede a phpMyAdmin en: <code
+                        class="code-inline">http://localhost/phpmyadmin</code></p>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">2</span> La base de datos se crea automáticamente al ejecutar el script.
+                    El archivo <code class="code-inline">config/db.php</code> ya incluye toda la lógica necesaria.</p>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">3</span> Verifica que el archivo <code class="code-inline">.env</code>
+                    en la raíz del proyecto de APIs contenga las credenciales correctas para tu entorno local:</p>
+                <div class="code-block"><pre># Configuración de Base de Datos
+host=localhost
+db=cooperativa_cooptrack
+user=root
+pass=1234
+port=3306</pre></div>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Importante:</strong> El archivo <code class="code-inline">.env</code> 
+                está en <code class="code-inline">.gitignore</code> por seguridad. Si no existe, créalo manualmente 
+                basándote en este ejemplo.
+            </div>
+
+            <h3>4.4. Configurar la URL de las APIs</h3>
+            
+            <div class="step">
+                <p><span class="step-number">1</span> Edita el archivo <code class="code-inline">cooperativa-de-viviendas/assets/config.js</code>:</p>
+                <div class="code-block">window.CONFIG = {
+  API_URL: "http://localhost/cooperativa-de-viviendas-apis"
+};</div>
+            </div>
+
+            <div class="note">
+                <strong>💡 Nota:</strong> Esta configuración apunta a tu instalación local de XAMPP. 
+                Para producción, cambia la URL por la de tu servidor.
+            </div>
+
+            <h3>4.5. Verificar la Instalación</h3>
+            
+            <div class="step">
+                <p><span class="step-number">1</span> Abre tu navegador y accede a:</p>
+                <ul>
+                    <li><strong>Frontend:</strong> <code class="code-inline">http://localhost/cooperativa-de-viviendas/</code></li>
+                    <li><strong>Diagnóstico:</strong> <code class="code-inline">http://localhost/cooperativa-de-viviendas/diagnostic.html</code></li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">2</span> El diagnóstico debe mostrar "ok" si todo está configurado correctamente</p>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">3</span> Credenciales de prueba:</p>
+                <ul>
+                    <li><strong>Administrador:</strong> <code class="code-inline">admin@gmail.com</code> / <code class="code-inline">4321</code></li>
+                    <li><strong>Usuario:</strong> <code class="code-inline">user@gmail.com</code> / <code class="code-inline">1234</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: INSTALACIÓN DOCKER -->
+        <section id="instalacion-docker">
+            <h2>5. Instalación con Docker</h2>
+            
+            <p>
+                Docker permite ejecutar CoopTrack en un entorno aislado y portable, 
+                ideal para desarrollo y despliegue en producción.
+            </p>
+
+            <h3>5.1. Requisitos Previos</h3>
+            <ul>
+                <li>Docker instalado (<a href="https://www.docker.com/get-started" target="_blank">docker.com/get-started</a>)</li>
+                <li>Docker Compose instalado (incluido en Docker Desktop)</li>
+            </ul>
+
+            <h3>5.2. Construir la Imagen</h3>
+            
+            <div class="step">
+                <p><span class="step-number">1</span> Navega a la carpeta de las APIs:</p>
+                <div class="code-block">cd cooperativa-de-viviendas-apis</div>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">2</span> El proyecto incluye un <code class="code-inline">Dockerfile</code> configurado:</p>
+                <div class="code-block">FROM php:8.0-cli AS build
+
+WORKDIR /var/www/cooperativa-de-viviendas-apis
+
+# Instalar extensiones PHP necesarias
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
+    install-php-extensions mbstring pdo_mysql mysqli exif pcntl gd memcached
+
+# Copiar código fuente
+COPY --chown=www:www-data . /var/www/cooperativa-de-viviendas-apis
+
+# Iniciar servidor PHP
+CMD ["php", "-S", "0.0.0.0:80", "-t", "/var/www/cooperativa-de-viviendas-apis"]
+
+EXPOSE 80</div>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">3</span> Construye la imagen Docker:</p>
+                <div class="code-block">docker build -t cooptrack-api .</div>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">4</span> Ejecuta el contenedor:</p>
+                <div class="code-block">docker run -d -p 8080:80 --name cooptrack-api cooptrack-api</div>
+            </div>
+
+            <div class="tip">
+                <strong>✅ Resultado:</strong> Las APIs estarán disponibles en <code class="code-inline">http://localhost:8080</code>
+            </div>
+
+            <h3>5.3. Configurar Base de Datos Remota</h3>
+            
+            <p>
+                El proyecto puede usar una base de datos remota o local.
+                Las credenciales están en el archivo <code class="code-inline">.env</code> en la raíz del proyecto:
+            </p>
+
+            <div class="code-block"><pre># Configuración de Base de Datos
+host=localhost
+db=cooperativa_cooptrack
+user=root
+pass=1234
+port=3306</pre></div>
+
+            <div class="warning">
+                <strong>⚠️ Seguridad:</strong> En producción, usa variables de entorno en lugar de credenciales hardcodeadas. 
+                El archivo <code class="code-inline">.env</code> está en <code class="code-inline">.gitignore</code> para proteger datos sensibles.
+            </div>
+
+            <h3>5.4. Configurar Frontend para Docker</h3>
+            
+            <div class="step">
+                <p>Edita <code class="code-inline">assets/config.js</code> para apuntar al contenedor:</p>
+                <div class="code-block">window.CONFIG = {
+  API_URL: "http://localhost:8080"
+};</div>
+            </div>
+
+            <p>O si usas la IP de tu máquina en la red local:</p>
+            <div class="code-block">window.CONFIG = {
+  API_URL: "http://192.168.1.76:8080"  // Reemplaza con tu IP
+};</div>
+        </section>
+
+        <!-- SECCIÓN 6: CONFIGURACIÓN -->
+        <section id="configuracion">
+            <h2>6. Configuración del Sistema</h2>
+            
+            <h3>6.1. Configuración de CORS</h3>
+            
+            <p>
+                El archivo <code class="code-inline">.htaccess</code> en la carpeta de APIs 
+                configura los headers CORS necesarios:
+            </p>
+
+            <div class="code-block">Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET,POST,OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type"</div>
+
+            <div class="warning">
+                <strong>⚠️ Producción:</strong> Cambia <code class="code-inline">*</code> por el dominio específico 
+                de tu aplicación para mayor seguridad.
+            </div>
+
+            <h3>6.2. Archivos Ignorados por Git</h3>
+            
+            <p>El <code class="code-inline">.gitignore</code> de las APIs protege archivos sensibles:</p>
+
+            <div class="code-block">.env
+backups/*.sql
+backups/
+vendor/</div>
+
+            <p>El <code class="code-inline">.gitignore</code> del frontend protege:</p>
+
+            <div class="code-block">*/config.js/</div>
+
+            <div class="tip">
+                <strong>✅ Recomendación:</strong> Crea archivos de ejemplo (como <code class="code-inline">config.example.js</code>) 
+                para que otros desarrolladores sepan qué configurar.
+            </div>
+
+            <h3>6.3. Backups Automáticos</h3>
+            
+            <p>
+                El proyecto incluye un script de backup automático: <code class="code-inline">backup_bd.sh</code> para Linux
+            </p>
+
+            <div class="code-block"><pre>#!/bin/bash
+
+# Cargar variables del archivo .env
+if [ -f .env ]; then
+    source .env
+else
+    echo ".env no encontrado. Abortando."
+    exit 1
+fi
+
+# Configuración
+fecha=$(date +%Y-%m-%d_%H-%M)
+destino="./backups"
+mkdir -p "$destino"
+
+# Crear backup
+mysqldump -u "$user" -p"$pass" "$db" -h "$host" -P "$port" > "$destino/backup_$fecha.sql"
+
+# Mantener solo las 2 últimas copias
+archivos=($(ls -1tr "$destino"/backup_*.sql))
+num_archivos=${#archivos[@]}
+if [ $num_archivos -gt 2 ]; then
+    eliminar=$((num_archivos - 2))
+    for ((i=0; i&lt;eliminar; i++)); 
+    do
+        rm -f "${archivos[i]}"
+    done
+fi</pre></div>
+
+                <p>
+                    Y su equivalente para Windows: <code class="code-inline">backup_bd_win.bat</code>
+                </p>
+
+            <div class="code-block"><pre>
+@echo off
+REM Script de backup para Windows CMD
+
+REM Cargar variables desde .env
+for /f "usebackq tokens=1,2 delims== " %%A in (".env") do (
+    set "%%A=%%B"
+)
+
+REM Validar variables requeridas
+if "%db%"=="" goto :faltan
+if "%user%"=="" goto :faltan
+if "%pass%"=="" goto :faltan
+if "%host%"=="" goto :faltan
+if "%port%"=="" goto :faltan
+
+REM Configuración
+set fecha=%date:~0,4%-%date:~5,2%-%date:~8,2%_%time:~0,2%-%time:~3,2%
+set fecha=%fecha: =0%
+set destino=backups
+
+REM Crear directorio de backups si no existe
+if not exist "%destino%" mkdir "%destino%"
+
+REM Crear backup
+mysqldump --single-transaction --set-gtid-purged=OFF -u %user% -p%pass% %db% -h %host% -P %port% > "%destino%/backup_%fecha%.sql"
+
+REM Mantener solo las 2 últimas copias
+for /f "skip=2 delims=" %%F in ('dir /b /o-d "%destino%\backup_*.sql"') do del "%destino%\%%F"
+
+goto :fin
+
+:faltan
+echo Faltan variables requeridas en .env (db, user, pass, host, port). Abortando.
+goto :fin
+
+:fin</pre></div>
+<div class="step"> <p>Para ejecutar el backup manualmente:</p><div class="code-block"># Linux/Mac chmod +x backup_bd.sh 
+./backup_bd.sh
+# Windows backup_bd_win.bat
+</div>
+</div>
+<div class="step">
+<p>Para automatizarlo con cron (Linux):</p>
+<p>Abre la terminal y edita el crontab con:</p>
+<div class="code-block">crontab -e</div>
+<p>Luego agrega la siguiente línea (ajusta la ruta absoluta a tu script):</p>
+<div class="code-block"># Ejecutar semanalmente los lunes a las 2 AM
+0 2 * * 1 /ruta/al/proyecto/backup_bd.sh</div></div>
+<div class="step">
+<p>Para automatizarlo con el Programador de Tareas (Windows):</p><div class="code-block">SCHTASKS /Create /SC WEEKLY /D MON /TN "Backup CoopTrack" /TR "C:\ruta\al\proyecto\backup_bd_win.bat" /ST 02:00
+</div></div>
+
+            <h3>6.4. Archivo de Variables de Entorno (.env)</h3>
+            
+            <p>
+                El archivo <code class="code-inline">.env</code> se utiliza para almacenar las credenciales 
+                de la base de datos de forma segura. Este archivo es usado por el script de backup 
+                <code class="code-inline">backup_bd.sh</code> y <code class="code-inline">backup_bd_win.bat</code> es la forma recomendada de gestionar 
+                las credenciales de la base de datos.
+            </p>
+
+            <div class="step">
+                <p><span class="step-number">1</span> Crea el archivo <code class="code-inline">.env</code> 
+                    en la raíz del proyecto de APIs (<code class="code-inline">cooperativa-de-viviendas-apis/</code>):</p>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">2</span> El archivo <code class="code-inline">.env</code> debe contener 
+                    las siguientes variables con las credenciales de tu base de datos:</p>
+                <div class="code-block"><pre># Configuración de Base de Datos
+host=localhost
+db=cooperativa_cooptrack
+user=root
+pass=1234
+port=3306</pre></div>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Importante:</strong> El archivo <code class="code-inline">.env</code> 
+                está en <code class="code-inline">.gitignore</code> por seguridad. Nunca subas este archivo 
+                al repositorio Git, ya que contiene credenciales sensibles. Si no existe, créalo manualmente 
+                basándote en este ejemplo.
+            </div>
+
+            <div class="note">
+                <strong>💡 Nota:</strong> El archivo <code class="code-inline">.env</code> es necesario 
+                para el funcionamiento del script de backup y es la forma recomendada de gestionar 
+                las credenciales de la base de datos, ya que permite separar la configuración del código 
+                y mantener la seguridad en entornos de producción.
+            </div>
+
+        </section>
+
+        <!-- SECCIÓN 7: BASE DE DATOS -->
+        <section id="base-datos">
+            <h2>7. Configuración de Base de Datos</h2>
+            
+            <h3>7.1. Creación Automática</h3>
+            
+            <p>
+                El script <code class="code-inline">config/db.php</code> se encarga de crear 
+                automáticamente la base de datos y todas las tablas necesarias al primer acceso.
+            </p>
+
+            <div class="note">
+                <strong>💡 Importante:</strong> No necesitas ejecutar el SQL manualmente. 
+                El sistema lo hace automáticamente al conectarse por primera vez.
+            </div>
+
+            <h3>7.2. Estructura de la Base de Datos</h3>
+            
+            <p>El sistema crea las siguientes tablas:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tabla</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code-inline">usuario</code></td>
+                        <td>Usuarios activos del sistema (socios)</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code-inline">usuario_pendiente</code></td>
+                        <td>Solicitudes de vivienda pendientes de aprobación</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code-inline">admins</code></td>
+                        <td>Administradores del sistema</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code-inline">unidad_habitacional</code></td>
+                        <td>Viviendas disponibles</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code-inline">solicitud_unidad_habitacional</code></td>
+                        <td>Solicitudes de vivienda</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code-inline">pago_mensual</code></td>
+                        <td>Pagos mensuales de socios</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code-inline">aporte_inicial</code></td>
+                        <td>Aportes iniciales de socios</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code-inline">jornada_trabajo</code></td>
+                        <td>Registro de horas de trabajo cooperativo</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code-inline">asignaunidad</code></td>
+                        <td>Asignación de viviendas a socios</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>7.3. Datos de Prueba</h3>
+            
+            <p>El script <code class="code-inline">db.sql</code> inserta automáticamente datos de prueba:</p>
+
+            <h4>Usuarios de Prueba</h4>
+            <ul>
+                <li><strong>Administrador:</strong> <code class="code-inline">admin@gmail.com</code> / <code class="code-inline">4321</code></li>
+                <li><strong>Usuario:</strong> <code class="code-inline">user@gmail.com</code> / <code class="code-inline">1234</code></li>
+            </ul>
+
+            <h4>Solicitudes Pendientes</h4>
+            <ul>
+                <li>Juan Pérez - <code class="code-inline">juan.perez@gmail.com</code></li>
+                <li>María Gómez - <code class="code-inline">maria.gomez@gmail.com</code></li>
+                <li>Carlos López - <code class="code-inline">carlos.lopez@gmail.com</code></li>
+            </ul>
+
+            <div class="warning">
+                <strong>⚠️ Producción:</strong> Elimina o cambia estos datos de prueba antes de poner el sistema en producción.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 8: VERIFICACIÓN -->
+        <section id="verificacion">
+            <h2>8. Verificación de la Instalación</h2>
+            
+            <h3>8.1. Herramienta de Diagnóstico</h3>
+            
+            <p>
+                CoopTrack incluye una herramienta de diagnóstico que verifica la conexión 
+                entre el frontend y el backend.
+            </p>
+
+            <div class="step">
+                <p><span class="step-number">1</span> Accede a: <code class="code-inline">http://localhost/cooperativa-de-viviendas/diagnostic.html</code></p>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">2</span> La página mostrará:</p>
+                <ul>
+                    <li>Estado de la conexión HTTP</li>
+                    <li>Headers de respuesta</li>
+                    <li>Resultado de la prueba de la API</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <p><span class="step-number">3</span> Si todo está correcto, verás: <code class="code-inline">ok</code></p>
+            </div>
+
+            <h3>8.2. Verificación Manual</h3>
+            
+            <h4>Verificar Frontend</h4>
+            <div class="step">
+                <p><span class="step-number">1</span> Abre: <code class="code-inline">http://localhost/cooperativa-de-viviendas/</code></p>
+            </div>
+            <div class="step">
+                <p><span class="step-number">2</span> Verifica que se cargue la página principal correctamente</p>
+            </div>
+            <div class="step">
+                <p><span class="step-number">3</span> Verifica que las imágenes se muestren</p>
+            </div>
+
+            <h4>Verificar Backend</h4>
+            <div class="step">
+                <p><span class="step-number">1</span> Abre: <code class="code-inline">http://localhost/cooperativa-de-viviendas-apis/endpoint/diagnostic.php</code></p>
+            </div>
+            <div class="step">
+                <p><span class="step-number">2</span> Debe mostrar: <code class="code-inline">ok</code></p>
+            </div>
+
+            <h4>Verificar Base de Datos</h4>
+            <div class="step">
+                <p><span class="step-number">1</span> Accede a phpMyAdmin: <code class="code-inline">http://localhost/phpmyadmin</code></p>
+            </div>
+            <div class="step">
+                <p><span class="step-number">2</span> Verifica que exista la base de datos <code class="code-inline">cooperativa_cooptrack</code></p>
+            </div>
+            <div class="step">
+                <p><span class="step-number">3</span> Verifica que las tablas tengan datos de prueba</p>
+            </div>
+
+            <h4>Verificar Login</h4>
+            <div class="step">
+                <p><span class="step-number">1</span> Accede a: <code class="code-inline">http://localhost/cooperativa-de-viviendas/login.html</code></p>
+            </div>
+            <div class="step">
+                <p><span class="step-number">2</span> Ingresa con: <code class="code-inline">admin@gmail.com</code> / <code class="code-inline">4321</code></p>
+            </div>
+            <div class="step">
+                <p><span class="step-number">3</span> Deberías ser redirigido al dashboard administrativo</p>
+            </div>
+
+            <div class="tip">
+                <strong>✅ Todo OK:</strong> Si todos estos pasos funcionan correctamente, 
+                la instalación está completa y el sistema está listo para usar.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 9: SOLUCIÓN DE PROBLEMAS -->
+        <section id="solucion-problemas">
+            <h2>9. Solución de Problemas Comunes</h2>
+            
+            <h3>9.1. Error de Conexión a la Base de Datos</h3>
+            
+            <div class="warning">
+                <strong>Síntoma:</strong> "Connection failed" o "No se pudo conectar a la base de datos"
+            </div>
+
+            <p><strong>Soluciones:</strong></p>
+            <ul>
+                <li>Verifica que MySQL esté iniciado en XAMPP</li>
+                <li>Verifica las credenciales en el archivo <code class="code-inline">.env</code></li>
+                <li>Verifica que el puerto 3306 no esté bloqueado</li>
+                <li>Verifica que el usuario tenga permisos suficientes</li>
+            </ul>
+
+            <h3>9.2. Error CORS / Fetch Failed</h3>
+            
+            <div class="warning">
+                <strong>Síntoma:</strong> "CORS policy blocked" o "Failed to fetch"
+            </div>
+
+            <p><strong>Soluciones:</strong></p>
+            <ul>
+                <li>Verifica que el archivo <code class="code-inline">.htaccess</code> existe en la carpeta de APIs</li>
+                <li>Verifica que Apache tenga habilitado <code class="code-inline">mod_headers</code></li>
+                <li>Verifica que la URL en <code class="code-inline">config.js</code> sea correcta</li>
+                <li>Abre la consola del navegador (F12) para ver el error exacto</li>
+            </ul>
+
+            <h3>9.3. Página en Blanco o Error 404</h3>
+            
+            <div class="warning">
+                <strong>Síntoma:</strong> La página no carga o muestra error 404
+            </div>
+
+            <p><strong>Soluciones:</strong></p>
+            <ul>
+                <li>Verifica que Apache esté iniciado en XAMPP</li>
+                <li>Verifica que los archivos estén en <code class="code-inline">C:\xampp\htdocs\</code></li>
+                <li>Verifica que las rutas en la URL sean correctas</li>
+                <li>Verifica permisos de lectura en las carpetas</li>
+            </ul>
+
+            <h3>9.4. Error de Extensión PHP</h3>
+            
+            <div class="warning">
+                <strong>Síntoma:</strong> "Call to undefined function mysqli_connect"
+            </div>
+
+            <p><strong>Soluciones:</strong></p>
+            <ul>
+                <li>Edita <code class="code-inline">php.ini</code> en XAMPP</li>
+                <li>Descomenta la línea: <code class="code-inline">extension=mysqli</code></li>
+                <li>Reinicia Apache en XAMPP</li>
+                <li>Verifica con: <code class="code-inline">http://localhost/dashboard/phpinfo.php</code></li>
+            </ul>
+
+            <h3>9.5. Problemas con Imágenes</h3>
+            
+            <div class="warning">
+                <strong>Síntoma:</strong> Las imágenes no se cargan
+            </div>
+
+            <p><strong>Soluciones:</strong></p>
+            <ul>
+                <li>Verifica que la carpeta <code class="code-inline">img/</code> tenga las imágenes</li>
+                <li>Verifica permisos de lectura en las carpetas</li>
+                <li>Verifica las rutas relativas en el HTML</li>
+                <li>Abre las herramientas de desarrollador (F12) para ver errores de carga</li>
+            </ul>
+
+            <h3>9.6. Error al Subir Archivos (Comprobantes)</h3>
+            
+            <div class="warning">
+                <strong>Síntoma:</strong> Error al subir comprobantes de pago o horas
+            </div>
+
+            <p><strong>Soluciones:</strong></p>
+            <ul>
+                <li>Verifica el tamaño máximo de archivo en <code class="code-inline">php.ini</code>:</li>
+            </ul>
+            <div class="code-block">upload_max_filesize = 10M
+post_max_size = 10M</div>
+            <ul>
+                <li>Reinicia Apache después de cambiar <code class="code-inline">php.ini</code></li>
+                <li>Verifica que el archivo sea JPG, PNG o PDF</li>
+            </ul>
+
+            <h3>9.7. Error en Docker</h3>
+            
+            <div class="warning">
+                <strong>Síntoma:</strong> El contenedor no arranca o falla
+            </div>
+
+            <p><strong>Soluciones:</strong></p>
+            <ul>
+                <li>Verifica los logs: <code class="code-inline">docker logs cooptrack-api</code></li>
+                <li>Verifica que el puerto 8080 no esté en uso</li>
+                <li>Reconstruye la imagen: <code class="code-inline">docker build -t cooptrack-api . --no-cache</code></li>
+                <li>Verifica que Docker Desktop esté ejecutándose</li>
+            </ul>
+
+            <h3>9.8. Verificar Errores de PHP</h3>
+            
+            <p>Para ver errores detallados, habilita la visualización de errores en <code class="code-inline">php.ini</code>:</p>
+            <div class="code-block">display_errors = On
+error_reporting = E_ALL</div>
+
+            <div class="danger">
+                <strong>⚠️ IMPORTANTE:</strong> Desactiva <code class="code-inline">display_errors</code> 
+                en producción por seguridad. Los errores deben registrarse en archivos de log.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 10: REPOSITORIOS -->
+        <section id="repositorios">
+            <h2>10. Repositorios Git</h2>
+            
+            <h3>10.1. URLs de los Repositorios</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Repositorio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Frontend</td>
+                        <td><a href="https://github.com/AlphaTechnology-ESI/cooperativa-de-viviendas.git" target="_blank">github.com/AlphaTechnology-ESI/cooperativa-de-viviendas.git</a></td>
+                    </tr>
+                    <tr>
+                        <td>Backend (APIs)</td>
+                        <td><a href="https://github.com/AlphaTechnology-ESI/cooperativa-de-viviendas-apis.git" target="_blank">github.com/AlphaTechnology-ESI/cooperativa-de-viviendas-apis.git</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>10.2. Clonar con HTTPS</h3>
+            <div class="code-block"># Frontend
+git clone https://github.com/AlphaTechnology-ESI/cooperativa-de-viviendas.git
+
+# Backend
+git clone https://github.com/AlphaTechnology-ESI/cooperativa-de-viviendas-apis.git</div>
+
+            <h3>10.3. Clonar con SSH</h3>
+            <div class="code-block"># Frontend
+git clone git@github.com:AlphaTechnology-ESI/cooperativa-de-viviendas.git
+
+# Backend
+git clone git@github.com:AlphaTechnology-ESI/cooperativa-de-viviendas-apis.git</div>
+
+            <h3>10.4. Mantener Actualizado</h3>
+            
+            <div class="step">
+                <p>Para obtener las últimas actualizaciones:</p>
+                <div class="code-block"># Navegar a cada carpeta y ejecutar
+git pull origin main</div>
+            </div>
+
+            <div class="note">
+                <strong>💡 Recomendación:</strong> Antes de hacer <code class="code-inline">git pull</code>, 
+                asegúrate de hacer backup de tus archivos de configuración 
+                (<code class="code-inline">config.js</code> y <code class="code-inline">.env</code>) 
+                ya que podrían sobrescribirse.
+            </div>
+
+            <h3>10.5. Contribuir al Proyecto</h3>
+            
+            <p>Si deseas contribuir al desarrollo de CoopTrack:</p>
+            
+            <div class="step">
+                <p><span class="step-number">1</span> Haz fork del repositorio en GitHub</p>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">2</span> Clona tu fork localmente</p>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">3</span> Crea una nueva rama para tu feature:</p>
+                <div class="code-block">git checkout -b feature/nueva-funcionalidad</div>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">4</span> Realiza tus cambios y haz commit:</p>
+                <div class="code-block">git add .
+git commit -m "Descripción de los cambios"</div>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">5</span> Sube tus cambios:</p>
+                <div class="code-block">git push origin feature/nueva-funcionalidad</div>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">6</span> Crea un Pull Request en GitHub</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 11: SOPORTE -->
+        <section id="soporte">
+            <h2>11. Soporte Técnico</h2>
+
+            <h3>¿Necesitas Ayuda?</h3>
+            <p>
+                Si tienes problemas técnicos con la plataforma CoopTrack o preguntas sobre 
+                el proceso de solicitud de viviendas, puedes contactarnos de las siguientes formas:
+            </p>
+
+            <div class="contact-info">
+                <h4>📧 Correo Electrónico</h4>
+                <p><strong>Email:</strong> info@coovisur.coop</p>
+                <p>Tiempo de respuesta: 24-48 horas hábiles</p>
+            </div>
+
+            <div class="contact-info">
+                <h4>🏢 Oficinas de CooviSur</h4>
+                <p>Visítanos en nuestras oficinas para atención personalizada.</p>
+                <p><strong>Horario:</strong> Lunes a Viernes de 9:00 a 17:00 hs</p>
+            </div>
+
+            <h3>Reportar un Problema</h3>
+            <p>Si encuentras un error o problema en la plataforma, por favor incluye la siguiente información:</p>
+            <ul>
+                <li>Dispositivo que usas (computadora, celular, tablet)</li>
+                <li>Navegador y versión (Chrome, Firefox, etc.)</li>
+                <li>Descripción detallada del problema</li>
+                <li>Capturas de pantalla si es posible</li>
+                <li>Pasos para reproducir el error</li>
+            </ul>
+        </section>
+
+        <!-- PIE DEL MANUAL -->
+        <footer>
+            <h3>Fin del Manual de Instalación</h3>
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <p style="font-size: 0.85em; color: #999;">
+                    © 2025 CooviSur - Cooperativa de Vivienda del Sur. Todos los derechos reservados.<br>
+                    Desarrollado por <strong>αTech</strong> (aTech)<br>
+                    Este manual es exclusivo para instalación y configuración técnica del sistema CoopTrack.
+                </p>
+                <p style="font-size: 0.85em; color: #999; margin-top: 15px;">
+                    <strong>Soporte Técnico:</strong> info@coovisur.coop
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

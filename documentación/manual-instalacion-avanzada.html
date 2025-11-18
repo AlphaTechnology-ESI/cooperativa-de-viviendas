@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Avanzada de Instalación - CoopTrack CooviSur</title>
+    <style>
+        /* Copia exacta del CSS del manual original */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; background: white; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        header { text-align: center !important; margin-bottom: 50px; padding-bottom: 30px; border-bottom: 2px solid rgba(74, 144, 226, 0.2); position: relative; }
+        header::after { content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%); width: 100px; height: 2px; background: linear-gradient(90deg, transparent, #4A90E2, transparent); }
+        .terminos-logo { height: 60px; width: auto; margin-bottom: 20px; filter: drop-shadow(0 4px 8px rgba(74, 144, 226, 0.3)); }
+        h1 { color: #4A90E2; font-size: 2em; margin-bottom: 10px; font-weight: 700; letter-spacing: 0.5px; }
+        .terminos-subtitle { color: #666; font-size: 1em; margin-bottom: 5px; font-weight: 500; }
+        .terminos-date { color: #999; font-size: 0.9em; font-style: italic; }
+        h2 { color: #4A90E2; font-size: 1.8em; margin-top: 40px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e0e0e0; }
+        h3 { color: #357ABD; font-size: 1.4em; margin-top: 30px; margin-bottom: 15px; }
+        h4 { color: #555; font-size: 1.1em; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        p { margin-bottom: 15px; text-align: justify; }
+        ul, ol { margin-left: 30px; margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        p.terminos-subtitle, p.terminos-date { text-align: center !important; }
+        .step p { color: #333; }
+        .note { background: #e3f2fd; border-left: 4px solid #4A90E2; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        .tip { background: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        .danger { background: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.5; white-space: pre; }
+        .code-inline { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; color: #c7254e; font-size: 0.9em; }
+        .step { background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #4A90E2; }
+        .step-number { display: inline-block; background: #4A90E2; color: white; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px; font-weight: bold; }
+        .toc { background: #f8f9fa; padding: 25px; border-radius: 8px; margin: 30px 0; }
+        .toc h2 { margin-top: 0; font-size: 1.5em; }
+        .toc ul { list-style: none; margin-left: 0; }
+        .toc li { padding: 8px 0; }
+        .toc a { color: #4A90E2; text-decoration: none; font-weight: 500; }
+        .toc a:hover { text-decoration: underline; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+        th { background: #4A90E2; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        footer { margin-top: 50px; padding-top: 30px; border-top: 2px solid #e0e0e0; text-align: center; color: #666; }
+        .contact-info { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        @media print { body { background: white; } .container { box-shadow: none; max-width: 100%; } .note, .warning, .tip, .danger, .step { page-break-inside: avoid; } h2, h3 { page-break-after: avoid; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../img/cooptrack_blanco.png" alt="CoopTrack Logo" class="terminos-logo">
+            <h1>Guía Avanzada de Instalación</h1>
+            <p class="terminos-subtitle">CoopTrack - Sistema de Gestión de Cooperativa de Viviendas</p>
+            <p class="terminos-subtitle">Cooperativa de Vivienda del Sur - CooviSur</p>
+        </header>
+
+        <div class="toc">
+            <h2>📑 Índice de Contenidos</h2>
+            <ul>
+                <li><a href="#introduccion">1. Introducción</a></li>
+                <li><a href="#requisitos">2. Requisitos y Consideraciones</a></li>
+                <li><a href="#transferir-ejecutar">3. Cómo Transferir y Ejecutar el Instalador</a></li>
+                <li><a href="#estructura">4. Estructura del Instalador</a></li>
+                <li><a href="#pasos">5. Explicación Paso a Paso del Script</a></li>
+                <li><a href="#recomendaciones">6. Recomendaciones y Errores Comunes</a></li>
+                <li><a href="#soporte">7. Soporte Técnico</a></li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN 1: INTRODUCCIÓN -->
+        <section id="introduccion">
+            <h2>1. Introducción</h2>
+            <p>
+                Esta guía avanzada explica en detalle el funcionamiento del script <code class="code-inline">instalador.sh</code> para la instalación y despliegue completo de CoopTrack en un servidor Ubuntu. Está dirigida a administradores y técnicos que deseen comprender y personalizar el proceso automatizado, conocer los comandos ejecutados y saber cómo resolver posibles problemas durante la instalación.
+            </p>
+            <div class="warning">
+                <strong>⚠️ Importante:</strong> Este script realiza cambios en el sistema, instala servicios y configura el entorno de producción. Úsalo solo en servidores controlados y con respaldo de datos.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: REQUISITOS Y CONSIDERACIONES -->
+        <section id="requisitos">
+            <h2>2. Requisitos y Consideraciones</h2>
+            <ul>
+                <li>Ubuntu Server 20.04 o superior</li>
+                <li>Permisos de root (sudo)</li>
+                <li>Conexión a internet estable</li>
+                <li>Acceso a los repositorios de GitHub del proyecto</li>
+                <li>Token de Ngrok (opcional, para exponer el servidor a internet)</li>
+            </ul>
+            <div class="note">
+                <strong>💡 Nota:</strong> El script está diseñado para automatizar todo el proceso, pero es recomendable leer esta guía antes de ejecutarlo para entender cada paso y saber cómo actuar ante errores.
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CÓMO TRANSFERIR Y EJECUTAR EL INSTALADOR -->
+        <section id="transferir-ejecutar">
+            <h2>¿Cómo transferir y ejecutar el instalador.sh en el servidor?</h2>
+            <h3>1. Instalar OpenSSH en el servidor (si no está instalado)</h3>
+            <div class="step">
+                <p>En el servidor Ubuntu ejecuta:</p>
+                <div class="code-block">sudo apt install openssh-server</div>
+            </div>
+            <h3>2. Transferir el archivo desde tu PC al servidor usando <code class="code-inline">scp</code></h3>
+            <div class="step">
+                <p>Desde tu PC (Linux/Mac o usando PowerShell en Windows con scp), estando en la carpeta donde tienes <code class="code-inline">instalador.sh</code>:</p>
+                <div class="code-block">scp instalador.sh tu_usuario@IP_DEL_SERVIDOR:/tmp/instalador.sh</div>
+                <p><strong>Ejemplo:</strong> <code class="code-inline">scp instalador.sh test@10.182.69.55:/tmp/instalador.sh</code></p>
+                <div class="note">
+                    Cambia <code class="code-inline">tu_usuario</code> por tu usuario real en el servidor y <code class="code-inline">IP_DEL_SERVIDOR</code> por la IP de tu servidor.
+                </div>
+                <p>También puedes especificar la ruta completa del archivo si no estás en la misma carpeta.</p>
+            </div>
+            <h3>3. Acceder al servidor por SSH</h3>
+            <div class="step">
+                <p>Desde tu PC, ejecuta:</p>
+                <div class="code-block">ssh tu_usuario@IP_DEL_SERVIDOR</div>
+            </div>
+            <h3>4. Mover y dar permisos al script</h3>
+            <div class="step">
+                <p>En el servidor, ejecuta:</p>
+                <div class="code-block">sudo mv /tmp/instalador.sh /usr/local/bin/instalador.sh
+sudo chmod +x /usr/local/bin/instalador.sh</div>
+            </div>
+            <h3>5. Solucionar problemas de formato (si no deja ejecutarlo)</h3>
+            <div class="step">
+                <p>Si el script da error de formato (por ejemplo, si fue editado en Windows), ejecuta:</p>
+                <div class="code-block">sudo apt install -y dos2unix
+sudo dos2unix /usr/local/bin/instalador.sh
+sudo chmod +x /usr/local/bin/instalador.sh</div>
+            </div>
+            <h3>6. Ejecutar el instalador</h3>
+            <div class="step">
+                <p>Finalmente, ejecuta el script:</p>
+                <div class="code-block">sudo /usr/local/bin/instalador.sh</div>
+            </div>
+            <div class="tip">
+                <strong>Otras formas de transferir el archivo:</strong>
+                <ul>
+                    <li>Usar <a href="https://winscp.net/" target="_blank">WinSCP</a> (Windows) para copiar archivos por SFTP.</li>
+                    <li>Copiar el contenido del script y pegarlo en el servidor usando <code class="code-inline">nano instalador.sh</code> o <code class="code-inline">vim</code>.</li>
+                    <li>Subirlo a un repositorio privado de Git y clonarlo en el servidor.</li>
+                </ul>
+            </div>
+            <div class="warning">
+                <strong>¡Recuerda!</strong> Siempre revisa los permisos y el formato del archivo antes de ejecutarlo.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: ESTRUCTURA DEL INSTALADOR -->
+        <section id="estructura">
+            <h2>4. Estructura del Instalador</h2>
+            <div class="code-block">instalador.sh
+├── Verificación de root
+├── Actualización del sistema
+├── Configuración de teclado
+├── Instalación de servicios básicos (OpenSSH, MySQL)
+├── Configuración de MySQL para acceso remoto
+├── Instalación y configuración de Git
+├── Instalación y configuración de Apache
+├── Configuración de VirtualHost de Apache
+├── Instalación y configuración de Docker
+├── Clonado de repositorios (frontend y backend)
+├── Creación de archivo .env
+├── Despliegue del backend con Docker
+├── Instalación y configuración de Ngrok
+├── Scripts de actualización automática (host y ngrok)
+├── Servicio y timer para actualización automática
+├── Script de backup y tarea programada
+</div>
+        </section>
+
+        <!-- SECCIÓN 5: EXPLICACIÓN PASO A PASO DEL SCRIPT -->
+        <section id="pasos">
+            <h2>5. Explicación Paso a Paso del Script</h2>
+            <h3>5.1. Verificación de permisos root</h3>
+            <div class="step">
+                <p>El script verifica que se ejecute con <code class="code-inline">sudo</code> o como root. Si no, aborta la instalación.</p>
+                <div class="code-block">if [ "$EUID" -ne 0 ]; then
+    echo "Ejecute este script con sudo:"
+    echo "  sudo bash $0"
+    exit 1
+fi</div>
+            </div>
+            <div class="warning">
+                <strong>Si ves el mensaje "Ejecute este script con sudo":</strong> Detén la ejecución y vuelve a correr el script con <code class="code-inline">sudo bash instalador.sh</code>.
+            </div>
+            <h3>5.2. Actualización del sistema</h3>
+            <div class="step">
+                <p>Actualiza los repositorios y paquetes del sistema para evitar problemas de dependencias.</p>
+                <div class="code-block">apt update
+apt-get update</div>
+            </div>
+            <h3>5.3. Configuración de teclado</h3>
+            <div class="step">
+                <p>Instala utilidades y cambia el layout del teclado a latinoamericano.</p>
+                <div class="code-block">apt-get install -y console-setup keyboard-configuration
+sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT="latam"/' /etc/default/keyboard
+setupcon</div>
+            </div>
+            <div class="tip">
+                <strong>¿Por qué?</strong> Así el teclado funcionará correctamente en español en la terminal.
+            </div>
+            <h3>5.4. Instalación de servicios básicos</h3>
+            <div class="step">
+                <p>Instala OpenSSH para acceso remoto y MySQL Server para la base de datos.</p>
+                <div class="code-block">apt install -y openssh-server
+apt install -y mysql-server</div>
+            </div>
+            <h3>5.5. Configuración de MySQL para acceso remoto</h3>
+            <div class="step">
+                <p>Permite conexiones externas a MySQL cambiando <code class="code-inline">bind-address</code> y otorga permisos a root.</p>
+                <div class="code-block">sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+systemctl restart mysql
+echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '' WITH GRANT OPTION; FLUSH PRIVILEGES;" | mysql -u root</div>
+            </div>
+            <div class="warning">
+                <strong>¡Cuidado!</strong> Dejar la contraseña de root vacía es solo para desarrollo. Cámbiala en producción.
+            </div>
+            <h3>5.6. Instalación y configuración de Git</h3>
+            <div class="step">
+                <p>Instala Git y configura el usuario y email global. El script te pedirá estos datos.</p>
+                <div class="code-block">apt install -y git
+git config --global user.name "[TU NOMBRE]"
+git config --global user.email "[TU EMAIL]"
+git config --global --list</div>
+            </div>
+            <div class="note">
+                <strong>¿Qué pasa si te equivocas?</strong> Puedes volver a configurar con <code class="code-inline">git config --global user.name "Nuevo Nombre"</code> y <code class="code-inline">git config --global user.email "nuevo@email.com"</code>.
+            </div>
+            <h3>5.7. Instalación y configuración de Apache</h3>
+            <div class="step">
+                <p>Instala Apache y habilita módulos necesarios para PHP y proxy.</p>
+                <div class="code-block">apt install -y apache2
+a2enmod proxy proxy_http
+a2enmod alias</div>
+            </div>
+            <h3>5.8. Configuración de VirtualHost de Apache</h3>
+            <div class="step">
+                <p>Crea el archivo de configuración para el sitio principal y reinicia Apache.</p>
+                <div class="code-block">cat > /etc/apache2/sites-available/000-default.conf <<'EOF'
+<VirtualHost *:80>
+    ...
+</VirtualHost>
+EOF
+systemctl restart apache2</div>
+            </div>
+            <div class="tip">
+                <strong>¿Problemas con Apache?</strong> Usa <code class="code-inline">systemctl status apache2</code> para ver errores y <code class="code-inline">journalctl -xe</code> para más detalles.
+            </div>
+            <h3>5.9. Instalación y configuración de Docker</h3>
+            <div class="step">
+                <p>Instala Docker, habilita el servicio y agrega el usuario al grupo docker.</p>
+                <div class="code-block">apt install -y docker.io
+systemctl enable docker
+systemctl start docker
+groupadd -f docker
+usermod -aG docker $USER</div>
+            </div>
+            <div class="note">
+                <strong>¿No puedes usar docker sin sudo?</strong> Cierra sesión y vuelve a entrar para que el grupo docker se aplique.
+            </div>
+            <h3>5.10. Clonado de repositorios</h3>
+            <div class="step">
+                <p>Limpia las carpetas destino y clona los repositorios frontend y backend.</p>
+                <div class="code-block">rm -rf /var/www/html/*
+git clone https://github.com/AlphaTechnology-ESI/cooperativa-de-viviendas.git /var/www/html/cooperativa-de-viviendas
+rm -rf /var/www/cooperativa-de-viviendas-apis
+git clone https://github.com/AlphaTechnology-ESI/cooperativa-de-viviendas-apis.git /var/www/cooperativa-de-viviendas-apis</div>
+            </div>
+            <h3>5.11. Creación del archivo .env</h3>
+            <div class="step">
+                <p>Crea el archivo <code class="code-inline">.env</code> con las credenciales de la base de datos.</p>
+                <div class="code-block">cat > /var/www/cooperativa-de-viviendas-apis/config/.env <<EOF
+host=localhost
+db=cooperativa_cooptrack
+user=root
+pass=
+port=3306
+EOF</div>
+            </div>
+            <div class="warning">
+                <strong>¡No subas .env a Git!</strong> El archivo .env contiene credenciales sensibles.
+            </div>
+            <h3>5.12. Despliegue del backend con Docker</h3>
+            <div class="step">
+                <p>Construye la imagen Docker y ejecuta el contenedor del backend en el puerto 8080.</p>
+                <div class="code-block">cd /var/www/cooperativa-de-viviendas-apis
+docker build -t coop .
+docker run -d -p 8080:80 --restart unless-stopped --name coop_apis coop</div>
+            </div>
+            <div class="tip">
+                <strong>¿Problemas con Docker?</strong> Usa <code class="code-inline">docker logs coop_apis</code> para ver errores del contenedor.
+            </div>
+            <h3>5.13. Instalación y configuración de Ngrok</h3>
+            <div class="step">
+                <p>Descarga, descomprime y configura Ngrok para exponer el servidor a internet.</p>
+                <div class="code-block">wget -O /tmp/ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+tar -xzf /tmp/ngrok.tgz -C /usr/local/bin
+chmod +x /usr/local/bin/ngrok
+cat > /etc/systemd/system/ngrok.service ...</div>
+            </div>
+            <div class="note">
+                <strong>¿Token de Ngrok incorrecto?</strong> Puedes editar el servicio con <code class="code-inline">sudo nano /etc/systemd/system/ngrok.service</code> y reiniciar con <code class="code-inline">systemctl restart ngrok</code>.
+            </div>
+            <h3>5.14. Scripts de actualización automática</h3>
+            <div class="step">
+                <p>Se crean scripts para actualizar la IP del host y el enlace de Ngrok en el frontend y en el repositorio de redirección.</p>
+                <div class="code-block">/usr/local/bin/actualizar.sh
+/usr/local/bin/update_db_host.sh
+/usr/local/bin/update_ngrok.sh</div>
+            </div>
+            <div class="tip">
+                <strong>¿No se actualiza la IP?</strong> Verifica permisos de los scripts y que el contenedor Docker esté corriendo.
+            </div>
+            <h3>5.15. ¿Perteneces a Atech? y creación de GitHub Pages</h3>
+            <div class="step">
+                <p>El script pregunta si perteneces a Atech. Si respondes <strong>"s"</strong>, se clona el repositorio de redirección oficial y no necesitas hacer nada más.</p>
+                <p>Si respondes <strong>"n"</strong> (no eres de Atech), deberás crear tu propio repositorio en GitHub para usarlo como página de redirección con GitHub Pages.</p>
+                <ol>
+                    <li>Crea un nuevo repositorio en GitHub (puede tener cualquier nombre, por ejemplo, <code class="code-inline">mi-redirect</code>).</li>
+                    <li>Agrega un archivo <code class="code-inline">index.html</code> con el siguiente contenido de ejemplo:</li>
+                </ol>
+                <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="refresh" content="0;url=https://TU_NGROK_URL.ngrok.io"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Redirigiendo...
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                <ol start="3">
+                    <li>Sube el archivo al repositorio y haz commit en el branch <code class="code-inline">ngrok-redirect</code>.</li>
+                    <li>Activa GitHub Pages en la configuración del repositorio, seleccionando el branch <code class="code-inline">ngrok-redirect</code> y la carpeta raíz.</li>
+                    <li>Tu página estará disponible en <code class="code-inline">https://TU_USUARIO.github.io/NOMBRE_DEL_REPO/</code></li>
+                </ol>
+                <div class="note">
+                    <strong>Guía oficial:</strong> <a href="https://docs.github.com/es/pages/quickstart" target="_blank">Cómo crear una página con GitHub Pages</a>
+                </div>
+                <div class="warning">
+                    <strong>Importante:</strong> El repositorio solo debe contener el <code class="code-inline">index.html</code> de redirección. No subas archivos sensibles ni código del backend.
+                </div>
+                <div class="tip">
+                    <strong>¿Por qué se hace esto?</strong> Así puedes compartir un enlace público y siempre actualizado a tu instancia de Ngrok, sin exponer directamente la URL de Ngrok.
+                </div>
+            </div>
+            <h3>5.16. Servicio y timer para actualización automática</h3>
+            <div class="step">
+                <p>Se crea un servicio y un timer de systemd para ejecutar la actualización automáticamente al arrancar el servidor.</p>
+                <div class="code-block">/etc/systemd/system/actualizar.service
+/etc/systemd/system/actualizar.timer
+systemctl enable --now actualizar.timer</div>
+            </div>
+                <div class="tip">
+                    <strong>Puedes ejecutar manualmente la actualización con:</strong> <code class="code-inline">sudo /usr/local/bin/actualizar.sh</code>
+                </div>
+            <h3>5.17. Script de backup y tarea programada</h3>
+            <div class="step">
+                <p>Se programa un backup semanal de la base de datos usando <code class="code-inline">backup_bd.sh</code> y <code class="code-inline">crontab</code>.</p>
+                <div class="code-block">(crontab -l 2>/dev/null; echo "0 2 * * 1 /var/www/cooperativa-de-viviendas-apis/backup_bd.sh") | crontab -</div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: RECOMENDACIONES Y ERRORES COMUNES -->
+        <section id="recomendaciones">
+            <h2>6. Recomendaciones y Errores Comunes</h2>
+            <ul>
+                <li>Verifica siempre los permisos de los scripts (<code class="code-inline">chmod +x</code>).</li>
+                <li>Si un servicio no arranca, revisa los logs con <code class="code-inline">systemctl status [servicio]</code>.</li>
+                <li>Si Docker no ejecuta el contenedor, revisa <code class="code-inline">docker ps -a</code> y <code class="code-inline">docker logs [nombre]</code>.</li>
+                <li>Si el frontend no accede a las APIs, revisa la configuración de <code class="code-inline">API_URL</code> en <code class="code-inline">config.js</code> y la IP/puerto del backend.</li>
+                <li>Si el backup no se ejecuta, revisa el <code class="code-inline">crontab -l</code> y los permisos del script.</li>
+                <li>Para problemas con Ngrok, revisa el token y el estado del servicio.</li>
+                <li>Si ingresas mal el usuario/email de Git, puedes corregirlo con <code class="code-inline">git config --global ...</code>.</li>
+                <li>Si el script se interrumpe, puedes volver a ejecutarlo; los pasos ya completados no afectarán el sistema.</li>
+            </ul>
+            <div class="danger">
+                <strong>⚠️ Seguridad:</strong> Cambia las contraseñas por defecto y protege el archivo <code class="code-inline">.env</code>.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: SOPORTE TÉCNICO -->
+        <section id="soporte">
+            <h2>7. Soporte Técnico</h2>
+            <div class="contact-info">
+                <h4>📧 Correo Electrónico</h4>
+                <p><strong>Email:</strong> info@coovisur.coop</p>
+                <p>Tiempo de respuesta: 24-48 horas hábiles</p>
+            </div>
+            <div class="contact-info">
+                <h4>🏢 Oficinas de CooviSur</h4>
+                <p>Visítanos en nuestras oficinas para atención personalizada.</p>
+                <p><strong>Horario:</strong> Lunes a Viernes de 9:00 a 17:00 hs</p>
+            </div>
+            <h3>Reportar un Problema</h3>
+            <p>Si encuentras un error o problema en la plataforma, por favor incluye la siguiente información:</p>
+            <ul>
+                <li>Dispositivo que usas (computadora, servidor, etc.)</li>
+                <li>Comando ejecutado y salida del error</li>
+                <li>Descripción detallada del problema</li>
+                <li>Capturas de pantalla o logs si es posible</li>
+                <li>Pasos para reproducir el error</li>
+            </ul>
+        </section>
+
+        <footer>
+            <h3>Fin de la Guía Avanzada de Instalación</h3>
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <p style="font-size: 0.85em; color: #999;">
+                    © 2025 CooviSur - Cooperativa de Vivienda del Sur. Todos los derechos reservados.<br>
+                    Desarrollado por <strong>αTech</strong> (aTech)<br>
+                    Esta guía es exclusiva para instalación avanzada y administración técnica del sistema CoopTrack.
+                </p>
+                <p style="font-size: 0.85em; color: #999; margin-top: 15px;">
+                    <strong>Soporte Técnico:</strong> info@coovisur.coop
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
